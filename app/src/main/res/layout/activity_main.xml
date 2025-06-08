@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <!-- Título-->
+    <TextView
+        android:id="@+id/tvTituloLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="72dp"
+        android:text="Iniciar Sesión"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Campo de contraseña -->
+    <EditText
+        android:id="@+id/etContrasena"
+        android:layout_width="322dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="48dp"
+        android:autofillHints="password"
+        android:hint="Contraseña"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etCorreo" />
+
+    <!-- Campo de correo electrónico -->
+    <EditText
+        android:id="@+id/etCorreo"
+        android:layout_width="319dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="132dp"
+        android:autofillHints="emailAddress"
+        android:hint="Correo electrónico"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTituloLogin" />
+
+    <!-- Repetir contraseña (solo en modo registro) -->
+    <EditText
+        android:id="@+id/etRepetirContrasena"
+        android:layout_width="322dp"
+        android:layout_height="53dp"
+        android:hint="Repetir contraseña"
+        android:inputType="textPassword"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/etContrasena"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp" />
+
+    <!-- Botón principal: Iniciar Sesión-->
+    <Button
+        android:id="@+id/btnIniciarRegistrar"
+        android:layout_width="304dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="112dp"
+        android:text="Iniciar Sesión"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etContrasena" />
+
+    <!-- Texto para cambiar de modo (login ↔ registro) -->
+    <TextView
+        android:id="@+id/tvCambiarModo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="36dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="¿No tienes cuenta? Regístrate"
+        android:textColor="?attr/colorPrimary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnIniciarRegistrar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,6 +16,12 @@ public class HomeActivity extends AppCompatActivity{
             startActivity(new Intent(this, DoctoresActivity.class));
         });
 
+        // Botón que abre la lista de pacientes
+        findViewById(R.id.btnPacientes).setOnClickListener(v -> {
+            startActivity(new Intent(this, PacientesActivity.class));
+        });
+
+
     }
 
 }

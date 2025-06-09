@@ -25,6 +25,8 @@
         <activity android:name=".ui.HomeActivity" />
         <activity android:name=".ui.DoctoresActivity"/>
         <activity android:name=".ui.DoctorFormActivity"/>
+        <activity android:name=".ui.PacientesActivity" />
+        <activity android:name=".ui.PacienteFormActivity" />
 
 
     </application>

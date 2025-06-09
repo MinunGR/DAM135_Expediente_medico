@@ -13,14 +13,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nuevo Doctor"
+            android:text="Nuevo Paciente"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_gravity="center"/>
 
-        <!-- PREVIEW DE FOTO -->
+        <!-- Imagen de perfil -->
         <ImageView
-            android:id="@+id/imgPreviewDoctor"
+            android:id="@+id/imgPreviewPaciente"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_gravity="center"
@@ -28,45 +28,36 @@
             android:scaleType="centerCrop"
             android:layout_marginTop="16dp"/>
 
-        <!-- BOTÓN PARA SELECCIONAR FOTO -->
+        <!-- Botón seleccionar foto -->
         <Button
-            android:id="@+id/btnSeleccionarFoto"
+            android:id="@+id/btnSeleccionarFotoPaciente"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Seleccionar foto"
             android:layout_marginTop="8dp"/>
 
-        <!-- nombre -->
+        <!-- Nombre completo -->
         <EditText
-            android:id="@+id/etNombreDoctor"
+            android:id="@+id/etNombrePaciente"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nombre completo"
             android:layout_marginTop="16dp"/>
 
-        <!-- especialidad -->
+        <!-- Datos de contacto -->
         <EditText
-            android:id="@+id/etEspecialidadDoctor"
+            android:id="@+id/etContactoPaciente"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Especialidad"
+            android:hint="Telefono"
             android:layout_marginTop="8dp"/>
 
-        <!--Horarios-->
-        <EditText
-            android:id="@+id/etHorariosDoctor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Horarios disponibles"
-            android:layout_marginTop="8dp"/>
-
-        <!--Boton para guardar-->
+        <!-- Guardar -->
         <Button
-            android:id="@+id/btnGuardarDoctor"
+            android:id="@+id/btnGuardarPaciente"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Guardar"
             android:layout_marginTop="24dp"/>
-
     </LinearLayout>
 </ScrollView>

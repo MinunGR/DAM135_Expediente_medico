@@ -40,8 +40,10 @@ public class DoctorFormActivity extends AppCompatActivity {
         btnGuardar         = findViewById(R.id.btnGuardarDoctor);
 
 
+        // Detectamos si es creación o edición
         int idDoctor = getIntent().getIntExtra("EXTRA_ID_DOCTOR", -1);
         boolean esEdicion = idDoctor != -1;
+
         if (esEdicion) {
             setTitle("Editar Doctor");
             // Carga datos en UI en fondo
@@ -78,7 +80,7 @@ public class DoctorFormActivity extends AppCompatActivity {
             startActivityForResult(intent, REQUEST_CODE_SELECCIONAR_FOTO);
         });
 
-
+        // Guardar (insertar o actualizar)
         btnGuardar.setOnClickListener(v -> {
             String nombre       = etNombre.getText().toString().trim();
             String especialidad = etEspecialidad.getText().toString().trim();
@@ -136,7 +138,6 @@ public class DoctorFormActivity extends AppCompatActivity {
 
             Uri uri = data.getData();
 
-            // Esto persiste el permiso para que puedas usar la URI más tarde en el adapter
             getContentResolver().takePersistableUriPermission(
                     uri,
                     Intent.FLAG_GRANT_READ_URI_PERMISSION

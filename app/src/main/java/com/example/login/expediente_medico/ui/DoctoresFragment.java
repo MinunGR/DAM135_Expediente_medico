@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.login.expediente_medico.R;
 import com.example.login.expediente_medico.data.AppDatabase;
 import com.example.login.expediente_medico.data.Doctor;
+import androidx.appcompat.app.AlertDialog;
 
 import java.util.List;
 
@@ -63,6 +64,24 @@ public class DoctoresFragment extends Fragment{
             startActivity(intent);
         });
 
+        // Click largo para eliminar un doctor
+        adapter.setOnItemLongClickListener(doctor -> {
+            new AlertDialog.Builder(requireContext())
+                    .setTitle("Confirmar eliminación")
+                    .setMessage("¿Eliminar al doctor “" + doctor.getNombre() + "”?")
+                    .setPositiveButton("Eliminar", (dialog, which) -> {
+                        // Eliminar en BD en hilo de fondo
+                        new Thread(() -> {
+                            AppDatabase.obtenerInstancia(requireContext())
+                                    .doctorDao()
+                                    .eliminarDoctor(doctor);
+                            // Refrescar la lista en UI thread
+                            requireActivity().runOnUiThread(this::cargarDoctores);
+                        }).start();
+                    })
+                    .setNegativeButton("Cancelar", null)
+                    .show();
+        });
 
         // Abre DoctorFormActivity al pulsar el icono
         view.findViewById(R.id.fabAgregarDoctor).setOnClickListener(v -> {
@@ -71,6 +90,7 @@ public class DoctoresFragment extends Fragment{
         });
 
         cargarDoctores();
+
     }
 
     @Override

@@ -23,7 +23,9 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorView
     // lista
     private List<Doctor> listaDoctores = new ArrayList<>();
     private OnItemClickListener listener;
+    private OnItemLongClickListener longClickListener; // eliminar
 
+    // actualizar
     public interface OnItemClickListener {
         void onItemClick(Doctor doctor);
     }
@@ -31,6 +33,16 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorView
     //Metodo para registrar el listener
     public void setOnItemClickListener(OnItemClickListener l) {
         listener = l;
+    }
+
+    // eliminar
+    public interface OnItemLongClickListener {
+        void onItemLongClick(Doctor doctor);
+    }
+
+    // Método para registrarlo
+    public void setOnItemLongClickListener(OnItemLongClickListener l) {
+        longClickListener = l;
     }
 
     //Permite asignar o actualizar la lista de doctores
@@ -54,21 +66,30 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorView
         holder.tvNombre.setText(doctor.getNombre());
         holder.tvEspecialidad.setText(doctor.getEspecialidad());
 
-        // Si tienes URI de foto, la cargas; si no, permanece el icono por defecto
         String uriFoto = doctor.getFotoUri();
         if (uriFoto != null && !uriFoto.isEmpty()) {
             holder.imgAvatar.setImageURI(Uri.parse(uriFoto));
         } else {
-            holder.imgAvatar.setImageResource(R.drawable.ic_baseline_person_24); // cambiar
+            holder.imgAvatar.setImageResource(R.drawable.ic_baseline_person_24);
         }
 
-        // Click sobre el ítem
+        // Click simple para editar
         holder.itemView.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onItemClick(doctor);
             }
         });
+
+        // Click largo para eliminar
+        holder.itemView.setOnLongClickListener(v -> {
+            if (longClickListener != null) {
+                longClickListener.onItemLongClick(doctor);
+                return true;    // indicamos que consumimos el evento
+            }
+            return false;
+        });
     }
+
 
     @Override
     public int getItemCount() {

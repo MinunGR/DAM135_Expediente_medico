@@ -31,12 +31,39 @@ public class DoctorFormActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_doctor);
 
+        // enlazar views
         imgPreview         = findViewById(R.id.imgPreviewDoctor);
         btnSeleccionarFoto = findViewById(R.id.btnSeleccionarFoto);
         etNombre           = findViewById(R.id.etNombreDoctor);
         etEspecialidad     = findViewById(R.id.etEspecialidadDoctor);
         etHorarios         = findViewById(R.id.etHorariosDoctor);
         btnGuardar         = findViewById(R.id.btnGuardarDoctor);
+
+
+        int idDoctor = getIntent().getIntExtra("EXTRA_ID_DOCTOR", -1);
+        boolean esEdicion = idDoctor != -1;
+        if (esEdicion) {
+            setTitle("Editar Doctor");
+            // Carga datos en UI en fondo
+            new Thread(() -> {
+                Doctor doc = AppDatabase.obtenerInstancia(this)
+                        .doctorDao()
+                        .buscarDoctorPorId(idDoctor);
+                runOnUiThread(() -> {
+                    if (doc != null) {
+                        etNombre.setText(doc.getNombre());
+                        etEspecialidad.setText(doc.getEspecialidad());
+                        etHorarios.setText(doc.getHorariosDisponibles());
+                        if (!doc.getFotoUri().isEmpty()) {
+                            fotoUriSeleccionada = Uri.parse(doc.getFotoUri());
+                            imgPreview.setImageURI(fotoUriSeleccionada);
+                        }
+                    }
+                });
+            }).start();
+        } else {
+            setTitle("Nuevo Doctor");
+        }
 
         // Al hacer clic, abrimos la galería para elegir imagen
         btnSeleccionarFoto.setOnClickListener(v -> {
@@ -75,10 +102,25 @@ public class DoctorFormActivity extends AppCompatActivity {
             // Guardar en BD en hilo de fondo
             new Thread(() -> {
                 AppDatabase db = AppDatabase.obtenerInstancia(this);
-                long id = db.doctorDao()
-                        .insertarDoctor(new Doctor(nombre, especialidad, fotoUriStr, horarios));
-
-                // Cerramos la Activity en el hilo principal
+                if (esEdicion) {
+                    // Actualizar un doctor existente
+                    Doctor doc = new Doctor(
+                            etNombre.getText().toString().trim(),
+                            etEspecialidad.getText().toString().trim(),
+                            fotoUriStr,
+                            etHorarios.getText().toString().trim()
+                    );
+                    doc.setIdDoctor(idDoctor);
+                    db.doctorDao().actualizarDoctor(doc);
+                } else {
+                    // Insertar nuevo
+                    db.doctorDao().insertarDoctor(new Doctor(
+                            etNombre.getText().toString().trim(),
+                            etEspecialidad.getText().toString().trim(),
+                            fotoUriStr,
+                            etHorarios.getText().toString().trim()
+                    ));
+                }
                 runOnUiThread(this::finish);
             }).start();
         });

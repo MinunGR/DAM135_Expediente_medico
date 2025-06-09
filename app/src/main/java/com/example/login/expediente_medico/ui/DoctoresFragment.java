@@ -56,7 +56,15 @@ public class DoctoresFragment extends Fragment{
         rvDoctores.setLayoutManager(new LinearLayoutManager(requireContext()));
         rvDoctores.setAdapter(adapter);
 
-        // Abre DoctorFormActivity al pulsar el FAB
+        // Al hacer click en un doctor, se abre el formulario para editar
+        adapter.setOnItemClickListener(doctor -> {
+            Intent intent = new Intent(requireContext(), DoctorFormActivity.class);
+            intent.putExtra("EXTRA_ID_DOCTOR", doctor.getIdDoctor());
+            startActivity(intent);
+        });
+
+
+        // Abre DoctorFormActivity al pulsar el icono
         view.findViewById(R.id.fabAgregarDoctor).setOnClickListener(v -> {
             Intent intent = new Intent(requireContext(), DoctorFormActivity.class);
             startActivity(intent);

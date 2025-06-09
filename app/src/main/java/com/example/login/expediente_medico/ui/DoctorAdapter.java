@@ -4,6 +4,7 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,8 +22,18 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorView
 
     // lista
     private List<Doctor> listaDoctores = new ArrayList<>();
+    private OnItemClickListener listener;
 
-    /* Permite asignar o actualizar la lista de doctores */
+    public interface OnItemClickListener {
+        void onItemClick(Doctor doctor);
+    }
+
+    //Metodo para registrar el listener
+    public void setOnItemClickListener(OnItemClickListener l) {
+        listener = l;
+    }
+
+    //Permite asignar o actualizar la lista de doctores
     public void setListaDoctores(List<Doctor> doctores) {
         listaDoctores = doctores;
         notifyDataSetChanged();
@@ -50,6 +61,13 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorView
         } else {
             holder.imgAvatar.setImageResource(R.drawable.ic_baseline_person_24); // cambiar
         }
+
+        // Click sobre el ítem
+        holder.itemView.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onItemClick(doctor);
+            }
+        });
     }
 
     @Override
@@ -69,8 +87,5 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorView
             tvEspecialidad  = itemView.findViewById(R.id.tvEspecialidadDoctor);
         }
     }
-
-
-
 
 }

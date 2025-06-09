@@ -21,6 +21,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".ui.HomeActivity" />
+        <activity android:name=".ui.DoctoresActivity"/>
+        <activity android:name=".ui.DoctorFormActivity"/>
+
+
     </application>
 
 </manifest>

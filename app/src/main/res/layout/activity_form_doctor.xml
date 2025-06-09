@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nuevo Doctor"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"/>
+
+        <!-- PREVIEW DE FOTO -->
+        <ImageView
+            android:id="@+id/imgPreviewDoctor"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_baseline_person_24"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="16dp"/>
+
+        <!-- BOTÓN PARA SELECCIONAR FOTO -->
+        <Button
+            android:id="@+id/btnSeleccionarFoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Seleccionar foto"
+            android:layout_marginTop="8dp"/>
+
+        <!-- TUS CAMPOS EXISTENTES -->
+        <EditText
+            android:id="@+id/etNombreDoctor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre completo"
+            android:layout_marginTop="16dp"/>
+
+        <EditText
+            android:id="@+id/etEspecialidadDoctor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Especialidad"
+            android:layout_marginTop="8dp"/>
+
+        <EditText
+            android:id="@+id/etHorariosDoctor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Horarios disponibles"
+            android:layout_marginTop="8dp"/>
+
+        <Button
+            android:id="@+id/btnGuardarDoctor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Guardar"
+            android:layout_marginTop="24dp"/>
+
+    </LinearLayout>
+</ScrollView>

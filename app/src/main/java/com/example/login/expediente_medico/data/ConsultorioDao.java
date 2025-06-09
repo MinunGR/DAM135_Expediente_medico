@@ -9,6 +9,7 @@ import androidx.room.Update;
 import java.util.List;
 
 // Para operaciones CRUD sobre la entidad
+@Dao
 public interface ConsultorioDao {
 
     // Insertar un consultorio

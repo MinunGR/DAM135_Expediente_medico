@@ -39,9 +39,12 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.room.common.jvm)
     implementation(libs.room.runtime.android)
+    implementation(libs.support.annotations)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    implementation("com.google.android.material:material:1.9.0")
 
     // Tus dependencias de Room (runtime)
     implementation(libs.room.common.jvm)

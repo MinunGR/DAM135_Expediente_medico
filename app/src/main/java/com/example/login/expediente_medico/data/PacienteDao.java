@@ -10,6 +10,7 @@ import java.util.List;
 
 
 // Para operaciones CRUD sobre la entidad
+@Dao
 public interface PacienteDao {
 
     // Insertar un paciente

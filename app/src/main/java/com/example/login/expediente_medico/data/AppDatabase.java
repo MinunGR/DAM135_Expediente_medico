@@ -63,7 +63,8 @@ public abstract class AppDatabase extends RoomDatabase {
                             AppDatabase.class,
                             NOMBRE_BD
                     )
-                    .fallbackToDestructiveMigration()
+                    .fallbackToDestructiveMigrationFrom(1, 2, 3)
+                    .fallbackToDestructiveMigrationOnDowngrade()
                     .build();
         }
         return INSTANCIA;

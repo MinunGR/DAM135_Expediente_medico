@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
 import com.example.login.expediente_medico.data.AppDatabase;
+import com.example.login.expediente_medico.ui.HomeActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,13 +45,9 @@ public class MainActivity extends AppCompatActivity {
         prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 
         // Inicializar Room (en producción evita allowMainThreadQueries)
-        db = Room.databaseBuilder(
-                        getApplicationContext(),
-                        AppDatabase.class,
-                        "citas_medicas.db")
-                .allowMainThreadQueries()  // solo para desarrollo
-                .build();
-        usuarioDao = db.usuarioDao();
+        // usa tu singleton que ya tiene fallbackToDestructiveMigrationFrom(...)
+        AppDatabase bd = AppDatabase.obtenerInstancia(this);
+        usuarioDao = bd.usuarioDao();
 
         // Vincular vistas
         tvTituloLogin = findViewById(R.id.tvTituloLogin);
@@ -136,38 +133,79 @@ public class MainActivity extends AppCompatActivity {
         Registrar un nuevo usuario en la base de datos
      */
     private void registrarUsuario() {
-        String email = etCorreo.getText().toString().trim();
+        String email    = etCorreo.getText().toString().trim();
         String password = etContrasena.getText().toString().trim();
 
-        // TODO: Podrías hashear la contraseña antes de guardar
         Usuario nuevo = new Usuario();
         nuevo.setCorreo(email);
         nuevo.setContrasena(password);
 
-        long id = usuarioDao.insertar(nuevo);
-        if (id > 0) {
-            guardarSesion(email);
-            irActividadPrincipal();
-        } else {
-            Toast.makeText(this, "Error al registrar usuario", Toast.LENGTH_SHORT).show();
-        }
+        // CORRECCIÓN: movemos la inserción a un hilo de fondo
+        new Thread(() -> {
+            long id = usuarioDao.insertar(nuevo);
+
+            runOnUiThread(() -> {
+                if (id > 0) {
+                    guardarSesion(email);
+                    // Navegar al Home
+                    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Toast.makeText(
+                            MainActivity.this,
+                            "Error al registrar usuario",
+                            Toast.LENGTH_SHORT
+                    ).show();
+                }
+            });
+        }).start();
     }
+
 
     /*
         Inicia sesión comprobando credenciales contra la base de datos
      */
     private void iniciarSesion() {
-        String email = etCorreo.getText().toString().trim();
+        String email    = etCorreo.getText().toString().trim();
         String password = etContrasena.getText().toString().trim();
 
-        Usuario existente = usuarioDao.buscarPorCorreo(email);
-        if (existente != null && existente.getContrasena().equals(password)) {
-            guardarSesion(email);
-            irActividadPrincipal();
-        } else {
-            Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
+        if (email.isEmpty() || password.isEmpty()) {
+            Toast.makeText(this, "Completa correo y contraseña", Toast.LENGTH_SHORT).show();
+            return;
         }
+
+        // Ejecutamos la consulta en background
+        new Thread(() -> {
+            Usuario usuario = AppDatabase
+                    .obtenerInstancia(this)
+                    .usuarioDao()
+                    .buscarPorCorreo(email);
+
+            runOnUiThread(() -> {
+                if (usuario != null && usuario.getContrasena().equals(password)) {
+                    // 1) Guardar en SharedPreferences (opcional)
+                    getSharedPreferences("sesion", MODE_PRIVATE)
+                            .edit()
+                            .putString("usuario_email", email)
+                            .apply();
+
+                    // 2) Navegar a HomeActivity
+                    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                    finish(); // cerramos la pantalla de login
+
+                } else {
+                    Toast.makeText(
+                            MainActivity.this,
+                            "Correo o contraseña incorrectos",
+                            Toast.LENGTH_SHORT
+                    ).show();
+                }
+            });
+        }).start();
     }
+
 
     /*
         Guardar datos de sesión en SharedPreferences

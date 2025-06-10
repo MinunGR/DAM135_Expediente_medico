@@ -29,6 +29,9 @@
         <activity android:name=".ui.PacienteFormActivity" />
         <activity android:name=".ui.EspecialidadesActivity"/>
         <activity android:name=".ui.EspecialidadFormActivity"/>
+        <activity android:name=".ui.ConsultoriosActivity"/>
+        <activity android:name=".ui.ConsultorioFormActivity"/>
+
 
 
 

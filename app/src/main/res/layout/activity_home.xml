@@ -51,6 +51,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"/>
 
+    <!-- boton para acceder a consultorios -->
+    <Button
+        android:id="@+id/btnConsultorios"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Consultorios"
+        app:layout_constraintTop_toBottomOf="@id/btnEspecialidades"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
+
+
 
 
 

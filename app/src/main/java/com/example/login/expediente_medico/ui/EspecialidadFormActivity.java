@@ -59,7 +59,7 @@ public class EspecialidadFormActivity extends AppCompatActivity {
             new Thread(() -> {
                 AppDatabase db = AppDatabase.obtenerInstancia(this);
                 if (esEdicion) {
-                    // Actualizar un doctor existente
+                    // Actualizar una especialidad existente
                     Especialidad e = new Especialidad(nombre);
                     e.setIdEspecialidad(idEspecialidad);
                     db.especialidadDao().actualizarEspecialidad(e);

@@ -26,6 +26,11 @@ public class HomeActivity extends AppCompatActivity{
                 startActivity(new Intent(this, EspecialidadesActivity.class))
         );
 
+        // Botón que abre la lista de consultorios
+        findViewById(R.id.btnConsultorios).setOnClickListener(v ->
+                startActivity(new Intent(this, ConsultoriosActivity.class))
+        );
+
     }
 
 }

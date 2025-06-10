@@ -21,6 +21,10 @@ public class HomeActivity extends AppCompatActivity{
             startActivity(new Intent(this, PacientesActivity.class));
         });
 
+        // Botón que abre la lista de especialidades
+        findViewById(R.id.btnEspecialidades).setOnClickListener(v ->
+                startActivity(new Intent(this, EspecialidadesActivity.class))
+        );
 
     }
 

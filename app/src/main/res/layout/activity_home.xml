@@ -40,6 +40,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"/>
 
+    <!-- boton para acceder a especialidades -->
+    <Button
+        android:id="@+id/btnEspecialidades"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Especialidades"
+        app:layout_constraintTop_toBottomOf="@id/btnPacientes"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

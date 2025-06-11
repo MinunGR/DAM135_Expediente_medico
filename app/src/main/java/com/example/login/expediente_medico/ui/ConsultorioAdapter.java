@@ -18,7 +18,7 @@ import java.util.List;
 public class ConsultorioAdapter extends RecyclerView.Adapter<ConsultorioAdapter.ConsultorioViewHolder> {
 
     private List<Consultorio> lista = new ArrayList<>(); // lista
-    private OnItemClickListener clickListener; // editar
+    private OnItemClickListener clickListener; // actualizar
     private OnItemLongClickListener longClickListener; // eliminar
 
     // actualizar

@@ -68,7 +68,7 @@ public class ConsultoriosFragment extends Fragment {
                     .show();
         });
 
-        // 4) FAB para añadir
+        // FAB para añadir
         view.findViewById(R.id.fabAgregarConsultorio).setOnClickListener(v ->
                 startActivity(new Intent(requireContext(), ConsultorioFormActivity.class))
         );

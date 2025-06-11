@@ -63,6 +63,19 @@
         android:layout_marginTop="16dp"/>
 
 
+    <!--Boton para acceder a citas-->
+    <Button
+        android:id="@+id/btnCitas"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Citas"
+        app:layout_constraintTop_toBottomOf="@id/btnConsultorios"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
+
+
+
 
 
 

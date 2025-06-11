@@ -1,6 +1,7 @@
 package com.example.login.expediente_medico.data;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 // Entidad especialidad
@@ -15,6 +16,7 @@ public class Especialidad {
     private String nombre;
 
     // Constructor
+    @Ignore
     public Especialidad(String nombre) {
         this.nombre = nombre;
     }

@@ -31,6 +31,8 @@
         <activity android:name=".ui.EspecialidadFormActivity"/>
         <activity android:name=".ui.ConsultoriosActivity"/>
         <activity android:name=".ui.ConsultorioFormActivity"/>
+        <activity android:name=".ui.CitasActivity"/>
+        <activity android:name=".ui.CitaFormActivity"/>
 
 
 

@@ -1,6 +1,7 @@
 package com.example.login.expediente_medico.data;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 // Entidad doctor
@@ -22,6 +23,7 @@ public class Doctor {
     private String horariosDisponibles;
 
     // Constructor
+    @Ignore
     public Doctor(String nombre, String especialidad, String fotoUri, String horariosDisponibles) {
         this.nombre = nombre;
         this.especialidad = especialidad;
@@ -50,6 +52,11 @@ public class Doctor {
     public String getHorariosDisponibles() { return horariosDisponibles; }
     public void setHorariosDisponibles(String horariosDisponibles) {
         this.horariosDisponibles = horariosDisponibles;
+    }
+
+    @Override
+    public String toString() {
+        return nombre;
     }
 
 }

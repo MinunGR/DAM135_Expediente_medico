@@ -31,6 +31,12 @@ public class HomeActivity extends AppCompatActivity{
                 startActivity(new Intent(this, ConsultoriosActivity.class))
         );
 
+        // Botón que abre la lista de citas
+        findViewById(R.id.btnCitas).setOnClickListener(v ->
+                startActivity(new Intent(this, CitasActivity.class))
+        );
+
+
     }
 
 }

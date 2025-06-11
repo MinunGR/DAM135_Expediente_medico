@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nueva Cita"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"/>
+
+        <!-- Selector de Doctor -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Doctor"
+            android:layout_marginTop="16dp"/>
+        <Spinner
+            android:id="@+id/spinnerDoctor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <!-- Selector de Paciente -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Paciente"
+            android:layout_marginTop="16dp"/>
+        <Spinner
+            android:id="@+id/spinnerPaciente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <!-- Fecha y hora -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fecha y Hora"
+            android:layout_marginTop="16dp"/>
+        <Button
+            android:id="@+id/btnSeleccionarFechaHora"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Seleccionar fecha y hora"/>
+
+        <TextView
+            android:id="@+id/tvFechaHoraSeleccionada"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="—"
+            android:layout_marginTop="8dp"/>
+
+        <EditText
+            android:id="@+id/etMotivoCita"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Motivo de la cita"
+            android:layout_marginTop="16dp"/>
+
+        <!-- Guardar -->
+        <Button
+            android:id="@+id/btnGuardarCita"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Guardar"
+            android:layout_marginTop="24dp"/>
+
+    </LinearLayout>
+</ScrollView>

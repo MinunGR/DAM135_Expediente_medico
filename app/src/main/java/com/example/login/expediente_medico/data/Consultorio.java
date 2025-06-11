@@ -1,6 +1,7 @@
 package com.example.login.expediente_medico.data;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 // Entidad consultorios
@@ -17,6 +18,7 @@ public class Consultorio {
     private String ubicacion; // Ubicación o dirección dentro del centro médico
 
     // Constructor
+    @Ignore
     public Consultorio(String nombre, String ubicacion) {
         this.nombre = nombre;
         this.ubicacion = ubicacion;

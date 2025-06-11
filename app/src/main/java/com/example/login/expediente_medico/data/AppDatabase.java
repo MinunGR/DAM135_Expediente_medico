@@ -16,12 +16,14 @@ import com.example.login.expediente_medico.data.Especialidad;
 import com.example.login.expediente_medico.data.EspecialidadDao;
 import com.example.login.expediente_medico.data.Consultorio;
 import com.example.login.expediente_medico.data.ConsultorioDao;
+import com.example.login.expediente_medico.data.Cita;
+import com.example.login.expediente_medico.data.CitaDao;
 
 
 // clase de base de datos principal de Room
 @Database(
-        entities = { Usuario.class, Doctor.class, Paciente.class , Especialidad.class, Consultorio.class},
-        version = 4,
+        entities = { Usuario.class, Doctor.class, Paciente.class , Especialidad.class, Consultorio.class, Cita.class},
+        version = 5,
         exportSchema = false
 )
 
@@ -55,6 +57,12 @@ public abstract class AppDatabase extends RoomDatabase {
         Obtiene el DAO de consultorios.
      */
     public abstract ConsultorioDao consultorioDao();
+
+    /**
+        Obtiene el DAO de citas
+     */
+    public abstract CitaDao citaDao();
+
 
     public static synchronized AppDatabase obtenerInstancia(Context contexto) {
         if (INSTANCIA == null) {

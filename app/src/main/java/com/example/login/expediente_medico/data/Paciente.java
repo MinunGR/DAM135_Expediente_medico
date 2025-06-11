@@ -1,6 +1,7 @@
 package com.example.login.expediente_medico.data;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 // Entidad paciente
@@ -20,6 +21,7 @@ public class Paciente {
     private String fotoUri;
 
     // Constructor
+    @Ignore
     public Paciente(String nombre, String datosContacto, String fotoUri) {
         this.nombre = nombre;
         this.datosContacto = datosContacto;
@@ -53,5 +55,10 @@ public class Paciente {
     }
     public void setFotoUri(String fotoUri) {
         this.fotoUri = fotoUri;
+    }
+
+    @Override
+    public String toString() {
+        return nombre;   // Mostrar el nombre del paciente
     }
 }

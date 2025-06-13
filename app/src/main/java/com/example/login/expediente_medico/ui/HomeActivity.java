@@ -36,7 +36,10 @@ public class HomeActivity extends AppCompatActivity{
                 startActivity(new Intent(this, CitasActivity.class))
         );
 
-
+        // Botón que abre la lista de registro/historial
+        findViewById(R.id.btnExpediente).setOnClickListener(v ->
+                startActivity(new Intent(this, ExpedienteActivity.class))
+        );
     }
 
 }

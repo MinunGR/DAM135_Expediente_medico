@@ -33,6 +33,8 @@
         <activity android:name=".ui.ConsultorioFormActivity"/>
         <activity android:name=".ui.CitasActivity"/>
         <activity android:name=".ui.CitaFormActivity"/>
+        <activity android:name=".ui.ExpedienteActivity"/>
+        <activity android:name=".ui.RegistroFormActivity"/>
 
 
 

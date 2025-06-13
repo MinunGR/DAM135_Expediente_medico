@@ -74,9 +74,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"/>
 
-
-
-
-
-
+    <!--Boton para acceder al registro-->
+    <Button
+        android:id="@+id/btnExpediente"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Expediente"
+        app:layout_constraintTop_toBottomOf="@id/btnCitas"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

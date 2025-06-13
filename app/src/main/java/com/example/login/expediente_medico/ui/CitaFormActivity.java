@@ -165,28 +165,44 @@ public class CitaFormActivity extends AppCompatActivity {
     }
 
     private void showDateTimePicker() {
+        //Obtenemos la fecha actual
         final Calendar c = Calendar.getInstance();
-        new DatePickerDialog(this,
+
+        //Creamos el DatePickerDialog
+        DatePickerDialog datePicker = new DatePickerDialog(
+                this,
                 (view, year, month, dayOfMonth) -> {
+                    // Cuando confirma la fecha, abrimos el TimePicker
                     c.set(Calendar.YEAR, year);
                     c.set(Calendar.MONTH, month);
                     c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                    new TimePickerDialog(this,
-                            (view1, hourOfDay, minute) -> {
-                                c.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                    new TimePickerDialog(
+                            this,
+                            (tView, hour, minute) -> {
+                                // Despues guardamos el timestamp
+                                c.set(Calendar.HOUR_OF_DAY, hour);
                                 c.set(Calendar.MINUTE, minute);
                                 fechaHoraSeleccionada = c.getTimeInMillis();
-                                String fh = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
-                                        .format(c.getTime());
+                                String fh = new SimpleDateFormat(
+                                        "yyyy-MM-dd HH:mm", Locale.getDefault()
+                                ).format(c.getTime());
                                 tvFechaHoraSeleccionada.setText(fh);
                             },
                             c.get(Calendar.HOUR_OF_DAY),
-                            c.get(Calendar.MINUTE), true
+                            c.get(Calendar.MINUTE),
+                            true
                     ).show();
                 },
                 c.get(Calendar.YEAR),
                 c.get(Calendar.MONTH),
                 c.get(Calendar.DAY_OF_MONTH)
-        ).show();
+        );
+
+        // No permitir días anteriores al día actual
+        datePicker.getDatePicker().setMinDate(System.currentTimeMillis());
+
+        //Mostramos el diálogo
+        datePicker.show();
     }
+
 }

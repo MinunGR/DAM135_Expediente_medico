@@ -1,127 +1,138 @@
 package com.example.login.expediente_medico.ui;
 
+import static com.example.login.expediente_medico.data.AppDatabase.obtenerInstancia;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-import androidx.annotation.Nullable;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.login.expediente_medico.R;
 import com.example.login.expediente_medico.data.AppDatabase;
 import com.example.login.expediente_medico.data.Doctor;
+import com.example.login.expediente_medico.data.Especialidad;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DoctorFormActivity extends AppCompatActivity {
+    private static final int REQ_PHOTO = 2001;
 
-    private static final int REQUEST_CODE_SELECCIONAR_FOTO = 1001;
-
+    private EditText etNombre, etHorarios;
+    private AutoCompleteTextView autoEsp;
     private ImageView imgPreview;
-    private Button btnSeleccionarFoto;
-    private EditText etNombre, etEspecialidad, etHorarios;
-    private Button btnGuardar;
+    private Button btnPickPhoto, btnGuardar;
 
-    // Guardamos la URI elegida
-    private Uri fotoUriSeleccionada = null;
+    private Uri fotoUri;
+    private boolean esEdicion;
+    private int idDoctor;
+    private List<Especialidad> listaEsp;
+    private List<String> nombresEsp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_doctor);
 
-        // enlazar views
-        imgPreview         = findViewById(R.id.imgPreviewDoctor);
-        btnSeleccionarFoto = findViewById(R.id.btnSeleccionarFoto);
-        etNombre           = findViewById(R.id.etNombreDoctor);
-        etEspecialidad     = findViewById(R.id.etEspecialidadDoctor);
-        etHorarios         = findViewById(R.id.etHorariosDoctor);
-        btnGuardar         = findViewById(R.id.btnGuardarDoctor);
+        etNombre   = findViewById(R.id.etNombreDoctor);
+        autoEsp    = findViewById(R.id.autoEspecialidad);
+        etHorarios = findViewById(R.id.etHorariosDoctor);
+        btnPickPhoto = findViewById(R.id.btnSeleccionarFotoDoctor);
+        imgPreview  = findViewById(R.id.imgPreviewDoctor);
+        btnGuardar  = findViewById(R.id.btnGuardarDoctor);
 
+        idDoctor   = getIntent().getIntExtra("EXTRA_ID_DOCTOR", -1);
+        esEdicion  = idDoctor != -1;
+        setTitle(esEdicion ? "Editar Doctor" : "Nuevo Doctor");
 
-        // Detectamos si es creación o edición
-        int idDoctor = getIntent().getIntExtra("EXTRA_ID_DOCTOR", -1);
-        boolean esEdicion = idDoctor != -1;
+        // 1) Cargo todas las especialidades y lleno el AutoComplete
+        new Thread(() -> {
+            listaEsp = AppDatabase
+                    .obtenerInstancia(this)
+                    .especialidadDao()
+                    .obtenerEspecialidades();
 
-        if (esEdicion) {
-            setTitle("Editar Doctor");
-            // Carga datos en UI en fondo
-            new Thread(() -> {
-                Doctor doc = AppDatabase.obtenerInstancia(this)
-                        .doctorDao()
-                        .buscarDoctorPorId(idDoctor);
-                runOnUiThread(() -> {
-                    if (doc != null) {
-                        etNombre.setText(doc.getNombre());
-                        etEspecialidad.setText(doc.getEspecialidad());
-                        etHorarios.setText(doc.getHorariosDisponibles());
-                        if (!doc.getFotoUri().isEmpty()) {
-                            fotoUriSeleccionada = Uri.parse(doc.getFotoUri());
-                            imgPreview.setImageURI(fotoUriSeleccionada);
-                        }
-                    }
-                });
-            }).start();
-        } else {
-            setTitle("Nuevo Doctor");
-        }
+            nombresEsp = new ArrayList<>();
+            for (Especialidad e : listaEsp) {
+                nombresEsp.add(e.getNombre());
+            }
 
-        // Al hacer clic, abrimos la galería para elegir imagen
-        btnSeleccionarFoto.setOnClickListener(v -> {
-            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-            intent.addCategory(Intent.CATEGORY_OPENABLE);
-            intent.setType("image/*");
-            // Pedimos permiso para leer y persistir la URI
-            intent.addFlags(
-                    Intent.FLAG_GRANT_READ_URI_PERMISSION
-                            | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
-            );
-            startActivityForResult(intent, REQUEST_CODE_SELECCIONAR_FOTO);
+            runOnUiThread(() -> {
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                        this,
+                        android.R.layout.simple_dropdown_item_1line,
+                        nombresEsp
+                );
+                autoEsp.setAdapter(adapter);
+
+                if (esEdicion) {
+                    // 1.a) Cargo el doctor existente
+                    new Thread(() -> {
+                        Doctor d = obtenerInstancia(this)
+                                .doctorDao()
+                                .buscarDoctorPorId(idDoctor);
+                        runOnUiThread(() -> {
+                            if (d != null) {
+                                etNombre.setText(d.getNombre());
+                                etHorarios.setText(d.getHorariosDisponibles());
+                                autoEsp.setText(d.getEspecialidad(), false);
+                                if (!d.getFotoUri().isEmpty()) {
+                                    fotoUri = Uri.parse(d.getFotoUri());
+                                    imgPreview.setImageURI(fotoUri);
+                                    imgPreview.setVisibility(View.VISIBLE);
+                                }
+                            }
+                        });
+                    }).start();
+                }
+            });
+        }).start();
+
+        // 2) Selección de foto
+        btnPickPhoto.setOnClickListener(v -> {
+            Intent i = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+            i.addCategory(Intent.CATEGORY_OPENABLE);
+            i.setType("image/*");
+            i.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION
+                    | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
+            startActivityForResult(i, REQ_PHOTO);
         });
 
-        // Guardar (insertar o actualizar)
+        // 3) Guardar en BD
         btnGuardar.setOnClickListener(v -> {
-            String nombre       = etNombre.getText().toString().trim();
-            String especialidad = etEspecialidad.getText().toString().trim();
-            String horarios     = etHorarios.getText().toString().trim();
+            String nombre = etNombre.getText().toString().trim();
+            String esp     = autoEsp.getText().toString().trim();
+            String horas   = etHorarios.getText().toString().trim();
 
-            // Validar campos completados
-            if (nombre.isEmpty() || especialidad.isEmpty() || horarios.isEmpty()) {
-                Toast.makeText(
-                        DoctorFormActivity.this,
-                        "Por favor, completa todos los campos",
-                        Toast.LENGTH_SHORT
-                ).show();
+            if (nombre.isEmpty() || esp.isEmpty() || horas.isEmpty()) {
+                Toast.makeText(this,
+                        "Completa todos los campos",
+                        Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            // Convertimos la URI a string (o cadena vacía si no seleccionó foto)
-            String fotoUriStr = fotoUriSeleccionada != null
-                    ? fotoUriSeleccionada.toString()
-                    : "";
-
-            // Guardar en BD en hilo de fondo
             new Thread(() -> {
-                AppDatabase db = AppDatabase.obtenerInstancia(this);
+                AppDatabase db = obtenerInstancia(this);
                 if (esEdicion) {
-                    // Actualizar un doctor existente
-                    Doctor doc = new Doctor(
-                            etNombre.getText().toString().trim(),
-                            etEspecialidad.getText().toString().trim(),
-                            fotoUriStr,
-                            etHorarios.getText().toString().trim()
-                    );
-                    doc.setIdDoctor(idDoctor);
-                    db.doctorDao().actualizarDoctor(doc);
+                    Doctor d = new Doctor(nombre, esp,
+                            fotoUri==null?"":fotoUri.toString(),
+                            horas);
+                    d.setIdDoctor(idDoctor);
+                    db.doctorDao().actualizarDoctor(d);
                 } else {
-                    // Insertar nuevo
-                    db.doctorDao().insertarDoctor(new Doctor(
-                            etNombre.getText().toString().trim(),
-                            etEspecialidad.getText().toString().trim(),
-                            fotoUriStr,
-                            etHorarios.getText().toString().trim()
-                    ));
+                    db.doctorDao().insertarDoctor(
+                            new Doctor(nombre, esp,
+                                    fotoUri==null?"":fotoUri.toString(),
+                                    horas)
+                    );
                 }
                 runOnUiThread(this::finish);
             }).start();
@@ -129,23 +140,14 @@ public class DoctorFormActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE_SELECCIONAR_FOTO
-                && resultCode == RESULT_OK
-                && data != null
-                && data.getData() != null) {
-
-            Uri uri = data.getData();
-
+    protected void onActivityResult(int req, int res, Intent data) {
+        super.onActivityResult(req, res, data);
+        if (req == REQ_PHOTO && res == RESULT_OK && data!=null && data.getData()!=null) {
+            fotoUri = data.getData();
             getContentResolver().takePersistableUriPermission(
-                    uri,
-                    Intent.FLAG_GRANT_READ_URI_PERMISSION
-            );
-
-            fotoUriSeleccionada = uri;
-            imgPreview.setImageURI(uri);
+                    fotoUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            imgPreview.setImageURI(fotoUri);
+            imgPreview.setVisibility(View.VISIBLE);
         }
     }
-
 }

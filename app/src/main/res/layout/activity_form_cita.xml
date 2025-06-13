@@ -24,10 +24,13 @@
             android:layout_height="wrap_content"
             android:text="Doctor"
             android:layout_marginTop="16dp"/>
-        <Spinner
-            android:id="@+id/spinnerDoctor"
+        <AutoCompleteTextView
+            android:id="@+id/autoDoctor"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:hint="Escribe el nombre del doctor"
+            android:inputType="text"
+            android:completionThreshold="1"/>
 
         <!-- Selector de Paciente -->
         <TextView
@@ -35,10 +38,14 @@
             android:layout_height="wrap_content"
             android:text="Paciente"
             android:layout_marginTop="16dp"/>
-        <Spinner
-            android:id="@+id/spinnerPaciente"
+        <AutoCompleteTextView
+            android:id="@+id/autoPaciente"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:hint="Escribe el nombre del paciente"
+            android:inputType="text"
+            android:completionThreshold="1" />
+
 
         <!-- Fecha y hora -->
         <TextView

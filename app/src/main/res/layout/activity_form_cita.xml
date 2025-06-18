@@ -93,7 +93,12 @@
             android:hint="Motivo de la cita"
             android:background="@drawable/bg_input"
             android:padding="12dp"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginTop="16dp"
+            android:inputType="textMultiLine"
+            android:minLines="4"
+            android:maxLines="6"
+            android:gravity="top|start"
+            android:scrollbars="vertical"/>
 
         <!-- Guardar -->
         <Button

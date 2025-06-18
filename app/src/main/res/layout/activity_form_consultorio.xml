@@ -23,6 +23,14 @@
             android:layout_marginTop="50dp"
             android:layout_gravity="center"/>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Consultorio"
+            android:textSize="16sp"
+            android:textColor="@color/purple"
+            android:textStyle="bold"
+            android:layout_marginTop="24dp"/>
         <EditText
             android:id="@+id/etNombreConsultorio"
             android:layout_width="match_parent"
@@ -30,8 +38,15 @@
             android:hint="Nombre del consultorio"
             android:background="@drawable/bg_input"
             android:padding="12dp"
-            android:layout_marginTop="24dp"/>
-
+            android:layout_marginTop="5dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ubicacion"
+            android:textSize="16sp"
+            android:textColor="@color/purple"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"/>
         <EditText
             android:id="@+id/etUbicacionConsultorio"
             android:layout_width="match_parent"

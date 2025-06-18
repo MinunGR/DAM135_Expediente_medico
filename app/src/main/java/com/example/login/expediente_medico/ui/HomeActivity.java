@@ -2,6 +2,8 @@ package com.example.login.expediente_medico.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
+
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.login.expediente_medico.R;
 
@@ -40,6 +42,7 @@ public class HomeActivity extends AppCompatActivity{
         findViewById(R.id.btnExpediente).setOnClickListener(v ->
                 startActivity(new Intent(this, ExpedienteActivity.class))
         );
+
     }
 
 }

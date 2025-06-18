@@ -3,4 +3,24 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="purple">#800080</color>
+    <color name="background_light">#F8F9FA</color>
+    <color name="card_background_light">#FFFFFF</color>
+    <color name="text_primary_light">#2C3E50</color>
+    <color name="text_secondary_light">#7F8C8D</color>
+
+    <color name="icon_color_light">#FF6B35</color>
+    <color name="sun_fill_color_light">#FFF3E0</color>
+    <color name="moon_fill_color_light">#E3F2FD</color>
+    <color name="star_color_light">#FFD54F</color>
+
+    <!-- Tema Oscuro -->
+    <color name="icon_color_dark">#90CAF9</color>
+    <color name="sun_fill_color_dark">#FFF8E1</color>
+    <color name="moon_fill_color_dark">#263238</color>
+    <color name="star_color_dark">#FFEB3B</color>
+
+    <!-- Colores generales (puedes usar estos directamente) -->
+    <color name="icon_color">#FF6B35</color>
+    <color name="sun_fill_color">#FFF3E0</color>
+    <color name="moon_fill_color">#263238</color>
 </resources>

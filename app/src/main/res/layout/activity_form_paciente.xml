@@ -48,6 +48,14 @@
             android:layout_marginBottom="16dp"/>
 
         <!-- Campo nombre -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nombre"
+            android:textSize="16sp"
+            android:textColor="@color/purple"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"/>
         <EditText
             android:id="@+id/etNombrePaciente"
             android:layout_width="match_parent"
@@ -58,6 +66,14 @@
             android:layout_marginBottom="12dp"/>
 
         <!-- Campo contacto -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Telefono"
+            android:textSize="16sp"
+            android:textColor="@color/purple"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"/>
         <EditText
             android:id="@+id/etContactoPaciente"
             android:layout_width="match_parent"

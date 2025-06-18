@@ -8,15 +8,19 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nuevo Registro"
-            android:textSize="20sp"
+            android:textSize="22sp"
             android:textStyle="bold"
-            android:layout_gravity="center"/>
+            android:textColor="@color/purple"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="30dp"/>
 
         <!-- Fecha que se asigna automáticamente -->
         <TextView
@@ -37,23 +41,38 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Diagnóstico"
-            android:layout_marginTop="16dp"/>
+            android:padding="12dp"
+            android:background="@drawable/bg_input"
+            android:layout_marginTop="16dp"
+            android:inputType="textMultiLine"
+            android:minLines="2"
+            android:gravity="top|start"/>
 
         <!-- Tratamiento -->
         <EditText
             android:id="@+id/etTratamientoForm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:background="@drawable/bg_input"
             android:hint="Tratamiento"
-            android:layout_marginTop="8dp"/>
+            android:layout_marginTop="8dp"
+            android:inputType="textMultiLine"
+            android:minLines="2"
+            android:gravity="top|start"/>
 
         <!-- Notas -->
         <EditText
             android:id="@+id/etNotasForm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:background="@drawable/bg_input"
             android:hint="Notas adicionales"
-            android:layout_marginTop="8dp"/>
+            android:layout_marginTop="8dp"
+            android:inputType="textMultiLine"
+            android:minLines="2"
+            android:gravity="top|start"/>
 
         <!-- Foto -->
         <Button

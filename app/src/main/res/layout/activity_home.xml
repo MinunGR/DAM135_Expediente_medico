@@ -9,14 +9,15 @@
     <!-- Saludo -->
     <TextView
         android:id="@+id/tvBienvenida"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="135dp"
+        android:layout_height="31dp"
         android:text="¡Bienvenido!"
+        android:layout_marginTop="150dp"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- boton para acceder a doctores -->
     <Button
@@ -24,7 +25,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Doctores"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="@color/purple"
         app:layout_constraintTop_toBottomOf="@id/tvBienvenida"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -32,6 +34,7 @@
     <!-- boton para acceder a pacientes -->
     <Button
         android:id="@+id/btnPacientes"
+        android:backgroundTint="@color/purple"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Pacientes"
@@ -43,6 +46,7 @@
     <!-- boton para acceder a especialidades -->
     <Button
         android:id="@+id/btnEspecialidades"
+        android:backgroundTint="@color/purple"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Especialidades"
@@ -54,6 +58,7 @@
     <!-- boton para acceder a consultorios -->
     <Button
         android:id="@+id/btnConsultorios"
+        android:backgroundTint="@color/purple"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Consultorios"
@@ -66,6 +71,7 @@
     <!--Boton para acceder a citas-->
     <Button
         android:id="@+id/btnCitas"
+        android:backgroundTint="@color/purple"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Citas"
@@ -77,6 +83,7 @@
     <!--Boton para acceder al registro-->
     <Button
         android:id="@+id/btnExpediente"
+        android:backgroundTint="@color/purple"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Expediente"

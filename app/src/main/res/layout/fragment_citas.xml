@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp">
@@ -10,13 +18,17 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Título -->
+        <!-- Título  -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Agenda de Citas"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/purple"
+            android:gravity="center"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="24dp"/>
 
         <!-- Próximas citas -->
         <TextView
@@ -25,35 +37,42 @@
             android:text="Próximas"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:layout_marginTop="16dp"/>
+            android:textColor="@color/purple"
+            android:layout_marginBottom="8dp"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvCitasProximas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:nestedScrollingEnabled="false"/>
 
-        <!-- Citas anteriores -->
+        <!-- Citas anteriores-->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Pasadas"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:layout_marginTop="24dp"/>
+            android:textColor="@color/purple"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="8dp"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvCitasPasadas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:nestedScrollingEnabled="false"/>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabAgregarCita"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="16dp"
-            android:src="@android:drawable/ic_input_add"
-            android:contentDescription="Agregar cita"/>
     </LinearLayout>
 </ScrollView>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAgregarCita"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="55dp"
+        android:layout_marginEnd="15dp"
+        android:src="@android:drawable/ic_input_add"
+        app:tint="@android:color/white"
+        app:backgroundTint="@color/purple"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"  />
+</androidx.constraintlayout.widget.ConstraintLayout>

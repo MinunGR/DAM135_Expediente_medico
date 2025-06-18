@@ -6,24 +6,41 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_gravity="center"
+         android:gravity="center"
+        >
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="REGISTRO DE DOCTORES"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/purple"
+            android:layout_margin="50dp"
+            />
 
         <EditText
             android:id="@+id/etNombreDoctor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nombre del doctor"/>
+            android:hint="Nombre del doctor"
+            android:padding="12dp"
+            android:background="@drawable/bg_input"
+            />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Especialidad"
-            android:layout_marginTop="16dp"/>
+
         <AutoCompleteTextView
             android:id="@+id/autoEspecialidad"
+            android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Escribe para buscar..."
+            android:hint="Escribe para buscar especialidades..."
+            android:padding="12dp"
+            android:background="@drawable/bg_input"
             android:completionThreshold="1"/>
 
         <EditText
@@ -31,6 +48,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Horarios disponibles"
+            android:padding="12dp"
+            android:background="@drawable/bg_input"
             android:layout_marginTop="16dp"/>
 
         <Button
@@ -38,6 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Seleccionar foto"
+            android:backgroundTint="@color/purple"
             android:layout_marginTop="16dp"/>
         <ImageView
             android:id="@+id/imgPreviewDoctor"
@@ -52,6 +72,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Guardar"
+            android:backgroundTint="@color/purple"
             android:layout_marginTop="24dp"/>
+
     </LinearLayout>
 </ScrollView>

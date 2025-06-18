@@ -8,14 +8,19 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nueva Cita"
-            android:textSize="20sp"
+            android:textSize="22sp"
             android:textStyle="bold"
+            android:textColor="@color/purple"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="50dp"
             android:layout_gravity="center"/>
 
         <!-- Selector de Doctor -->
@@ -23,12 +28,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Doctor"
+            android:textSize="16sp"
+            android:textColor="@color/purple"
+            android:textStyle="bold"
             android:layout_marginTop="16dp"/>
         <AutoCompleteTextView
             android:id="@+id/autoDoctor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Escribe el nombre del doctor"
+            android:background="@drawable/bg_input"
+            android:padding="12dp"
             android:inputType="text"
             android:completionThreshold="1"/>
 
@@ -37,12 +47,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Paciente"
+            android:textSize="16sp"
+            android:textColor="@color/purple"
+            android:textStyle="bold"
             android:layout_marginTop="16dp"/>
         <AutoCompleteTextView
             android:id="@+id/autoPaciente"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Escribe el nombre del paciente"
+            android:background="@drawable/bg_input"
+            android:padding="12dp"
             android:inputType="text"
             android:completionThreshold="1" />
 
@@ -52,6 +67,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Fecha y Hora"
+            android:textSize="16sp"
+            android:textColor="@color/purple"
+            android:textStyle="bold"
             android:layout_marginTop="16dp"/>
         <Button
             android:id="@+id/btnSeleccionarFechaHora"
@@ -64,6 +82,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="—"
+            android:textSize="14sp"
+            android:textColor="@android:color/darker_gray"
             android:layout_marginTop="8dp"/>
 
         <EditText
@@ -71,6 +91,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Motivo de la cita"
+            android:background="@drawable/bg_input"
+            android:padding="12dp"
             android:layout_marginTop="16dp"/>
 
         <!-- Guardar -->

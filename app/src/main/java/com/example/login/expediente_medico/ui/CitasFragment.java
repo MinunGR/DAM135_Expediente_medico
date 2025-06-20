@@ -24,9 +24,9 @@ import java.util.List;
 public class CitasFragment extends Fragment {
 
     private RecyclerView rvProximas, rvPasadas;
-    private CitaAdapter proximasAdapter, pasadasAdapter;
-    private CitaAdapter.OnItemClickListener clickListener;
-    private CitaAdapter.OnItemLongClickListener longListener;
+    private AdapterCita proximasAdapter, pasadasAdapter;
+    private AdapterCita.OnItemClickListener clickListener;
+    private AdapterCita.OnItemLongClickListener longListener;
 
     @Nullable
     @Override
@@ -47,7 +47,7 @@ public class CitasFragment extends Fragment {
 
         // Inicializar listeners
         clickListener = cita -> {
-            Intent intent = new Intent(requireContext(), CitaFormActivity.class);
+            Intent intent = new Intent(requireContext(), FormCitaActivity.class);
             intent.putExtra("EXTRA_ID_CITA", cita.getIdCita());
             startActivity(intent);
         };
@@ -57,8 +57,8 @@ public class CitasFragment extends Fragment {
                     .setMessage("¿Eliminar cita de “" + cita.getMotivo() + "”?" )
                     .setPositiveButton("Eliminar", (d, w) -> {
                         new Thread(() -> {
-                            AppDatabase.obtenerInstancia(requireContext())
-                                    .citaDao().eliminarCita(cita);
+                            AppDatabase.getInstance(requireContext())
+                                    .dao_cita().eliminarCita(cita);
                             requireActivity().runOnUiThread(() -> cargarListas(clickListener, longListener));
                         }).start();
                     })
@@ -68,7 +68,7 @@ public class CitasFragment extends Fragment {
 
         // Botón para agregar nueva cita
         view.findViewById(R.id.fabAgregarCita)
-                .setOnClickListener(v -> startActivity(new Intent(requireContext(), CitaFormActivity.class)));
+                .setOnClickListener(v -> startActivity(new Intent(requireContext(), FormCitaActivity.class)));
 
         // Cargar listas inicialmente
         cargarListas(clickListener, longListener);
@@ -82,20 +82,20 @@ public class CitasFragment extends Fragment {
     }
 
     // Método corregido con parámetros para los listeners
-    private void cargarListas(CitaAdapter.OnItemClickListener clickListener,
-                              CitaAdapter.OnItemLongClickListener longListener) {
+    private void cargarListas(AdapterCita.OnItemClickListener clickListener,
+                              AdapterCita.OnItemLongClickListener longListener) {
         new Thread(() -> {
-            AppDatabase db = AppDatabase.obtenerInstancia(requireContext());
+            AppDatabase db = AppDatabase.getInstance(requireContext());
             long ahora = System.currentTimeMillis();
 
-            List<Cita> proximas = db.citaDao().obtenerCitasProximas(ahora);
-            List<Cita> pasadas  = db.citaDao().obtenerCitasPasadas(ahora);
-            List<Doctor> listaDoctores   = db.doctorDao().obtenerDoctores();
-            List<Paciente> listaPacientes = db.pacienteDao().obtenerPacientes();
+            List<Cita> proximas = db.dao_cita().obtenerCitasProximas(ahora);
+            List<Cita> pasadas  = db.dao_cita().obtenerCitasPasadas(ahora);
+            List<Doctor> listaDoctores   = db.dao_doctor().obtenerDoctores();
+            List<Paciente> listaPacientes = db.dao_paciente().obtenerPacientes();
 
             requireActivity().runOnUiThread(() -> {
-                proximasAdapter = new CitaAdapter(proximas, listaDoctores, listaPacientes);
-                pasadasAdapter  = new CitaAdapter(pasadas,  listaDoctores, listaPacientes);
+                proximasAdapter = new AdapterCita(proximas, listaDoctores, listaPacientes);
+                pasadasAdapter  = new AdapterCita(pasadas,  listaDoctores, listaPacientes);
 
                 proximasAdapter.setOnItemClickListener(clickListener);
                 proximasAdapter.setOnItemLongClickListener(longListener);

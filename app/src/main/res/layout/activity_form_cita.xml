@@ -15,67 +15,64 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="16dp"
             android:text="CITA"
             android:textSize="22sp"
-            android:textStyle="bold"
-            android:textColor="@color/purple"
-            android:layout_marginBottom="16dp"
-            android:layout_marginTop="50dp"
-            android:layout_gravity="center"/>
+            android:textStyle="bold" />
 
         <!-- Selector de Doctor -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:text="Doctor"
             android:textSize="16sp"
-            android:textColor="@color/purple"
-            android:textStyle="bold"
-            android:layout_marginTop="16dp"/>
+            android:textStyle="bold" />
+
         <AutoCompleteTextView
             android:id="@+id/autoDoctor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Escribe el nombre del doctor"
-            android:background="@drawable/bg_input"
-            android:padding="12dp"
+            android:completionThreshold="1"
+            android:hint="@string/agregar_medico"
             android:inputType="text"
-            android:completionThreshold="1"/>
+            android:padding="12dp" />
 
         <!-- Selector de Paciente -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:text="Paciente"
             android:textSize="16sp"
-            android:textColor="@color/purple"
-            android:textStyle="bold"
-            android:layout_marginTop="16dp"/>
+            android:textStyle="bold" />
+
         <AutoCompleteTextView
             android:id="@+id/autoPaciente"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Escribe el nombre del paciente"
-            android:background="@drawable/bg_input"
-            android:padding="12dp"
+            android:completionThreshold="1"
+            android:hint="@string/agregar_paciente"
             android:inputType="text"
-            android:completionThreshold="1" />
+            android:padding="12dp" />
 
 
         <!-- Fecha y hora -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:text="Fecha y Hora"
             android:textSize="16sp"
-            android:textColor="@color/purple"
-            android:textStyle="bold"
-            android:layout_marginTop="16dp"/>
+            android:textStyle="bold" />
+
         <Button
             android:id="@+id/btnSeleccionarFechaHora"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Seleccionar fecha y hora"/>
+            android:text="@string/fecha_cita" />
 
         <TextView
             android:id="@+id/tvFechaHoraSeleccionada"
@@ -90,23 +87,23 @@
             android:id="@+id/etMotivoCita"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Motivo de la cita"
-            android:background="@drawable/bg_input"
-            android:padding="12dp"
             android:layout_marginTop="16dp"
-            android:inputType="textMultiLine"
-            android:minLines="4"
-            android:maxLines="6"
+            android:background="@drawable/bg_input"
             android:gravity="top|start"
-            android:scrollbars="vertical"/>
+            android:hint="@string/motivo_cita"
+            android:inputType="textMultiLine"
+            android:maxLines="6"
+            android:minLines="4"
+            android:padding="12dp"
+            android:scrollbars="vertical" />
 
         <!-- Guardar -->
         <Button
             android:id="@+id/btnGuardarCita"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Guardar"
-            android:layout_marginTop="24dp"/>
+            android:layout_marginTop="24dp"
+            android:text="@string/agregar_cita" />
 
     </LinearLayout>
 </ScrollView>

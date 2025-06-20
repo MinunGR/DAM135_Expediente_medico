@@ -22,7 +22,7 @@ import java.util.List;
 // Fragmento que muestra el listado de doctores y un botón para agregar nuevos
 public class DoctoresFragment extends Fragment{
     private RecyclerView rvDoctores;
-    private DoctorAdapter adapter;
+    private AdapterDoctor adapter;
 
     @Nullable
     @Override
@@ -39,8 +39,8 @@ public class DoctoresFragment extends Fragment{
     private void cargarDoctores() {
         new Thread(() -> {
             List<Doctor> lista = AppDatabase
-                    .obtenerInstancia(requireContext())
-                    .doctorDao()
+                    .getInstance(requireContext())
+                    .dao_doctor()
                     .obtenerDoctores();
             requireActivity().runOnUiThread(() -> adapter.setListaDoctores(lista));
         }).start();
@@ -53,13 +53,13 @@ public class DoctoresFragment extends Fragment{
 
         // Inicializar RecyclerView y su adaptador
         rvDoctores = view.findViewById(R.id.rvDoctores);
-        adapter = new DoctorAdapter();
+        adapter = new AdapterDoctor();
         rvDoctores.setLayoutManager(new LinearLayoutManager(requireContext()));
         rvDoctores.setAdapter(adapter);
 
         // Al hacer click en un doctor, se abre el formulario para editar
         adapter.setOnItemClickListener(doctor -> {
-            Intent intent = new Intent(requireContext(), DoctorFormActivity.class);
+            Intent intent = new Intent(requireContext(), FormDoctorActivity.class);
             intent.putExtra("EXTRA_ID_DOCTOR", doctor.getIdDoctor());
             startActivity(intent);
         });
@@ -72,8 +72,8 @@ public class DoctoresFragment extends Fragment{
                     .setPositiveButton("Eliminar", (dialog, which) -> {
                         // Eliminar en BD en hilo de fondo
                         new Thread(() -> {
-                            AppDatabase.obtenerInstancia(requireContext())
-                                    .doctorDao()
+                            AppDatabase.getInstance(requireContext())
+                                    .dao_doctor()
                                     .eliminarDoctor(doctor);
                             // Refrescar la lista en UI thread
                             requireActivity().runOnUiThread(this::cargarDoctores);
@@ -83,9 +83,9 @@ public class DoctoresFragment extends Fragment{
                     .show();
         });
 
-        // Abre DoctorFormActivity al pulsar el icono
+        // Abre FormDoctorActivity al pulsar el icono
         view.findViewById(R.id.fabAgregarDoctor).setOnClickListener(v -> {
-            Intent intent = new Intent(requireContext(), DoctorFormActivity.class);
+            Intent intent = new Intent(requireContext(), FormDoctorActivity.class);
             startActivity(intent);
         });
 

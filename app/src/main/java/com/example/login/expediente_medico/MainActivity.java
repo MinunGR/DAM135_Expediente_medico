@@ -12,116 +12,121 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
 
 import com.example.login.expediente_medico.data.AppDatabase;
 import com.example.login.expediente_medico.ui.HomeActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText etCorreo, etContrasena, etRepetirContrasena;
-    private Button btnIniciarRegistrar;
-    private TextView tvCambiarModo, tvTituloLogin;
+    // Elementos de la UI
+    private EditText inpCorreo, inpContra, inpRepContra;
+    private Button btnLoginReg;
+    private TextView btnIrRegistro, lblTituloInicio, lblSubtituloInicio;
 
-    // SharedPreferences
     private SharedPreferences prefs;
     private static final String PREFS_NAME = "citas_prefs";
-    private static final String KEY_USER_EMAIL = "KEY_USER_EMAIL";
     private static final String KEY_IS_LOGGED_IN = "KEY_IS_LOGGED_IN";
 
-    // Para altenar entre el login y el registro
-    private boolean modoRegistro = false;
+    private static final String KEY_USER_EMAIL = "KEY_USER_EMAIL";
 
-    // Room
-    private AppDatabase db;
-    private UsuarioDao usuarioDao;
+    // Boolean para indicar modo de registro
+    private boolean form_mode = false;
+
+    // Campos formulario
+    private String email, password, cnfPassword;
+
+
+    // Room Database
+    private AppDatabase db_app;
+    // Instancia Dao
+    private UsuarioDao dao_usuario;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Inicializar SharedPreferences
+        // Inicializar SharedPreferences y AppDatabase
         prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        AppDatabase bd = AppDatabase.getInstance(this);
+        dao_usuario = bd.dao_usuario();
 
-        // Inicializar Room (en producción evita allowMainThreadQueries)
-        // usa tu singleton que ya tiene fallbackToDestructiveMigrationFrom(...)
-        AppDatabase bd = AppDatabase.obtenerInstancia(this);
-        usuarioDao = bd.usuarioDao();
+        // Vinculamos elementos
+        lblTituloInicio = findViewById(R.id.lblTituloInicio);
+        lblSubtituloInicio = findViewById(R.id.lblSubtituloInicio);
+        inpCorreo = findViewById(R.id.inpCorreo);
+        inpContra = findViewById(R.id.inpContra);
+        inpRepContra = findViewById(R.id.inpRepContra);
+        btnLoginReg = findViewById(R.id.btnLoginReg);
+        btnIrRegistro = findViewById(R.id.btnRegistro);
 
-        // Vincular vistas
-        tvTituloLogin = findViewById(R.id.tvTituloLogin);
-        etCorreo = findViewById(R.id.etCorreo);
-        etContrasena = findViewById(R.id.etContrasena);
-        etRepetirContrasena = findViewById(R.id.etRepetirContrasena);
-        btnIniciarRegistrar = findViewById(R.id.btnIniciarRegistrar);
-        tvCambiarModo = findViewById(R.id.tvCambiarModo);
-
-        // Configurar listener para cambiar entre login y registro
-        tvCambiarModo.setOnClickListener(v -> {
-            modoRegistro = !modoRegistro;
-            actualizarModo();
-        });
-
-        // Listener del botón principal
-        btnIniciarRegistrar.setOnClickListener(v -> {
-            if (validarCampos()) {
-                if (modoRegistro) {
-                    registrarUsuario();
-                } else {
-                    iniciarSesion();
-                }
-            }
-        });
+        this.buttonInit();
 
         // Inicializar estado de vistas
         actualizarModo();
     }
 
-    /*
-        Altenar la vista entre entre el modo Login y Registro
-     */
+    // Añadimos los litener a los botones
+    public void buttonInit(){
+        // Listener para cambiar entre formularios
+        btnIrRegistro.setOnClickListener(v -> {
+            form_mode = !form_mode;
+            actualizarModo();
+        });
+
+        // Listener botón de registros
+        btnLoginReg.setOnClickListener(v -> {
+            if (formValidator()) {
+                if (form_mode) registrarUsuario();
+                else iniciarSesion();
+            }
+        });
+
+
+    }
+
+    // Función para cambiar entre modos de formulario
     private void actualizarModo() {
-        if (modoRegistro) {
-            tvTituloLogin.setText("Registro");
-            btnIniciarRegistrar.setText("Registrarse");
-            tvCambiarModo.setText("¿Ya tienes cuenta? Inicia sesión");
-            etRepetirContrasena.setVisibility(View.VISIBLE);
+        if (form_mode) {
+            lblTituloInicio.setText(R.string.register_title);
+            lblSubtituloInicio.setText(R.string.campos_vacios);
+            btnLoginReg.setText(R.string.guardar);
+            btnIrRegistro.setText("¿Ya tienes cuenta? Inicia sesión");
+            inpRepContra.setVisibility(View.VISIBLE);
         } else {
-            tvTituloLogin.setText("Iniciar Sesión");
-            btnIniciarRegistrar.setText("Iniciar Sesión");
-            tvCambiarModo.setText("¿No tienes cuenta? Regístrate");
-            etRepetirContrasena.setVisibility(View.GONE);
+            lblTituloInicio.setText(R.string.login_title);
+            lblSubtituloInicio.setText(R.string.login_subtitle);
+            btnLoginReg.setText(R.string.btn_login);
+            btnIrRegistro.setText("Regístro de usuario");
+            inpRepContra.setVisibility(View.GONE);
         }
     }
 
-    /*
-        Validaciones
-     */
-    private boolean validarCampos() {
-        String email = etCorreo.getText().toString().trim();
-        String password = etContrasena.getText().toString().trim();
+
+    private boolean formValidator() {
+        email = inpCorreo.getText().toString().trim();
+        password = inpContra.getText().toString().trim();
 
         // Validación de correo, si el campo está vacio o el formato del correo está invalido, notificamos
         if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            etCorreo.setError("Formato de correo inválido");
-            etCorreo.requestFocus();
+            inpCorreo.setError("Formato de correo inválido");
+            inpCorreo.requestFocus();
             return false;
         }
 
         // Validación de contraseña que tenga que tener minimo 6 digitos
-        if (password.length() < 6) {
-            etContrasena.setError("La contraseña debe tener al menos 6 caracteres");
-            etContrasena.requestFocus();
+        if (password.length() < 5 || !password.matches(".*[a-zA-Z].*") || !password.matches(".*\\d.*")) {
+            inpContra.setError("Contraseña debe ser alfanumérica y tener al menos 5 caracteres");
+            inpContra.requestFocus();
             return false;
         }
 
         // Si es registro, se valida la coincidencia de contraseñas
-        if (modoRegistro) {
-            String repeat = etRepetirContrasena.getText().toString().trim();
+        if (form_mode) {
+            String repeat = inpRepContra.getText().toString().trim();
             if (!password.equals(repeat)) {
-                etRepetirContrasena.setError("Las contraseñas no coinciden");
-                etRepetirContrasena.requestFocus();
+                inpRepContra.setError("Las contraseñas no coinciden");
+                inpRepContra.requestFocus();
                 return false;
             }
         }
@@ -129,24 +134,20 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    /*
-        Registrar un nuevo usuario en la base de datos
-     */
+
     private void registrarUsuario() {
-        String email    = etCorreo.getText().toString().trim();
-        String password = etContrasena.getText().toString().trim();
+        email    = inpCorreo.getText().toString().trim();
+        password = inpContra.getText().toString().trim();
 
         Usuario nuevo = new Usuario();
         nuevo.setCorreo(email);
         nuevo.setContrasena(password);
-
-        // CORRECCIÓN: movemos la inserción a un hilo de fondo
         new Thread(() -> {
-            long id = usuarioDao.insertar(nuevo);
+            long id = dao_usuario.insertar(nuevo);
 
             runOnUiThread(() -> {
                 if (id > 0) {
-                    guardarSesion(email);
+                    saveSession(email);
                     // Navegar al Home
                     Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                     startActivity(intent);
@@ -154,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(
                             MainActivity.this,
-                            "Error al registrar usuario",
+                            "Ocurrió un error al registrar usuario",
                             Toast.LENGTH_SHORT
                     ).show();
                 }
@@ -163,42 +164,37 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    /*
-        Inicia sesión comprobando credenciales contra la base de datos
-     */
     private void iniciarSesion() {
-        String email    = etCorreo.getText().toString().trim();
-        String password = etContrasena.getText().toString().trim();
+        email = inpCorreo.getText().toString().trim();
+        password = inpContra.getText().toString().trim();
 
         if (email.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Completa correo y contraseña", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.campos_vacios, Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Ejecutamos la consulta en background
         new Thread(() -> {
             Usuario usuario = AppDatabase
-                    .obtenerInstancia(this)
-                    .usuarioDao()
+                    .getInstance(this)
+                    .dao_usuario()
                     .buscarPorCorreo(email);
 
             runOnUiThread(() -> {
                 if (usuario != null && usuario.getContrasena().equals(password)) {
-                    // 1) Guardar en SharedPreferences (opcional)
                     getSharedPreferences("sesion", MODE_PRIVATE)
                             .edit()
                             .putString("usuario_email", email)
                             .apply();
 
-                    // 2) Navegar a HomeActivity
+
                     Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                     startActivity(intent);
-                    finish(); // cerramos la pantalla de login
+                    finish();
 
                 } else {
                     Toast.makeText(
                             MainActivity.this,
-                            "Correo o contraseña incorrectos",
+                            "Correo o contraseña invalidos",
                             Toast.LENGTH_SHORT
                     ).show();
                 }
@@ -208,21 +204,19 @@ public class MainActivity extends AppCompatActivity {
 
 
     /*
-        Guardar datos de sesión en SharedPreferences
+        Guardar datos en SharedPreferences
      */
-    private void guardarSesion(String email) {
+    private void saveSession(String email) {
         prefs.edit()
                 .putString(KEY_USER_EMAIL, email)
                 .putBoolean(KEY_IS_LOGGED_IN, true)
                 .apply();
     }
 
-    /*
-        Abre la Activity principal
-     */
-    private void irActividadPrincipal() {
+
+    private void goMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-        finish(); // se finaliza
+        finish();
     }
 }

@@ -11,7 +11,7 @@ import com.example.login.expediente_medico.R;
 import com.example.login.expediente_medico.data.AppDatabase;
 import com.example.login.expediente_medico.data.Consultorio;
 
-public class ConsultorioFormActivity extends AppCompatActivity {
+public class FormConsultorioActivity extends AppCompatActivity {
 
     private EditText etNombre, etUbicacion;
     private Button btnGuardar;
@@ -34,8 +34,8 @@ public class ConsultorioFormActivity extends AppCompatActivity {
             setTitle("Editar Consultorio");
             new Thread(() -> {
                 Consultorio c = AppDatabase
-                        .obtenerInstancia(this)
-                        .consultorioDao()
+                        .getInstance(this)
+                        .dao_consultorio()
                         .buscarConsultorioPorId(idConsultorio);
                 runOnUiThread(() -> {
                     if (c != null) {
@@ -56,13 +56,13 @@ public class ConsultorioFormActivity extends AppCompatActivity {
                 return;
             }
             new Thread(() -> {
-                AppDatabase db = AppDatabase.obtenerInstancia(this);
+                AppDatabase db = AppDatabase.getInstance(this);
                 if (esEdicion) {
                     Consultorio c = new Consultorio(nombre, ubicacion);
                     c.setIdConsultorio(idConsultorio);
-                    db.consultorioDao().actualizarConsultorio(c);
+                    db.dao_consultorio().actualizarConsultorio(c);
                 } else {
-                    db.consultorioDao().insertarConsultorio(new Consultorio(nombre, ubicacion));
+                    db.dao_consultorio().insertarConsultorio(new Consultorio(nombre, ubicacion));
                 }
                 runOnUiThread(this::finish);
             }).start();

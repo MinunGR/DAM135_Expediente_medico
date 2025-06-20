@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Locale;
 
 // Muestra la lista de doctores en un Recyclerview
-public class CitaAdapter extends RecyclerView.Adapter<CitaAdapter.CitaViewHolder> {
+public class AdapterCita extends RecyclerView.Adapter<AdapterCita.CitaViewHolder> {
 
     private List<Cita> listaCitas;
     private List<Doctor> listaDoctores;
@@ -35,7 +35,7 @@ public class CitaAdapter extends RecyclerView.Adapter<CitaAdapter.CitaViewHolder
     }
 
     // Nuevo constructor recibe también doctores y pacientes
-    public CitaAdapter(List<Cita> citas,
+    public AdapterCita(List<Cita> citas,
                        List<Doctor> doctores,
                        List<Paciente> pacientes) {
         this.listaCitas     = citas;

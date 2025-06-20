@@ -4,7 +4,6 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // Muestra la lista de doctores en un Recyclerview
-public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorViewHolder>{
+public class AdapterDoctor extends RecyclerView.Adapter<AdapterDoctor.DoctorViewHolder>{
 
     // lista
     private List<Doctor> listaDoctores = new ArrayList<>();

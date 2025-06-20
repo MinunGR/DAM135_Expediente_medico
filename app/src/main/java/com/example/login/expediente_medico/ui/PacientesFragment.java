@@ -22,7 +22,7 @@ import java.util.List;
 // Fragmento que muestra el listado de pacientes y un botón para agregar nuevos
 public class PacientesFragment extends Fragment{
     private RecyclerView rvPacientes;
-    private PacienteAdapter adapter;
+    private AdapterPaciente adapter;
 
     @Nullable
     @Override
@@ -41,13 +41,13 @@ public class PacientesFragment extends Fragment{
 
         // Inicializar RecyclerView y su adaptador
         rvPacientes = view.findViewById(R.id.rvPacientes);
-        adapter = new PacienteAdapter();
+        adapter = new AdapterPaciente();
         rvPacientes.setLayoutManager(new LinearLayoutManager(requireContext()));
         rvPacientes.setAdapter(adapter);
 
         // Al hacer click en un paciente, se abre el formulario para editar
         adapter.setOnItemClickListener(paciente -> {
-            Intent intent = new Intent(requireContext(), PacienteFormActivity.class);
+            Intent intent = new Intent(requireContext(), FormPacienteActivity.class);
             intent.putExtra("EXTRA_ID_PACIENTE", paciente.getIdPaciente());
             startActivity(intent);
         });
@@ -59,8 +59,8 @@ public class PacientesFragment extends Fragment{
                     .setMessage("¿Eliminar al paciente “" + paciente.getNombre() + "”?")
                     .setPositiveButton("Eliminar", (d, w) -> {
                         new Thread(() -> {
-                            AppDatabase.obtenerInstancia(requireContext())
-                                    .pacienteDao()
+                            AppDatabase.getInstance(requireContext())
+                                    .dao_paciente()
                                     .eliminarPaciente(paciente);
                             requireActivity().runOnUiThread(this::cargarPacientes);
                         }).start();
@@ -69,9 +69,9 @@ public class PacientesFragment extends Fragment{
                     .show();
         });
 
-        // Abre PacienteFormActivity al pulsar el icono
+        // Abre FormPacienteActivity al pulsar el icono
         view.findViewById(R.id.fabAgregarPaciente).setOnClickListener(v -> {
-            startActivity(new Intent(requireContext(), PacienteFormActivity.class));
+            startActivity(new Intent(requireContext(), FormPacienteActivity.class));
         });
 
         // 5) Carga inicial de datos
@@ -88,8 +88,8 @@ public class PacientesFragment extends Fragment{
     private void cargarPacientes() {
         new Thread(() -> {
             List<Paciente> lista = AppDatabase
-                    .obtenerInstancia(requireContext())
-                    .pacienteDao()
+                    .getInstance(requireContext())
+                    .dao_paciente()
                     .obtenerPacientes();
             requireActivity().runOnUiThread(() -> adapter.setListaPacientes(lista));
         }).start();

@@ -55,7 +55,7 @@
     <string name="titulo_citas">Citas</string>
     <string name="agregar_cita">Agregar Cita</string>
     <string name="editar_cita">Editar Cita</string>
-    <string name="fecha_cita">Fecha</string>
+    <string name="fecha_cita">Fecha y Hora</string>
     <string name="motivo_cita">Motivo</string>
     <string name="diagnostico_cita">Diagnóstico</string>
     <string name="seleccionar_medico">Seleccionar Médico</string>
@@ -72,10 +72,11 @@
 
     <!-- Login -->
     <string name="login_title">Iniciar sesión</string>
+    <string name="register_title">Registro de Usuario</string>
     <string name="login_subtitle">Bienvenido de nuevo</string>
 
     <!-- Campos -->
-    <string name="hint_username">Correo o usuario</string>
+    <string name="hint_username">Correo</string>
     <string name="hint_password">Contraseña</string>
 
     <!-- Botones -->

@@ -9,7 +9,7 @@ import com.example.login.expediente_medico.R;
 import com.example.login.expediente_medico.data.AppDatabase;
 import com.example.login.expediente_medico.data.Especialidad;
 
-public class EspecialidadFormActivity extends AppCompatActivity {
+public class FormEspecialidadActivity extends AppCompatActivity {
 
     private EditText etNombre;
     private Button btnGuardar;
@@ -33,8 +33,8 @@ public class EspecialidadFormActivity extends AppCompatActivity {
             // Carga datos en hilo de fondo
             new Thread(() -> {
                 Especialidad e = AppDatabase
-                        .obtenerInstancia(this)
-                        .especialidadDao()
+                        .getInstance(this)
+                        .dao_especialidad()
                         .buscarEspecialidadPorId(idEspecialidad);
                 runOnUiThread(() -> {
                     if (e != null) {
@@ -57,15 +57,15 @@ public class EspecialidadFormActivity extends AppCompatActivity {
             }
             // Guardar en BD en hilo de fondo
             new Thread(() -> {
-                AppDatabase db = AppDatabase.obtenerInstancia(this);
+                AppDatabase db = AppDatabase.getInstance(this);
                 if (esEdicion) {
                     // Actualizar una especialidad existente
                     Especialidad e = new Especialidad(nombre);
                     e.setIdEspecialidad(idEspecialidad);
-                    db.especialidadDao().actualizarEspecialidad(e);
+                    db.dao_especialidad().actualizarEspecialidad(e);
                 } else {
                     // Insertar nuevo
-                    db.especialidadDao().insertarEspecialidad(new Especialidad(nombre));
+                    db.dao_especialidad().insertarEspecialidad(new Especialidad(nombre));
                 }
                 runOnUiThread(this::finish);
             }).start();

@@ -1,6 +1,6 @@
 package com.example.login.expediente_medico.ui;
 
-import static com.example.login.expediente_medico.data.AppDatabase.obtenerInstancia;
+import static com.example.login.expediente_medico.data.AppDatabase.getInstance;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -23,7 +23,7 @@ import com.example.login.expediente_medico.data.Especialidad;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DoctorFormActivity extends AppCompatActivity {
+public class FormDoctorActivity extends AppCompatActivity {
     private static final int REQ_PHOTO = 2001;
 
     private EditText etNombre, etHorarios;
@@ -56,8 +56,8 @@ public class DoctorFormActivity extends AppCompatActivity {
         // 1) Cargo todas las especialidades y lleno el AutoComplete
         new Thread(() -> {
             listaEsp = AppDatabase
-                    .obtenerInstancia(this)
-                    .especialidadDao()
+                    .getInstance(this)
+                    .dao_especialidad()
                     .obtenerEspecialidades();
 
             nombresEsp = new ArrayList<>();
@@ -76,8 +76,8 @@ public class DoctorFormActivity extends AppCompatActivity {
                 if (esEdicion) {
                     // 1.a) Cargo el doctor existente
                     new Thread(() -> {
-                        Doctor d = obtenerInstancia(this)
-                                .doctorDao()
+                        Doctor d = getInstance(this)
+                                .dao_doctor()
                                 .buscarDoctorPorId(idDoctor);
                         runOnUiThread(() -> {
                             if (d != null) {
@@ -120,15 +120,15 @@ public class DoctorFormActivity extends AppCompatActivity {
             }
 
             new Thread(() -> {
-                AppDatabase db = obtenerInstancia(this);
+                AppDatabase db = getInstance(this);
                 if (esEdicion) {
                     Doctor d = new Doctor(nombre, esp,
                             fotoUri==null?"":fotoUri.toString(),
                             horas);
                     d.setIdDoctor(idDoctor);
-                    db.doctorDao().actualizarDoctor(d);
+                    db.dao_doctor().actualizarDoctor(d);
                 } else {
-                    db.doctorDao().insertarDoctor(
+                    db.dao_doctor().insertarDoctor(
                             new Doctor(nombre, esp,
                                     fotoUri==null?"":fotoUri.toString(),
                                     horas)

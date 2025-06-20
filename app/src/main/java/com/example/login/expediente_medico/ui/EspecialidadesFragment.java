@@ -47,7 +47,7 @@ public class EspecialidadesFragment extends Fragment{
 
         // Al hacer click en una especialidad, se abre el formulario para editar
         adapter.setOnItemClickListener(e -> {
-            Intent intent = new Intent(requireContext(), EspecialidadFormActivity.class);
+            Intent intent = new Intent(requireContext(), FormEspecialidadActivity.class);
             intent.putExtra("EXTRA_ID_ESPECIALIDAD", e.getIdEspecialidad());
             startActivity(intent);
         });
@@ -59,8 +59,8 @@ public class EspecialidadesFragment extends Fragment{
                     .setMessage("¿Eliminar “" + e.getNombre() + "”?")
                     .setPositiveButton("Eliminar", (d, w) -> {
                         new Thread(() -> {
-                            AppDatabase.obtenerInstancia(requireContext())
-                                    .especialidadDao()
+                            AppDatabase.getInstance(requireContext())
+                                    .dao_especialidad()
                                     .eliminarEspecialidad(e);
                             requireActivity().runOnUiThread(this::cargarEspecialidades);
                         }).start();
@@ -69,10 +69,10 @@ public class EspecialidadesFragment extends Fragment{
                     .show();
         });
 
-        // Abre DoctorFormActivity al pulsar el icono
+        // Abre FormDoctorActivity al pulsar el icono
         view.findViewById(R.id.fabAgregarEspecialidad)
                 .setOnClickListener(v ->
-                        startActivity(new Intent(requireContext(), EspecialidadFormActivity.class))
+                        startActivity(new Intent(requireContext(), FormEspecialidadActivity.class))
                 );
 
         // Carga inicial
@@ -89,8 +89,8 @@ public class EspecialidadesFragment extends Fragment{
     private void cargarEspecialidades() {
         new Thread(() -> {
             List<Especialidad> lista = AppDatabase
-                    .obtenerInstancia(requireContext())
-                    .especialidadDao()
+                    .getInstance(requireContext())
+                    .dao_especialidad()
                     .obtenerEspecialidades();
             requireActivity().runOnUiThread(() -> adapter.setLista(lista));
         }).start();

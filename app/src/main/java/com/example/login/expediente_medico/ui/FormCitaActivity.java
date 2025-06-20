@@ -2,19 +2,15 @@ package com.example.login.expediente_medico.ui;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TimePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.login.expediente_medico.R;
@@ -28,7 +24,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-public class CitaFormActivity extends AppCompatActivity {
+public class FormCitaActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE_FECHA_HORA = 1001;
     private static final int REQUEST_CODE_SELECCIONAR_FOTO = 1002;
@@ -67,8 +63,8 @@ public class CitaFormActivity extends AppCompatActivity {
 
         // Cargar doctores y pacientes
         new Thread(() -> {
-            listaDoctores = AppDatabase.obtenerInstancia(this).doctorDao().obtenerDoctores();
-            listaPacientes = AppDatabase.obtenerInstancia(this).pacienteDao().obtenerPacientes();
+            listaDoctores = AppDatabase.getInstance(this).dao_doctor().obtenerDoctores();
+            listaPacientes = AppDatabase.getInstance(this).dao_paciente().obtenerPacientes();
             runOnUiThread(() -> {
                 ArrayAdapter<Doctor> docAdapter = new ArrayAdapter<>(
                         this,
@@ -93,8 +89,8 @@ public class CitaFormActivity extends AppCompatActivity {
                 if (esEdicion) {
                     // Cargar datos existentes
                     new Thread(() -> {
-                        Cita cita = AppDatabase.obtenerInstancia(this)
-                                .citaDao().buscarCitaPorId(idCita);
+                        Cita cita = AppDatabase.getInstance(this)
+                                .dao_cita().buscarCitaPorId(idCita);
                         runOnUiThread(() -> {
                             if (cita != null) {
                                 // Seleccionar doctor
@@ -141,7 +137,7 @@ public class CitaFormActivity extends AppCompatActivity {
             }
 
             new Thread(() -> {
-                AppDatabase db = AppDatabase.obtenerInstancia(this);
+                AppDatabase db = AppDatabase.getInstance(this);
                 if (esEdicion) {
                     Cita c = new Cita(
                             doctorSeleccionado.getIdDoctor(),
@@ -150,9 +146,9 @@ public class CitaFormActivity extends AppCompatActivity {
                             motivo
                     );
                     c.setIdCita(idCita);
-                    db.citaDao().actualizarCita(c);
+                    db.dao_cita().actualizarCita(c);
                 } else {
-                    db.citaDao().insertarCita(new Cita(
+                    db.dao_cita().insertarCita(new Cita(
                             doctorSeleccionado.getIdDoctor(),
                             pacienteSeleccionado.getIdPaciente(),
                             fechaHoraSeleccionada,

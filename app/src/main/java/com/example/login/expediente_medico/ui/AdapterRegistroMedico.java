@@ -19,8 +19,8 @@ import java.util.List;
 import java.util.Locale;
 
 // Muestra la lista de los registros
-public class RegistroMedicoAdapter
-        extends RecyclerView.Adapter<RegistroMedicoAdapter.RegistroViewHolder> {
+public class AdapterRegistroMedico
+        extends RecyclerView.Adapter<AdapterRegistroMedico.RegistroViewHolder> {
 
     private List<RegistroMedico> listaRegistros;
     private OnItemClickListener clickListener;
@@ -36,7 +36,7 @@ public class RegistroMedicoAdapter
         void onItemLongClick(RegistroMedico registro);
     }
 
-    public RegistroMedicoAdapter(List<RegistroMedico> registros) {
+    public AdapterRegistroMedico(List<RegistroMedico> registros) {
         this.listaRegistros = registros;
     }
 

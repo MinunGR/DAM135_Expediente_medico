@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // Muestra la lista de doctores en un Recyclerview
-public class ConsultorioAdapter extends RecyclerView.Adapter<ConsultorioAdapter.ConsultorioViewHolder> {
+public class AdapterConsultorio extends RecyclerView.Adapter<AdapterConsultorio.ConsultorioViewHolder> {
 
     private List<Consultorio> lista = new ArrayList<>(); // lista
     private OnItemClickListener clickListener; // actualizar

@@ -16,7 +16,7 @@ import com.example.login.expediente_medico.data.Paciente;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PacienteAdapter extends RecyclerView.Adapter<PacienteAdapter.PacienteViewHolder>{
+public class AdapterPaciente extends RecyclerView.Adapter<AdapterPaciente.PacienteViewHolder>{
 
     private List<Paciente> listaPacientes = new ArrayList<>(); // lista de pacientes
     private OnItemClickListener clickListener; // para editar

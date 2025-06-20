@@ -17,7 +17,7 @@ import com.example.login.expediente_medico.R;
 import com.example.login.expediente_medico.data.AppDatabase;
 import com.example.login.expediente_medico.data.RegistroMedico;
 
-public class RegistroFormActivity extends AppCompatActivity {
+public class FormRegistroActivity extends AppCompatActivity {
 
     private static final int REQ_FOTO = 3001;
 
@@ -53,7 +53,7 @@ public class RegistroFormActivity extends AppCompatActivity {
             // Cargar registro existente
             new Thread(() -> {
                 RegistroMedico r = AppDatabase
-                        .obtenerInstancia(this)
+                        .getInstance(this)
                         .registroMedicoDao()
                         .buscarRegistroPorId(idRegistro);
                 runOnUiThread(() -> {
@@ -106,7 +106,7 @@ public class RegistroFormActivity extends AppCompatActivity {
             String foto = fotoUri != null ? fotoUri.toString() : "";
 
             new Thread(() -> {
-                AppDatabase db = AppDatabase.obtenerInstancia(this);
+                AppDatabase db = AppDatabase.getInstance(this);
                 if (esEdicion) {
                     RegistroMedico r = new RegistroMedico(
                             idPaciente, fecha, diag, trat, notas, foto

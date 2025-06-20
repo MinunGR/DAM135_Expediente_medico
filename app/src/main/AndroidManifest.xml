@@ -8,7 +8,7 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_clinic_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DAM135_Expediente_medico"
         tools:targetApi="31">
@@ -24,17 +24,17 @@
 
         <activity android:name=".ui.HomeActivity" />
         <activity android:name=".ui.DoctoresActivity"/>
-        <activity android:name=".ui.DoctorFormActivity"/>
+        <activity android:name=".ui.FormDoctorActivity"/>
         <activity android:name=".ui.PacientesActivity" />
-        <activity android:name=".ui.PacienteFormActivity" />
+        <activity android:name=".ui.FormPacienteActivity" />
         <activity android:name=".ui.EspecialidadesActivity"/>
-        <activity android:name=".ui.EspecialidadFormActivity"/>
+        <activity android:name=".ui.FormEspecialidadActivity"/>
         <activity android:name=".ui.ConsultoriosActivity"/>
-        <activity android:name=".ui.ConsultorioFormActivity"/>
+        <activity android:name=".ui.FormConsultorioActivity"/>
         <activity android:name=".ui.CitasActivity"/>
-        <activity android:name=".ui.CitaFormActivity"/>
+        <activity android:name=".ui.FormCitaActivity"/>
         <activity android:name=".ui.ExpedienteActivity"/>
-        <activity android:name=".ui.RegistroFormActivity"/>
+        <activity android:name=".ui.FormRegistroActivity"/>
 
 
 

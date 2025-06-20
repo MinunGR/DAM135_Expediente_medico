@@ -22,7 +22,7 @@ import java.util.List;
 public class ConsultoriosFragment extends Fragment {
 
     private RecyclerView rvConsultorios;
-    private ConsultorioAdapter adapter;
+    private AdapterConsultorio adapter;
 
     @Nullable @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -39,13 +39,13 @@ public class ConsultoriosFragment extends Fragment {
 
         // Inicializar RecyclerView y su adaptador
         rvConsultorios = view.findViewById(R.id.rvConsultorios);
-        adapter = new ConsultorioAdapter();
+        adapter = new AdapterConsultorio();
         rvConsultorios.setLayoutManager(new LinearLayoutManager(requireContext()));
         rvConsultorios.setAdapter(adapter);
 
         // Al hacer click en un consultorio, se abre el formulario para editar
         adapter.setOnItemClickListener(c -> {
-            Intent intent = new Intent(requireContext(), ConsultorioFormActivity.class);
+            Intent intent = new Intent(requireContext(), FormConsultorioActivity.class);
             intent.putExtra("EXTRA_ID_CONSULTORIO", c.getIdConsultorio());
             startActivity(intent);
         });
@@ -57,8 +57,8 @@ public class ConsultoriosFragment extends Fragment {
                     .setMessage("¿Eliminar “" + c.getNombre() + "”?")
                     .setPositiveButton("Eliminar", (d, w) -> {
                         new Thread(() -> {
-                            AppDatabase.obtenerInstancia(requireContext())
-                                    .consultorioDao()
+                            AppDatabase.getInstance(requireContext())
+                                    .dao_consultorio()
                                     .eliminarConsultorio(c);
                             // Refrescar la lista en UI thread
                             requireActivity().runOnUiThread(this::cargarConsultorios);
@@ -70,10 +70,10 @@ public class ConsultoriosFragment extends Fragment {
 
         // FAB para añadir
         view.findViewById(R.id.fabAgregarConsultorio).setOnClickListener(v ->
-                startActivity(new Intent(requireContext(), ConsultorioFormActivity.class))
+                startActivity(new Intent(requireContext(), FormConsultorioActivity.class))
         );
 
-        // Abre DoctorFormActivity al pulsar el icono
+        // Abre FormDoctorActivity al pulsar el icono
         cargarConsultorios();
     }
 
@@ -87,8 +87,8 @@ public class ConsultoriosFragment extends Fragment {
     private void cargarConsultorios() {
         new Thread(() -> {
             List<Consultorio> lista = AppDatabase
-                    .obtenerInstancia(requireContext())
-                    .consultorioDao()
+                    .getInstance(requireContext())
+                    .dao_consultorio()
                     .obtenerConsultorios();
             requireActivity().runOnUiThread(() -> adapter.setLista(lista));
         }).start();

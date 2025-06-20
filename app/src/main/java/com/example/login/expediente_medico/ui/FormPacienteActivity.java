@@ -15,7 +15,7 @@ import com.example.login.expediente_medico.R;
 import com.example.login.expediente_medico.data.AppDatabase;
 import com.example.login.expediente_medico.data.Paciente;
 
-public class PacienteFormActivity extends AppCompatActivity{
+public class FormPacienteActivity extends AppCompatActivity{
     private static final int REQUEST_CODE_SELECCIONAR_FOTO = 2001;
 
     private ImageView imgPreview;
@@ -48,8 +48,8 @@ public class PacienteFormActivity extends AppCompatActivity{
             // Cargar datos
             new Thread(() -> {
                 Paciente p = AppDatabase
-                        .obtenerInstancia(this)
-                        .pacienteDao()
+                        .getInstance(this)
+                        .dao_paciente()
                         .buscarPacientePorId(idPaciente);
                 runOnUiThread(() -> {
                     if (p != null) {
@@ -93,13 +93,13 @@ public class PacienteFormActivity extends AppCompatActivity{
 
             // Guardar en BD en hilo de fondo
             new Thread(() -> {
-                AppDatabase db = AppDatabase.obtenerInstancia(this);
+                AppDatabase db = AppDatabase.getInstance(this);
                 if (esEdicion) {
                     Paciente p = new Paciente(nombre, contacto, fotoStr);
                     p.setIdPaciente(idPaciente);
-                    db.pacienteDao().actualizarPaciente(p);
+                    db.dao_paciente().actualizarPaciente(p);
                 } else {
-                    db.pacienteDao().insertarPaciente(new Paciente(nombre, contacto, fotoStr));
+                    db.dao_paciente().insertarPaciente(new Paciente(nombre, contacto, fotoStr));
                 }
                 runOnUiThread(this::finish);
             }).start();

@@ -6,20 +6,8 @@ import androidx.room.RoomDatabase;
 import android.content.Context;
 
 
-import com.example.login.expediente_medico.data.Doctor;
-import com.example.login.expediente_medico.data.DoctorDao;
-import com.example.login.expediente_medico.data.Paciente;
-import com.example.login.expediente_medico.data.PacienteDao;
 import com.example.login.expediente_medico.Usuario;
 import com.example.login.expediente_medico.UsuarioDao;
-import com.example.login.expediente_medico.data.Especialidad;
-import com.example.login.expediente_medico.data.EspecialidadDao;
-import com.example.login.expediente_medico.data.Consultorio;
-import com.example.login.expediente_medico.data.ConsultorioDao;
-import com.example.login.expediente_medico.data.Cita;
-import com.example.login.expediente_medico.data.CitaDao;
-import com.example.login.expediente_medico.data.RegistroMedico;
-import com.example.login.expediente_medico.data.RegistroMedicoDao;
 
 
 // clase de base de datos principal de Room
@@ -34,49 +22,49 @@ import com.example.login.expediente_medico.data.RegistroMedicoDao;
 
 public abstract class AppDatabase extends RoomDatabase {
 
-    private static final String NOMBRE_BD = "citas_medicas_db";
+    private static final String NOMBRE_BD = "expediente_db";
     private static AppDatabase INSTANCIA;
 
     /*
         Obtiene el DAO de Usuario
      */
-    public abstract UsuarioDao usuarioDao();
+    public abstract UsuarioDao dao_usuario();
 
     /*
         Obtiene el DAO de Doctor
      */
-    public abstract DoctorDao doctorDao();
+    public abstract DoctorDao dao_doctor();
 
     /*
         Obtiene el DAO de paciente
      */
-    public abstract PacienteDao pacienteDao();
+    public abstract PacienteDao dao_paciente();
 
     /*
         Obtiene el DAO de especialidad
      */
-    public abstract EspecialidadDao especialidadDao();
+    public abstract EspecialidadDao dao_especialidad();
 
 
     /*
         Obtiene el DAO de consultorios.
      */
-    public abstract ConsultorioDao consultorioDao();
+    public abstract ConsultorioDao dao_consultorio();
 
     /*
         Obtiene el DAO de citas
      */
-    public abstract CitaDao citaDao();
+    public abstract CitaDao dao_cita();
 
     /*
         Obtiene el DAO de registro medico
      */
     public abstract RegistroMedicoDao registroMedicoDao();
 
-    public static synchronized AppDatabase obtenerInstancia(Context contexto) {
+    public static synchronized AppDatabase getInstance(Context context) {
         if (INSTANCIA == null) {
             INSTANCIA = Room.databaseBuilder(
-                            contexto.getApplicationContext(),
+                            context.getApplicationContext(),
                             AppDatabase.class,
                             NOMBRE_BD
                     )

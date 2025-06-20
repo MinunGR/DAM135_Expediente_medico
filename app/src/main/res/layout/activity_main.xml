@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:padding="32dp"
+    android:padding="0dp"
     tools:context=".MainActivity">
 
     <!-- Título de bienvenida -->
 
     <TextView
-        android:id="@+id/tvOlvidasteContrasena"
+        android:id="@+id/lblOlvidasteContra"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="124dp"
@@ -19,92 +19,101 @@
         android:background="?android:attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
-        android:text="¿Olvidaste tu contraseña?"
+        android:text="@string/btn_forgot_password"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvCambiarModo" />
+        app:layout_constraintTop_toBottomOf="@+id/btnRegistro" />
 
     <TextView
-        android:id="@+id/tvTituloLogin"
+        android:id="@+id/lblTituloInicio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="91dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="91dp"
         android:fontFamily="sans-serif-medium"
         android:text="@string/login_title"
         android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
+
+    <!-- Campo correo electrónico -->
+
+    <!-- Campo contraseña -->
+
+    <!-- Campo repetir contraseña (solo visible en registro) -->
 
     <TextView
-        android:id="@+id/tvSubtitulo"
+        android:id="@+id/lblSubtituloInicio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="115dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="115dp"
         android:text="@string/login_subtitle"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTituloLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/lblTituloInicio" />
 
-    <!-- Campo correo electrónico -->
     <EditText
-        android:id="@+id/etCorreo"
-        android:layout_width="0dp"
+        android:id="@+id/inpCorreo"
+        android:layout_width="250dp"
         android:layout_height="56dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="32dp"
         android:drawablePadding="12dp"
         android:hint="@string/hint_username"
         android:inputType="textEmailAddress"
         android:padding="16dp"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvSubtitulo" />
+        app:layout_constraintTop_toBottomOf="@+id/lblSubtituloInicio" />
 
-    <!-- Campo contraseña -->
+    <!-- Enlace ¿Olvidaste tu contraseña? -->
+
+    <!-- Botón principal de acción -->
+
+    <!-- Separador "O" -->
+
+    <!-- Cambiar de modo (Login/Registro) -->
+
     <EditText
-        android:id="@+id/etContrasena"
-        android:layout_width="0dp"
+        android:id="@+id/inpContra"
+        android:layout_width="250dp"
         android:layout_height="56dp"
+        android:layout_marginStart="68dp"
         android:layout_marginTop="20dp"
         android:drawablePadding="12dp"
         android:hint="@string/hint_password"
         android:inputType="textPassword"
         android:padding="16dp"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etCorreo" />
+        app:layout_constraintTop_toBottomOf="@id/inpCorreo" />
 
-    <!-- Campo repetir contraseña (solo visible en registro) -->
     <EditText
-        android:id="@+id/etRepetirContrasena"
-        android:layout_width="0dp"
+        android:id="@+id/inpRepContra"
+        android:layout_width="250dp"
         android:layout_height="56dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/bg_input"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="24dp"
         android:drawablePadding="12dp"
         android:hint="Repetir contraseña"
         android:inputType="textPassword"
         android:padding="16dp"
         android:textSize="16sp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etContrasena" />
+        app:layout_constraintTop_toBottomOf="@+id/inpContra" />
 
-    <!-- Enlace ¿Olvidaste tu contraseña? -->
-
-    <!-- Botón principal de acción -->
     <Button
-        android:id="@+id/btnIniciarRegistrar"
+        android:id="@+id/btnLoginReg"
         android:layout_width="150dp"
         android:layout_height="56dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="28dp"
         android:backgroundTint="@color/colorAccent"
         android:elevation="4dp"
         android:text="@string/btn_login"
@@ -112,24 +121,26 @@
         android:textStyle="bold"
         app:cornerRadius="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etContrasena" />
+        app:layout_constraintTop_toBottomOf="@+id/inpRepContra" />
 
-    <!-- Separador "O" -->
     <View
-        android:id="@+id/separadorIzquierda"
-        android:layout_width="0dp"
+        android:id="@+id/sepLeft"
+        android:layout_width="300dp"
         android:layout_height="1dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="56dp"
         android:background="#E0E0E0"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnIniciarRegistrar" />
+        app:layout_constraintTop_toBottomOf="@id/btnLoginReg" />
 
-    <!-- Cambiar de modo (Login/Registro) -->
     <TextView
-        android:id="@+id/tvCambiarModo"
-        android:layout_width="112dp"
-        android:layout_height="49dp"
+        android:id="@+id/btnRegistro"
+        android:layout_width="265dp"
+        android:layout_height="67dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="10dp"
         android:background="?android:attr/selectableItemBackground"
@@ -143,10 +154,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnIniciarRegistrar" />
+        app:layout_constraintTop_toBottomOf="@+id/btnLoginReg"
+        app:layout_constraintVertical_bias="0.312" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imgLogo"
         android:layout_width="149dp"
         android:layout_height="135dp"
         android:layout_marginStart="108dp"
@@ -158,70 +170,5 @@
 
 
     <!-- Fondo -->
-
-    <ImageView
-        android:id="@+id/imageView11"
-        android:layout_width="130dp"
-        android:layout_height="152dp"
-        android:layout_marginStart="284dp"
-        android:layout_marginTop="192dp"
-        android:rotation="109"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/bg_circle_1"
-        android:translationZ="-10dp"
-        />
-
-    <ImageView
-        android:id="@+id/imageView10"
-        android:layout_width="181dp"
-        android:layout_height="202dp"
-        android:layout_marginEnd="4dp"
-        android:rotation="109"
-        android:translationZ="-10dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/bg_circle_1" />
-
-    <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="224dp"
-        android:layout_height="275dp"
-        android:layout_marginStart="212dp"
-        android:rotation="360"
-        android:translationZ="-10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.337"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/bg_circle_1" />
-
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="297dp"
-        android:layout_height="352dp"
-        android:layout_marginTop="29dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="11dp"
-        android:elevation="0dp"
-        android:translationZ="-10dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView9"
-        app:layout_constraintEnd_toStartOf="@+id/imageView11"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/bg_circle_1" />
-
-    <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="130dp"
-        android:layout_height="152dp"
-        android:layout_marginEnd="64dp"
-        android:layout_marginBottom="56dp"
-        android:elevation="0dp"
-        android:rotation="109"
-        android:translationZ="-10dp"
-        app:layout_constraintBottom_toTopOf="@+id/tvCambiarModo"
-        app:layout_constraintEnd_toStartOf="@+id/imageView9"
-        app:srcCompat="@drawable/bg_circle_1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -28,7 +28,7 @@ public class ExpedienteFragment extends Fragment {
 
     private Spinner spinnerPacientes;
     private RecyclerView rvHistorial;
-    private RegistroMedicoAdapter adapter;
+    private AdapterRegistroMedico adapter;
     private List<Paciente> listaPacientes;
     private int pacienteSeleccionadoId = -1;
 
@@ -45,15 +45,15 @@ public class ExpedienteFragment extends Fragment {
         spinnerPacientes = view.findViewById(R.id.spinnerPacientesHistorial);
         rvHistorial      = view.findViewById(R.id.rvHistorial);
 
-        adapter = new RegistroMedicoAdapter(null);
+        adapter = new AdapterRegistroMedico(null);
         rvHistorial.setLayoutManager(new LinearLayoutManager(requireContext()));
         rvHistorial.setAdapter(adapter);
 
         // Inicializar RecyclerView y su adaptador
         new Thread(() -> {
             listaPacientes = AppDatabase
-                    .obtenerInstancia(requireContext())
-                    .pacienteDao()
+                    .getInstance(requireContext())
+                    .dao_paciente()
                     .obtenerPacientes();
             requireActivity().runOnUiThread(() -> {
                 ArrayAdapter<Paciente> spinnerAdapter = new ArrayAdapter<>(
@@ -78,7 +78,7 @@ public class ExpedienteFragment extends Fragment {
 
         // Al hacer click en un paciente, se abre el formulario para editar
         adapter.setOnItemClickListener(registro -> {
-            Intent intent = new Intent(requireContext(), RegistroFormActivity.class);
+            Intent intent = new Intent(requireContext(), FormRegistroActivity.class);
             intent.putExtra("EXTRA_ID_REGISTRO", registro.getIdRegistro());
             intent.putExtra("EXTRA_ID_PACIENTE", pacienteSeleccionadoId);
             startActivity(intent);
@@ -91,7 +91,7 @@ public class ExpedienteFragment extends Fragment {
                     .setMessage("¿Eliminar este registro médico?")
                     .setPositiveButton("Eliminar", (d, w) -> {
                         new Thread(() -> {
-                            AppDatabase.obtenerInstancia(requireContext())
+                            AppDatabase.getInstance(requireContext())
                                     .registroMedicoDao()
                                     .eliminarRegistro(registro);
                             requireActivity().runOnUiThread(() ->
@@ -105,7 +105,7 @@ public class ExpedienteFragment extends Fragment {
 
         // Abre al pulsar el icono
         view.findViewById(R.id.fabAgregarRegistro).setOnClickListener(v -> {
-            Intent intent = new Intent(requireContext(), RegistroFormActivity.class);
+            Intent intent = new Intent(requireContext(), FormRegistroActivity.class);
             intent.putExtra("EXTRA_ID_PACIENTE", pacienteSeleccionadoId);
             startActivity(intent);
         });
@@ -123,7 +123,7 @@ public class ExpedienteFragment extends Fragment {
     private void cargarHistorial(int pacienteId) {
         new Thread(() -> {
             List<RegistroMedico> lista = AppDatabase
-                    .obtenerInstancia(requireContext())
+                    .getInstance(requireContext())
                     .registroMedicoDao()
                     .obtenerRegistrosPorPaciente(pacienteId);
             requireActivity().runOnUiThread(() -> adapter.setListaRegistros(lista));

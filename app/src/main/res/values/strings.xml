@@ -1,3 +1,85 @@
 <resources>
-    <string name="app_name">Expediente_Medico</string>
+    <string name="app_name">DAM135_Expediente_Medico</string>
+
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+    <!-- Strings para usar dentro del expediente médico -->
+    <!-- Comunes -->
+    <string name="guardar">Guardar</string>
+    <string name="editar">Editar</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="actualizar">Actualizar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="nuevo">Nuevo</string>
+    <string name="ver_detalles">Ver Detalles</string>
+
+    <!-- Pacientes -->
+    <string name="titulo_pacientes">Pacientes</string>
+    <string name="agregar_paciente">Agregar Paciente</string>
+    <string name="editar_paciente">Editar Paciente</string>
+    <string name="nombre_paciente">Nombres</string>
+    <string name="apellido_paciente">Apellidos</string>
+    <string name="fecha_nacimiento">Fecha de Nacimiento</string>
+    <string name="genero">Género</string>
+    <string name="telefono">Teléfono</string>
+    <string name="email">Correo Electrónico</string>
+
+    <!-- Médicos -->
+    <string name="titulo_medicos">Médicos</string>
+    <string name="agregar_medico">Agregar Médico</string>
+    <string name="editar_medico">Editar Médico</string>
+    <string name="nombre_medico">Nombres</string>
+    <string name="apellido_medico">Apellidos</string>
+    <string name="especialidad">Especialidad</string>
+    <string name="telefono_medico">Teléfono</string>
+    <string name="email_medico">Correo Electrónico</string>
+
+    <!-- Expedientes -->
+    <string name="titulo_expedientes">Expedientes</string>
+    <string name="agregar_expediente">Agregar Expediente</string>
+    <string name="editar_expediente">Editar Expediente</string>
+    <string name="fecha_expediente">Fecha</string>
+    <string name="descripcion_expediente">Descripción</string>
+
+    <!-- Citas -->
+    <string name="titulo_citas">Citas</string>
+    <string name="agregar_cita">Agregar Cita</string>
+    <string name="editar_cita">Editar Cita</string>
+    <string name="fecha_cita">Fecha</string>
+    <string name="motivo_cita">Motivo</string>
+    <string name="diagnostico_cita">Diagnóstico</string>
+    <string name="seleccionar_medico">Seleccionar Médico</string>
+    <string name="seleccionar_expediente">Seleccionar Expediente</string>
+
+    <!-- Validaciones / mensajes -->
+    <string name="campos_vacios">Por favor, complete todos los campos.</string>
+    <string name="registro_guardado">Registro guardado con éxito.</string>
+    <string name="registro_actualizado">Registro actualizado con éxito.</string>
+    <string name="registro_eliminado">Registro eliminado.</string>
+    <string name="error_guardar">Error al guardar los datos.</string>
+    <string name="confirmar_eliminacion">¿Desea eliminar este registro?</string>
+
+
+    <!-- Login -->
+    <string name="login_title">Iniciar sesión</string>
+    <string name="login_subtitle">Bienvenido de nuevo</string>
+
+    <!-- Campos -->
+    <string name="hint_username">Correo o usuario</string>
+    <string name="hint_password">Contraseña</string>
+
+    <!-- Botones -->
+    <string name="btn_login">Entrar</string>
+    <string name="btn_register">Registrarse</string>
+    <string name="btn_forgot_password">¿Olvidaste tu contraseña?</string>
 </resources>

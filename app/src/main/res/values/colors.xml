@@ -23,4 +23,19 @@
     <color name="icon_color">#FF6B35</color>
     <color name="sun_fill_color">#FFF3E0</color>
     <color name="moon_fill_color">#263238</color>
+
+
+    <!-- Colores modo día custom-->
+    <!-- Paleta personalizada -->
+    <color name="color_gris_oscuro">#828A95</color>   <!-- Gris oscuro -->
+    <color name="color_celeste_claro">#CEEAF7</color> <!-- Celeste claro -->
+    <color name="color_azul_grisaceo">#CCD7E4</color>  <!-- Azul grisáceo -->
+    <color name="color_lila">#D5C9DF</color>           <!-- Lila -->
+    <color name="color_rosado">#DCB8CB</color>         <!-- Rosado -->
+
+    <!-- Colores comunes de Material (opcional para compatibilidad) -->
+    <color name="colorPrimary">#CEEAF7</color>
+    <color name="colorPrimaryDark">#828A95</color>
+    <color name="colorAccent">#DCB8CB</color>
+
 </resources>

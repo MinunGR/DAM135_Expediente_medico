@@ -1,9 +1,30 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Expediente_Medico" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.DAM135_Expediente_medico" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <item name="colorPrimary">@color/purple</item>
+        <item name="colorPrimary">@color/color_celeste_claro</item>
+        <item name="colorPrimaryVariant">@color/color_azul_grisaceo</item>
+        <item name="colorOnPrimary">#000000</item>
+
+        <item name="colorSecondary">@color/color_rosado</item>
+        <item name="colorSecondaryVariant">@color/color_lila</item>
+        <item name="colorOnSecondary">#000000</item>
+
+        <item name="android:colorBackground">@android:color/white</item>
+        <item name="colorOnBackground">#000000</item>
+
+        <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
+        <item name="android:navigationBarColor" >?attr/colorPrimary</item>
     </style>
 
-    <style name="Theme.Expediente_Medico" parent="Base.Theme.Expediente_Medico" />
+    <style name="Theme.DAM135_Expediente_medico" parent="Base.Theme.DAM135_Expediente_medico" />
+
+    <style name="Theme.DAM135_Expediente_medico.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.DAM135_Expediente_medico.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.DAM135_Expediente_medico.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Paleta modo nocturno -->
+    <color name="color_gris_oscuro">#5E656E</color>
+    <color name="color_celeste_claro">#3B4A55</color>
+    <color name="color_azul_grisaceo">#4A5360</color>
+    <color name="color_lila">#5F4C63</color>
+    <color name="color_rosado">#6A4B5A</color>
+
+    <!-- Material compatibility -->
+    <color name="colorPrimary">#3B4A55</color>
+    <color name="colorPrimaryDark">#5E656E</color>
+    <color name="colorAccent">#6A4B5A</color>
+</resources>

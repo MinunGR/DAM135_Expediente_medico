@@ -14,7 +14,7 @@ public class ExpedienteActivity extends AppCompatActivity {
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(
-                        R.id.fragment_container_expediente,
+                        R.id.cnt_expediente,
                         new ExpedienteFragment()
                 )
                 .commit();

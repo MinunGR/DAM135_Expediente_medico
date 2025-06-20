@@ -24,7 +24,7 @@
     <string name="ver_detalles">Ver Detalles</string>
 
     <!-- Pacientes -->
-    <string name="titulo_pacientes">Pacientes</string>
+    <string name="titulo_pacientes">Listado de Pacientes</string>
     <string name="agregar_paciente">Agregar Paciente</string>
     <string name="editar_paciente">Editar Paciente</string>
     <string name="nombre_paciente">Nombres</string>
@@ -35,7 +35,7 @@
     <string name="email">Correo Electrónico</string>
 
     <!-- Médicos -->
-    <string name="titulo_medicos">Médicos</string>
+    <string name="titulo_medicos">Listado de Médicos</string>
     <string name="agregar_medico">Agregar Médico</string>
     <string name="editar_medico">Editar Médico</string>
     <string name="nombre_medico">Nombres</string>
@@ -45,14 +45,15 @@
     <string name="email_medico">Correo Electrónico</string>
 
     <!-- Expedientes -->
-    <string name="titulo_expedientes">Expedientes</string>
+    <string name="titulo_expedientes">Listado de Expedientes</string>
+    <string name="historico_citas">Historico de Citas</string>
     <string name="agregar_expediente">Agregar Expediente</string>
     <string name="editar_expediente">Editar Expediente</string>
     <string name="fecha_expediente">Fecha</string>
     <string name="descripcion_expediente">Descripción</string>
 
     <!-- Citas -->
-    <string name="titulo_citas">Citas</string>
+    <string name="titulo_citas">Listado de Citas</string>
     <string name="agregar_cita">Agregar Cita</string>
     <string name="editar_cita">Editar Cita</string>
     <string name="fecha_cita">Fecha y Hora</string>
@@ -60,6 +61,14 @@
     <string name="diagnostico_cita">Diagnóstico</string>
     <string name="seleccionar_medico">Seleccionar Médico</string>
     <string name="seleccionar_expediente">Seleccionar Expediente</string>
+    <string name="subtitulo_pendientes">CITAS PENDIENTES</string>
+    <string name="subtitulo_vencidas">CITAS FUERA DE PLAZO</string>
+
+    <!--Consultorios-->
+    <string name="titulo_consultorios">Listado de Consultorios</string>
+
+    <!-- Especialidades-->
+    <string name="titulo_especialidades">Listado de Especialidades</string>
 
     <!-- Validaciones / mensajes -->
     <string name="campos_vacios">Por favor, complete todos los campos.</string>

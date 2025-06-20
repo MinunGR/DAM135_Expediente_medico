@@ -59,7 +59,7 @@ public class AdapterCita extends RecyclerView.Adapter<AdapterCita.CitaViewHolder
     @NonNull @Override
     public CitaViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_cita, parent, false);
+                .inflate(R.layout.card_cita, parent, false);
         return new CitaViewHolder(v);
     }
 
@@ -120,10 +120,10 @@ public class AdapterCita extends RecyclerView.Adapter<AdapterCita.CitaViewHolder
 
         public CitaViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvPaciente  = itemView.findViewById(R.id.tvPacienteCita);
-            tvDoctor    = itemView.findViewById(R.id.tvDoctorCita);
-            tvFechaHora = itemView.findViewById(R.id.tvFechaHoraCita);
-            tvMotivo    = itemView.findViewById(R.id.tvMotivoCita);
+            tvPaciente  = itemView.findViewById(R.id.txtPacienteCita);
+            tvDoctor    = itemView.findViewById(R.id.txtDoctorCita);
+            tvFechaHora = itemView.findViewById(R.id.txtFechaHoraCita);
+            tvMotivo    = itemView.findViewById(R.id.txtMotivoCita);
         }
     }
 }

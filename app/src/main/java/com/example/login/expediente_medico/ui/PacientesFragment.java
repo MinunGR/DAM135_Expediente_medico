@@ -40,7 +40,7 @@ public class PacientesFragment extends Fragment{
         super.onViewCreated(view, savedInstanceState);
 
         // Inicializar RecyclerView y su adaptador
-        rvPacientes = view.findViewById(R.id.rvPacientes);
+        rvPacientes = view.findViewById(R.id.listPacientes);
         adapter = new AdapterPaciente();
         rvPacientes.setLayoutManager(new LinearLayoutManager(requireContext()));
         rvPacientes.setAdapter(adapter);
@@ -70,7 +70,7 @@ public class PacientesFragment extends Fragment{
         });
 
         // Abre FormPacienteActivity al pulsar el icono
-        view.findViewById(R.id.fabAgregarPaciente).setOnClickListener(v -> {
+        view.findViewById(R.id.btnAgregarPacientes).setOnClickListener(v -> {
             startActivity(new Intent(requireContext(), FormPacienteActivity.class));
         });
 

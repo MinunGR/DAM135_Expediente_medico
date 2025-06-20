@@ -48,7 +48,7 @@ public class EspecialidadAdapter extends RecyclerView.Adapter<EspecialidadAdapte
     @Override
     public EspecialidadViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_especialidad, parent, false);
+                .inflate(R.layout.card_especialidad, parent, false);
         return new EspecialidadViewHolder(v);
     }
 
@@ -85,7 +85,7 @@ public class EspecialidadAdapter extends RecyclerView.Adapter<EspecialidadAdapte
 
         public EspecialidadViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvNombre = itemView.findViewById(R.id.tvNombreEspecialidad);
+            tvNombre = itemView.findViewById(R.id.txtDescEspecialidad);
         }
     }
 

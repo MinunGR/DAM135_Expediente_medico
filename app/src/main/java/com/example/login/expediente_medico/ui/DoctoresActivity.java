@@ -8,13 +8,13 @@ public class DoctoresActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_doctores);
+        setContentView(R.layout.activity_doctor);
 
         // Inserta el fragment de doctores en el contenedor
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(
-                        R.id.fragment_container_doctores,
+                        R.id.cnt_doctor,
                         new DoctoresFragment()
                 )
                 .commit();

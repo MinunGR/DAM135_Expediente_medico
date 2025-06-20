@@ -52,7 +52,7 @@ public class DoctoresFragment extends Fragment{
         super.onViewCreated(view, savedInstanceState);
 
         // Inicializar RecyclerView y su adaptador
-        rvDoctores = view.findViewById(R.id.rvDoctores);
+        rvDoctores = view.findViewById(R.id.listDoctores);
         adapter = new AdapterDoctor();
         rvDoctores.setLayoutManager(new LinearLayoutManager(requireContext()));
         rvDoctores.setAdapter(adapter);
@@ -84,7 +84,7 @@ public class DoctoresFragment extends Fragment{
         });
 
         // Abre FormDoctorActivity al pulsar el icono
-        view.findViewById(R.id.fabAgregarDoctor).setOnClickListener(v -> {
+        view.findViewById(R.id.btnAgregarDoctor).setOnClickListener(v -> {
             Intent intent = new Intent(requireContext(), FormDoctorActivity.class);
             startActivity(intent);
         });

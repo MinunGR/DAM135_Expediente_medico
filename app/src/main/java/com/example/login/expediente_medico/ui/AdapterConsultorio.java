@@ -49,7 +49,7 @@ public class AdapterConsultorio extends RecyclerView.Adapter<AdapterConsultorio.
     @Override
     public ConsultorioViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_consultorio, parent, false);
+                .inflate(R.layout.card_consultorio, parent, false);
         return new ConsultorioViewHolder(v);
     }
 
@@ -87,8 +87,8 @@ public class AdapterConsultorio extends RecyclerView.Adapter<AdapterConsultorio.
 
         ConsultorioViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvNombre     = itemView.findViewById(R.id.tvNombreConsultorio);
-            tvUbicacion  = itemView.findViewById(R.id.tvUbicacionConsultorio);
+            tvNombre     = itemView.findViewById(R.id.txtConsultorio);
+            tvUbicacion  = itemView.findViewById(R.id.txtUbicacion);
         }
     }
 }

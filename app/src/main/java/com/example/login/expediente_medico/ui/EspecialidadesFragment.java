@@ -40,7 +40,7 @@ public class EspecialidadesFragment extends Fragment{
         super.onViewCreated(view, savedInstanceState);
 
         // Inicializar RecyclerView y su adaptador
-        rvEspecialidades = view.findViewById(R.id.rvEspecialidades);
+        rvEspecialidades = view.findViewById(R.id.listEspecialidades);
         adapter = new EspecialidadAdapter();
         rvEspecialidades.setLayoutManager(new LinearLayoutManager(requireContext()));
         rvEspecialidades.setAdapter(adapter);
@@ -70,7 +70,7 @@ public class EspecialidadesFragment extends Fragment{
         });
 
         // Abre FormDoctorActivity al pulsar el icono
-        view.findViewById(R.id.fabAgregarEspecialidad)
+        view.findViewById(R.id.btnAgregarEspecialidad)
                 .setOnClickListener(v ->
                         startActivity(new Intent(requireContext(), FormEspecialidadActivity.class))
                 );

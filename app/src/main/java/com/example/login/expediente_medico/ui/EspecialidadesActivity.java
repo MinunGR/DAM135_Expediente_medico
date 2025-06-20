@@ -8,13 +8,13 @@ public class EspecialidadesActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_especialidades);
+        setContentView(R.layout.activity_especialidad);
 
         // Incrusta el fragmento de especialidades
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(
-                        R.id.fragment_container_especialidades,
+                        R.id.cnt_especialidad,
                         new EspecialidadesFragment()
                 )
                 .commit();

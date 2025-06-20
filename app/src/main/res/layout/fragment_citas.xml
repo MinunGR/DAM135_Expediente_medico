@@ -1,80 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="0dp">
 
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp"
-    android:layout_marginBottom="30dp">
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="184dp"
+        android:layout_height="237dp"
+        android:layout_marginStart="43dp"
+        android:layout_marginTop="192dp"
+        android:elevation="-15dp"
+        app:layout_constraintStart_toEndOf="@+id/btnAgregarCita"
+        app:layout_constraintTop_toBottomOf="@+id/listCitasVencidas"
+        app:srcCompat="@drawable/bg_circle_1" />
 
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="184dp"
+        android:layout_height="237dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginBottom="5dp"
+        android:elevation="-15dp"
+        app:layout_constraintBottom_toTopOf="@+id/listCitasVencidas"
+        app:layout_constraintStart_toEndOf="@+id/lblListCitas"
+        app:srcCompat="@drawable/bg_circle_1" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="184dp"
+        android:layout_height="237dp"
+        android:layout_marginTop="184dp"
+        android:elevation="-15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblListCitas"
+        app:srcCompat="@drawable/bg_circle_1" />
 
-        <!-- Título  -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Agenda de Citas"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="@color/purple"
-            android:gravity="center"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="24dp"/>
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="184dp"
+        android:layout_height="237dp"
+        android:layout_marginTop="66dp"
+        android:layout_marginEnd="41dp"
+        android:elevation="-15dp"
+        app:layout_constraintEnd_toStartOf="@+id/btnAgregarCita"
+        app:layout_constraintTop_toBottomOf="@+id/listCitasPendientes"
+        app:srcCompat="@drawable/bg_circle_1" />
 
-        <!-- Próximas citas -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Próximas"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/purple"
-            android:layout_marginBottom="8dp"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvCitasProximas"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:nestedScrollingEnabled="false"/>
-
-        <!-- Citas anteriores-->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Pasadas"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/purple"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="8dp"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvCitasPasadas"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:nestedScrollingEnabled="false"/>
-    </LinearLayout>
-</ScrollView>
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAgregarCita"
+    <TextView
+        android:id="@+id/lblListCitas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="55dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="75dp"
+        android:gravity="center"
+        android:text="@string/titulo_citas"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/titleCitasPendientes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/subtitulo_pendientes"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/listCitasPendientes"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listCitasVencidas"
+        app:layout_constraintVertical_bias="0.117" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listCitasPendientes"
+        android:layout_width="345dp"
+        android:layout_height="193dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="72dp"
+        android:nestedScrollingEnabled="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listCitasVencidas" />
+
+    <TextView
+        android:id="@+id/titleCitasVencidas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginBottom="14dp"
+        android:text="@string/subtitulo_vencidas"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/listCitasVencidas"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblListCitas" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listCitasVencidas"
+        android:layout_width="345dp"
+        android:layout_height="193dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="72dp"
+        android:nestedScrollingEnabled="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblListCitas" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnAgregarCita"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="168dp"
+        android:layout_marginBottom="52dp"
         android:src="@android:drawable/ic_input_add"
-        app:tint="@android:color/white"
-        app:backgroundTint="@color/purple"
+        app:backgroundTint="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"  />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listCitasPendientes"
+        app:layout_constraintVertical_bias="0.586" />
 </androidx.constraintlayout.widget.ConstraintLayout>

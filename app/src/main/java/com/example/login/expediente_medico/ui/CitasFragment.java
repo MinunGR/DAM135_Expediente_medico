@@ -40,8 +40,8 @@ public class CitasFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        rvProximas = view.findViewById(R.id.rvCitasProximas);
-        rvPasadas  = view.findViewById(R.id.rvCitasPasadas);
+        rvProximas = view.findViewById(R.id.listCitasPendientes);
+        rvPasadas  = view.findViewById(R.id.listCitasVencidas);
         rvProximas.setLayoutManager(new LinearLayoutManager(requireContext()));
         rvPasadas .setLayoutManager(new LinearLayoutManager(requireContext()));
 
@@ -67,7 +67,7 @@ public class CitasFragment extends Fragment {
         };
 
         // Botón para agregar nueva cita
-        view.findViewById(R.id.fabAgregarCita)
+        view.findViewById(R.id.btnAgregarCita)
                 .setOnClickListener(v -> startActivity(new Intent(requireContext(), FormCitaActivity.class)));
 
         // Cargar listas inicialmente

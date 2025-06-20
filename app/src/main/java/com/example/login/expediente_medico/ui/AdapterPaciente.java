@@ -46,7 +46,7 @@ public class AdapterPaciente extends RecyclerView.Adapter<AdapterPaciente.Pacien
     @Override
     public PacienteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_paciente, parent, false);
+                .inflate(R.layout.card_paciente, parent, false);
         return new PacienteViewHolder(v);
     }
 
@@ -87,8 +87,8 @@ public class AdapterPaciente extends RecyclerView.Adapter<AdapterPaciente.Pacien
         PacienteViewHolder(@NonNull View itemView) {
             super(itemView);
             imgAvatar  = itemView.findViewById(R.id.imgPacienteAvatar);
-            tvNombre   = itemView.findViewById(R.id.tvNombrePaciente);
-            tvContacto = itemView.findViewById(R.id.tvContactoPaciente);
+            tvNombre   = itemView.findViewById(R.id.txtNombrePaciente);
+            tvContacto = itemView.findViewById(R.id.txtContacto);
         }
     }
 

@@ -59,7 +59,7 @@ public class AdapterRegistroMedico
     @NonNull @Override
     public RegistroViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_registro, parent, false);
+                .inflate(R.layout.card_registro, parent, false);
         return new RegistroViewHolder(v);
     }
 
@@ -112,10 +112,10 @@ public class AdapterRegistroMedico
 
         RegistroViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvFecha        = itemView.findViewById(R.id.tvFechaRegistro);
-            tvDiagnostico  = itemView.findViewById(R.id.tvDiagnostico);
-            tvTratamiento  = itemView.findViewById(R.id.tvTratamiento);
-            tvNotas        = itemView.findViewById(R.id.tvNotas);
+            tvFecha        = itemView.findViewById(R.id.txtFechaRegistro);
+            tvDiagnostico  = itemView.findViewById(R.id.txtDiag);
+            tvTratamiento  = itemView.findViewById(R.id.txtIndicaciones);
+            tvNotas        = itemView.findViewById(R.id.txtNotasExtras);
             imgRegistro    = itemView.findViewById(R.id.imgRegistro);
         }
     }

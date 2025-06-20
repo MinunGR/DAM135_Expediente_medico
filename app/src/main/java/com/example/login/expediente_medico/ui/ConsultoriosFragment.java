@@ -38,7 +38,7 @@ public class ConsultoriosFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // Inicializar RecyclerView y su adaptador
-        rvConsultorios = view.findViewById(R.id.rvConsultorios);
+        rvConsultorios = view.findViewById(R.id.listConsultorio);
         adapter = new AdapterConsultorio();
         rvConsultorios.setLayoutManager(new LinearLayoutManager(requireContext()));
         rvConsultorios.setAdapter(adapter);
@@ -69,7 +69,7 @@ public class ConsultoriosFragment extends Fragment {
         });
 
         // FAB para añadir
-        view.findViewById(R.id.fabAgregarConsultorio).setOnClickListener(v ->
+        view.findViewById(R.id.btnAgregarConsultorio).setOnClickListener(v ->
                 startActivity(new Intent(requireContext(), FormConsultorioActivity.class))
         );
 

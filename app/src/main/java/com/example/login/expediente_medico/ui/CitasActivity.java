@@ -8,13 +8,13 @@ public class CitasActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_citas);
+        setContentView(R.layout.activity_cita);
 
         // Inserta el fragmento de citas
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(
-                        R.id.fragment_container_citas,
+                        R.id.cnt_citas,
                         new CitasFragment()
                 )
                 .commit();

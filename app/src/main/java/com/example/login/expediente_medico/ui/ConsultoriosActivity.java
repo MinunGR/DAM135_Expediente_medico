@@ -8,12 +8,12 @@ public class ConsultoriosActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_consultorios);
+        setContentView(R.layout.activity_consultorio);
         // Inserta el fragment de consultorios  en el contenedor
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(
-                        R.id.fragment_container_consultorios,
+                        R.id.cnt_consultorio,
                         new ConsultoriosFragment()
                 )
                 .commit();

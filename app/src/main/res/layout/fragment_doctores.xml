@@ -1,56 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="0dp">
 
     <!-- Título de la sección -->
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="184dp"
+        android:layout_height="237dp"
+        android:layout_marginTop="328dp"
+        android:elevation="-15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bg_circle_1" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="184dp"
+        android:layout_height="237dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="256dp"
+        android:layout_marginBottom="576dp"
+        android:elevation="-15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bg_circle_1" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="184dp"
+        android:layout_height="237dp"
+        android:layout_marginStart="288dp"
+        android:layout_marginTop="636dp"
+        android:elevation="-15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bg_circle_1" />
+
     <TextView
-        android:id="@+id/tvTituloDoctores"
+        android:id="@+id/lblListDoctores"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Listado de Doctores"
-        android:textSize="23sp"
-        android:textStyle="bold"
-        android:textColor="@color/purple"
+        android:layout_marginTop="75dp"
+        android:text="@string/titulo_medicos"
+        android:textSize="28sp"
 
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <!-- RecyclerView para mostrar los doctores -->
 
     <!-- icono para añadir nuevo doctor -->
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvDoctores"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@color/white"
+        android:id="@+id/listDoctores"
+        android:layout_width="360dp"
+        android:layout_height="475dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="30dp"
         android:clipToPadding="false"
         android:padding="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTituloDoctores"
+        app:layout_constraintTop_toBottomOf="@id/lblListDoctores"
         app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAgregarDoctor"
+        android:id="@+id/btnAgregarDoctor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="55dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginStart="169dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="168dp"
+        android:contextClickable="false"
         android:src="@android:drawable/ic_input_add"
-        app:tint="@android:color/white"
-        app:backgroundTint="@color/purple"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:backgroundTint="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listDoctores" />
 </androidx.constraintlayout.widget.ConstraintLayout>

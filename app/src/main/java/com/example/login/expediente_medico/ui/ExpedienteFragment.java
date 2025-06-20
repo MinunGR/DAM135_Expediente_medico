@@ -42,8 +42,8 @@ public class ExpedienteFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        spinnerPacientes = view.findViewById(R.id.spinnerPacientesHistorial);
-        rvHistorial      = view.findViewById(R.id.rvHistorial);
+        spinnerPacientes = view.findViewById(R.id.slcPacientes);
+        rvHistorial      = view.findViewById(R.id.listHistorial);
 
         adapter = new AdapterRegistroMedico(null);
         rvHistorial.setLayoutManager(new LinearLayoutManager(requireContext()));

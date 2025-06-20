@@ -55,7 +55,7 @@ public class AdapterDoctor extends RecyclerView.Adapter<AdapterDoctor.DoctorView
     @Override
     public DoctorViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View vista = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_doctor, parent, false);
+                .inflate(R.layout.card_doctor, parent, false);
         return new DoctorViewHolder(vista);
     }
 
@@ -103,8 +103,8 @@ public class AdapterDoctor extends RecyclerView.Adapter<AdapterDoctor.DoctorView
         public DoctorViewHolder(@NonNull View itemView) {
             super(itemView);
             imgAvatar       = itemView.findViewById(R.id.imgDoctorAvatar);
-            tvNombre        = itemView.findViewById(R.id.tvNombreDoctor);
-            tvEspecialidad  = itemView.findViewById(R.id.tvEspecialidadDoctor);
+            tvNombre        = itemView.findViewById(R.id.txtNombreDoctor);
+            tvEspecialidad  = itemView.findViewById(R.id.txtEspecialidad);
         }
     }
 

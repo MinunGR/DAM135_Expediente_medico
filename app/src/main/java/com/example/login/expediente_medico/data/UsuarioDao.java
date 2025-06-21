@@ -1,4 +1,4 @@
-package com.example.login.expediente_medico;
+package com.example.login.expediente_medico.data;
 
 import androidx.room.Dao;
 import androidx.room.Insert;

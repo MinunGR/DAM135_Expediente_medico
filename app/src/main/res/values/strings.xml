@@ -57,12 +57,14 @@
     <string name="agregar_cita">Agregar Cita</string>
     <string name="editar_cita">Editar Cita</string>
     <string name="fecha_cita">Fecha y Hora</string>
-    <string name="motivo_cita">Motivo</string>
+    <string name="motivo_cita">Motivo de la consulta</string>
     <string name="diagnostico_cita">Diagnóstico</string>
     <string name="seleccionar_medico">Seleccionar Médico</string>
     <string name="seleccionar_expediente">Seleccionar Expediente</string>
     <string name="subtitulo_pendientes">CITAS PENDIENTES</string>
     <string name="subtitulo_vencidas">CITAS FUERA DE PLAZO</string>
+    <string name="cita_paciente">Escriba un nombre de paciente</string>
+    <string name="cita_doctor">Escriba un nombre de doctor</string>
 
     <!--Consultorios-->
     <string name="titulo_consultorios">Listado de Consultorios</string>
@@ -79,10 +81,12 @@
     <string name="confirmar_eliminacion">¿Desea eliminar este registro?</string>
 
 
-    <!-- Login -->
+    <!-- Login/Registro -->
     <string name="login_title">Iniciar sesión</string>
     <string name="register_title">Registro de Usuario</string>
     <string name="login_subtitle">Bienvenido de nuevo</string>
+    <string name="login_form_hint">"¿Ya tienes cuenta? Inicia sesión"</string>
+    <string name="register_form_hint">"¿Nuevo Usuario? ¡Registrate!"</string>
 
     <!-- Campos -->
     <string name="hint_username">Correo</string>

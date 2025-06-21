@@ -14,6 +14,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.login.expediente_medico.data.AppDatabase;
+import com.example.login.expediente_medico.data.Usuario;
+import com.example.login.expediente_medico.data.UsuarioDao;
 import com.example.login.expediente_medico.ui.HomeActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -78,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         btnLoginReg.setOnClickListener(v -> {
             if (formValidator()) {
                 if (form_mode) registrarUsuario();
-                else iniciarSesion();
+                else login();
             }
         });
 
@@ -91,13 +93,13 @@ public class MainActivity extends AppCompatActivity {
             lblTituloInicio.setText(R.string.register_title);
             lblSubtituloInicio.setText(R.string.campos_vacios);
             btnLoginReg.setText(R.string.guardar);
-            btnIrRegistro.setText("¿Ya tienes cuenta? Inicia sesión");
+            btnIrRegistro.setText(R.string.login_form_hint);
             inpRepContra.setVisibility(View.VISIBLE);
         } else {
             lblTituloInicio.setText(R.string.login_title);
             lblSubtituloInicio.setText(R.string.login_subtitle);
             btnLoginReg.setText(R.string.btn_login);
-            btnIrRegistro.setText("Regístro de usuario");
+            btnIrRegistro.setText(R.string.register_form_hint);
             inpRepContra.setVisibility(View.GONE);
         }
     }
@@ -123,8 +125,8 @@ public class MainActivity extends AppCompatActivity {
 
         // Si es registro, se valida la coincidencia de contraseñas
         if (form_mode) {
-            String repeat = inpRepContra.getText().toString().trim();
-            if (!password.equals(repeat)) {
+            cnfPassword = inpRepContra.getText().toString().trim();
+            if (!password.equals(cnfPassword)) {
                 inpRepContra.setError("Las contraseñas no coinciden");
                 inpRepContra.requestFocus();
                 return false;
@@ -164,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void iniciarSesion() {
+    private void login() {
         email = inpCorreo.getText().toString().trim();
         password = inpContra.getText().toString().trim();
 
@@ -174,13 +176,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         new Thread(() -> {
-            Usuario usuario = AppDatabase
+            Usuario user = AppDatabase
                     .getInstance(this)
                     .dao_usuario()
                     .buscarPorCorreo(email);
 
             runOnUiThread(() -> {
-                if (usuario != null && usuario.getContrasena().equals(password)) {
+                if (user != null && user.getContrasena().equals(password)) {
                     getSharedPreferences("sesion", MODE_PRIVATE)
                             .edit()
                             .putString("usuario_email", email)

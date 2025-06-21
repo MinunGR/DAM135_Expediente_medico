@@ -1,109 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView2"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/imageView21"
+        android:layout_width="262dp"
+        android:layout_height="228dp"
+        android:layout_marginStart="300dp"
+        android:layout_marginBottom="420dp"
+        android:rotation="-207"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/bg_circle_1" />
+
+    <ImageView
+        android:id="@+id/imageView20"
+        android:layout_width="262dp"
+        android:layout_height="228dp"
+        android:layout_marginStart="236dp"
+        android:layout_marginBottom="304dp"
+        android:rotation="-207"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/bg_circle_1" />
+
+    <AutoCompleteTextView
+        android:id="@+id/autoDoctor"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:gravity="center">
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="24dp"
+        android:completionThreshold="1"
+        android:hint="@string/agregar_medico"
+        android:inputType="text"
+        android:padding="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/autoPaciente" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="16dp"
-            android:text="CITA"
-            android:textSize="22sp"
-            android:textStyle="bold" />
+    <AutoCompleteTextView
+        android:id="@+id/autoPaciente"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="24dp"
+        android:completionThreshold="1"
+        android:hint="@string/agregar_paciente"
+        android:inputType="text"
+        android:padding="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-        <!-- Selector de Doctor -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Doctor"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="75dp"
+        android:layout_marginEnd="130dp"
+        android:text="@string/agregar_cita"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <AutoCompleteTextView
-            android:id="@+id/autoDoctor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:completionThreshold="1"
-            android:hint="@string/agregar_medico"
-            android:inputType="text"
-            android:padding="12dp" />
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/fecha_cita"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/autoDoctor" />
 
-        <!-- Selector de Paciente -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Paciente"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+    <Button
+        android:id="@+id/btnSeleccionarFechaHora"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/fecha_cita"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-        <AutoCompleteTextView
-            android:id="@+id/autoPaciente"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:completionThreshold="1"
-            android:hint="@string/agregar_paciente"
-            android:inputType="text"
-            android:padding="12dp" />
+    <TextView
+        android:id="@+id/tvFechaHoraSeleccionada"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="60dp"
+        android:text="Acá se mostrará"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/btnSeleccionarFechaHora"
+        app:layout_constraintTop_toBottomOf="@+id/autoDoctor" />
 
+    <EditText
+        android:id="@+id/etMotivoCita"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:gravity="top|start"
+        android:hint="@string/motivo_cita"
+        android:inputType="textMultiLine"
+        android:maxLines="6"
+        android:minLines="4"
+        android:padding="12dp"
+        android:scrollbars="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSeleccionarFechaHora" />
 
-        <!-- Fecha y hora -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Fecha y Hora"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+    <Button
+        android:id="@+id/btnGuardarCita"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="30dp"
+        android:backgroundTint="?attr/colorSecondary"
+        android:backgroundTintMode="src_over"
+        android:text="@string/agregar_cita"
+        app:icon="@android:drawable/btn_star_big_on"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etMotivoCita" />
 
-        <Button
-            android:id="@+id/btnSeleccionarFechaHora"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/fecha_cita" />
-
-        <TextView
-            android:id="@+id/tvFechaHoraSeleccionada"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="—"
-            android:textSize="14sp"
-            android:textColor="@android:color/darker_gray"
-            android:layout_marginTop="8dp"/>
-
-        <EditText
-            android:id="@+id/etMotivoCita"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/bg_input"
-            android:gravity="top|start"
-            android:hint="@string/motivo_cita"
-            android:inputType="textMultiLine"
-            android:maxLines="6"
-            android:minLines="4"
-            android:padding="12dp"
-            android:scrollbars="vertical" />
-
-        <!-- Guardar -->
-        <Button
-            android:id="@+id/btnGuardarCita"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="@string/agregar_cita" />
-
-    </LinearLayout>
-</ScrollView>
+    <ImageView
+        android:id="@+id/imageView19"
+        android:layout_width="262dp"
+        android:layout_height="228dp"
+        android:layout_marginTop="560dp"
+        android:layout_marginEnd="228dp"
+        android:rotation="-207"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bg_circle_1" />
+</androidx.constraintlayout.widget.ConstraintLayout>

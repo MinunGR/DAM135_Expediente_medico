@@ -6,13 +6,12 @@ import androidx.room.RoomDatabase;
 import android.content.Context;
 
 
-import com.example.login.expediente_medico.Usuario;
-import com.example.login.expediente_medico.UsuarioDao;
+import com.example.login.expediente_medico.data.Usuario;
+import com.example.login.expediente_medico.data.UsuarioDao;
 
 @Database(
         entities = { Usuario.class, Doctor.class,
-                Paciente.class , Especialidad.class,
-                Consultorio.class, Cita.class,
+                Paciente.class , Especialidad.class, Cita.class,
                 RegistroMedico.class},
         version = 6,
         exportSchema = false
@@ -26,7 +25,6 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract RegistroMedicoDao registroMedicoDao();
     public abstract EspecialidadDao dao_especialidad();
     public abstract UsuarioDao dao_usuario();
-    public abstract ConsultorioDao dao_consultorio();
     public abstract PacienteDao dao_paciente();
     public abstract CitaDao dao_cita();
 

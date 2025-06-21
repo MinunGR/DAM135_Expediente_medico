@@ -18,42 +18,34 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-// Muestra la lista de doctores en un Recyclerview
 public class AdapterCita extends RecyclerView.Adapter<AdapterCita.CitaViewHolder> {
-
-    private List<Cita> listaCitas;
-    private List<Doctor> listaDoctores;
-    private List<Paciente> listaPacientes;
+    private List<Cita> lstCitas;
+    private List<Doctor> lstDoctores;
+    private List<Paciente> lstPacientes;
     OnItemClickListener clickListener;
     OnItemLongClickListener longClickListener;
+
+    public AdapterCita(List<Cita> citas,
+                       List<Doctor> doctores,
+                       List<Paciente> pacientes)
+    {
+        this.lstCitas     = citas;
+        this.lstDoctores  = doctores;
+        this.lstPacientes = pacientes;
+    }
+
+    public  AdapterCita(){}
+
+    public void setLstCitas(List<Cita> citas) {
+        this.lstCitas = citas;
+        notifyDataSetChanged();
+    }
 
     public interface OnItemClickListener {
         void onItemClick(Cita cita);
     }
     public interface OnItemLongClickListener {
         void onItemLongClick(Cita cita);
-    }
-
-    // Nuevo constructor recibe también doctores y pacientes
-    public AdapterCita(List<Cita> citas,
-                       List<Doctor> doctores,
-                       List<Paciente> pacientes) {
-        this.listaCitas     = citas;
-        this.listaDoctores  = doctores;
-        this.listaPacientes = pacientes;
-    }
-
-    // Permite actualizar lista de citas
-    public void setListaCitas(List<Cita> citas) {
-        this.listaCitas = citas;
-        notifyDataSetChanged();
-    }
-
-    public void setOnItemClickListener(OnItemClickListener l) {
-        this.clickListener = l;
-    }
-    public void setOnItemLongClickListener(OnItemLongClickListener l) {
-        this.longClickListener = l;
     }
 
     @NonNull @Override
@@ -63,44 +55,49 @@ public class AdapterCita extends RecyclerView.Adapter<AdapterCita.CitaViewHolder
         return new CitaViewHolder(v);
     }
 
+    public void setOnItemClickListener(OnItemClickListener l) {
+        this.clickListener = l;
+    }
+    public void setOnItemLongClickListener(OnItemLongClickListener l) {
+        this.longClickListener = l;
+    }
+
     @Override
     public void onBindViewHolder(@NonNull CitaViewHolder holder, int position) {
-        Cita cita = listaCitas.get(position);
+        String noEncontradoTxt = String.valueOf(R.string.txt_no_encontrado);
+        Cita cita = lstCitas.get(position);
 
-        // Buscar nombre de paciente
-        String nombrePac = "Desconocido";
-        for (Paciente p : listaPacientes) {
+        String nombrePac = noEncontradoTxt;
+        for (Paciente p : lstPacientes) {
             if (p.getIdPaciente() == cita.getPacienteId()) {
                 nombrePac = p.getNombre();
                 break;
             }
         }
-        holder.tvPaciente.setText("Paciente: " + nombrePac);
+        holder.txtvPaciente.setText("Paciente: " + nombrePac);
 
-        // Buscar nombre de doctor
-        String nombreDoc = "Desconocido";
-        for (Doctor d : listaDoctores) {
+        String nombreDoc = noEncontradoTxt;
+        for (Doctor d : lstDoctores) {
             if (d.getIdDoctor() == cita.getDoctorId()) {
                 nombreDoc = d.getNombre();
                 break;
             }
         }
-        holder.tvDoctor.setText("Doctor: " + nombreDoc);
+        holder.txtvDoctor.setText("Doctor: " + nombreDoc);
 
-        // Formatear fecha/hora
         Date date = new Date(cita.getFechaHora());
         String fechaHora = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
                 .format(date);
-        holder.tvFechaHora.setText("Fecha/Hora: " + fechaHora);
+        holder.txtvFechaHora.setText("Fecha/Hora: " + fechaHora);
 
-        holder.tvMotivo.setText("Motivo: " + cita.getMotivo());
+        holder.txtvMotivo.setText("Motivo: " + cita.getMotivo());
 
-        // Click simple para editar
+        // Solo click editar
         holder.itemView.setOnClickListener(v -> {
             if (clickListener != null) clickListener.onItemClick(cita);
         });
 
-        // Click largo para eliminar
+        // Mantener eliminar
         holder.itemView.setOnLongClickListener(v -> {
             if (longClickListener != null) {
                 longClickListener.onItemLongClick(cita);
@@ -112,18 +109,21 @@ public class AdapterCita extends RecyclerView.Adapter<AdapterCita.CitaViewHolder
 
     @Override
     public int getItemCount() {
-        return listaCitas != null ? listaCitas.size() : 0;
+        return lstCitas != null ? lstCitas.size() : 0;
     }
 
     static class CitaViewHolder extends RecyclerView.ViewHolder {
-        TextView tvPaciente, tvDoctor, tvFechaHora, tvMotivo;
+        TextView txtvPaciente,
+                txtvDoctor,
+                txtvFechaHora,
+                txtvMotivo;
 
         public CitaViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvPaciente  = itemView.findViewById(R.id.txtPacienteCita);
-            tvDoctor    = itemView.findViewById(R.id.txtDoctorCita);
-            tvFechaHora = itemView.findViewById(R.id.txtFechaHoraCita);
-            tvMotivo    = itemView.findViewById(R.id.txtMotivoCita);
+            txtvPaciente  = itemView.findViewById(R.id.txtPacienteCita);
+            txtvDoctor    = itemView.findViewById(R.id.txtDoctorCita);
+            txtvFechaHora = itemView.findViewById(R.id.txtFechaHoraCita);
+            txtvMotivo    = itemView.findViewById(R.id.txtMotivoCita);
         }
     }
 }

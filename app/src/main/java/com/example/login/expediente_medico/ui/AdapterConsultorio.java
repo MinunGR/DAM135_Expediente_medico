@@ -14,24 +14,11 @@ import com.example.login.expediente_medico.data.Consultorio;
 import java.util.ArrayList;
 import java.util.List;
 
-// Muestra la lista de doctores en un Recyclerview
 public class AdapterConsultorio extends RecyclerView.Adapter<AdapterConsultorio.ConsultorioViewHolder> {
+    private List<Consultorio> lst = new ArrayList<>();
+    private OnItemClickListener clickListener;
+    private OnItemLongClickListener longClickListener;
 
-    private List<Consultorio> lista = new ArrayList<>(); // lista
-    private OnItemClickListener clickListener; // actualizar
-    private OnItemLongClickListener longClickListener; // eliminar
-
-    // actualizar
-    public interface OnItemClickListener {
-        void onItemClick(Consultorio consultorio);
-    }
-
-    // elimianr
-    public interface OnItemLongClickListener {
-        void onItemLongClick(Consultorio consultorio);
-    }
-
-    //Metodos para registrar el listener
     public void setOnItemClickListener(OnItemClickListener l) {
         clickListener = l;
     }
@@ -39,10 +26,42 @@ public class AdapterConsultorio extends RecyclerView.Adapter<AdapterConsultorio.
         longClickListener = l;
     }
 
-    //Permite asignar o actualizar la lista de consultorios
     public void setLista(List<Consultorio> lista) {
-        this.lista = lista;
+        this.lst = lista;
         notifyDataSetChanged();
+    }
+
+    public AdapterConsultorio(){}
+
+    public interface OnItemClickListener {
+        void onItemClick(Consultorio consultorio);
+    }
+
+    public interface OnItemLongClickListener {
+        void onItemLongClick(Consultorio consultorio);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ConsultorioViewHolder holder, int position) {
+        Consultorio c = lst.get(position);
+        holder.txtvNombre.setText(c.getNombre());
+        holder.txtvUbicacion.setText(c.getUbicacion());
+
+        // Solo click editar
+        holder.itemView.setOnClickListener(v -> {
+            if (clickListener != null) {
+                clickListener.onItemClick(c);
+            }
+        });
+
+        // Mantener eliminar
+        holder.itemView.setOnLongClickListener(v -> {
+            if (longClickListener != null) {
+                longClickListener.onItemLongClick(c);
+                return true;
+            }
+            return false;
+        });
     }
 
     @NonNull
@@ -54,41 +73,18 @@ public class AdapterConsultorio extends RecyclerView.Adapter<AdapterConsultorio.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ConsultorioViewHolder holder, int position) {
-        Consultorio c = lista.get(position);
-        holder.tvNombre.setText(c.getNombre());
-        holder.tvUbicacion.setText(c.getUbicacion());
-
-        // Click simple para editar
-        holder.itemView.setOnClickListener(v -> {
-            if (clickListener != null) {
-                clickListener.onItemClick(c);
-            }
-        });
-
-        // Click largo para eliminar
-        holder.itemView.setOnLongClickListener(v -> {
-            if (longClickListener != null) {
-                longClickListener.onItemLongClick(c);
-                return true;
-            }
-            return false;
-        });
-    }
-
-    @Override
     public int getItemCount() {
-        return lista.size();
+        return lst.size();
     }
 
-    /* ViewHolder interno para un ítem de doctor */
     static class ConsultorioViewHolder extends RecyclerView.ViewHolder {
-        TextView tvNombre, tvUbicacion;
+        TextView txtvNombre,
+                txtvUbicacion;
 
         ConsultorioViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvNombre     = itemView.findViewById(R.id.txtConsultorio);
-            tvUbicacion  = itemView.findViewById(R.id.txtUbicacion);
+            txtvNombre     = itemView.findViewById(R.id.txtConsultorio);
+            txtvUbicacion  = itemView.findViewById(R.id.txtUbicacion);
         }
     }
 }

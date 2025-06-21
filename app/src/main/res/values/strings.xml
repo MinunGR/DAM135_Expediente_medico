@@ -92,4 +92,7 @@
     <string name="btn_login">Entrar</string>
     <string name="btn_register">Registrarse</string>
     <string name="btn_forgot_password">¿Olvidaste tu contraseña?</string>
+
+    <!--  Cita Adapter  -->
+    <string name="txt_no_encontrado">No encontrado</string>
 </resources>

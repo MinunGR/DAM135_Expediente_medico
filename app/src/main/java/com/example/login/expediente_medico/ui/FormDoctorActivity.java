@@ -78,7 +78,7 @@ public class FormDoctorActivity extends AppCompatActivity {
                     new Thread(() -> {
                         Doctor d = getInstance(this)
                                 .dao_doctor()
-                                .buscarDoctorPorId(idDoctor);
+                                .buscarPorId(idDoctor);
                         runOnUiThread(() -> {
                             if (d != null) {
                                 etNombre.setText(d.getNombre());
@@ -126,7 +126,7 @@ public class FormDoctorActivity extends AppCompatActivity {
                             fotoUri==null?"":fotoUri.toString(),
                             horas);
                     d.setIdDoctor(idDoctor);
-                    db.dao_doctor().actualizarDoctor(d);
+                    db.dao_doctor().actualizarDatosDoctor(d);
                 } else {
                     db.dao_doctor().insertarDoctor(
                             new Doctor(nombre, esp,

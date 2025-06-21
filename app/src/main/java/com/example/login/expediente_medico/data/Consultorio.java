@@ -4,20 +4,16 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-// Entidad consultorios
 @Entity(tableName = "consultorios")
 public class Consultorio {
-    // Campos
-
-    // Id que se autogenera
+    // Autogenerable
     @PrimaryKey(autoGenerate = true)
     private int idConsultorio;
 
-    private String nombre; // Nombre o número de consultorio (ej: sala 1)
+    private String nombre;
 
-    private String ubicacion; // Ubicación o dirección dentro del centro médico
+    private String ubicacion;
 
-    // Constructor
     @Ignore
     public Consultorio(String nombre, String ubicacion) {
         this.nombre = nombre;

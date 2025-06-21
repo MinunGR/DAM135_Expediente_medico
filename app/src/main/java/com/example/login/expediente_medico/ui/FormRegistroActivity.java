@@ -55,7 +55,7 @@ public class FormRegistroActivity extends AppCompatActivity {
                 RegistroMedico r = AppDatabase
                         .getInstance(this)
                         .registroMedicoDao()
-                        .buscarRegistroPorId(idRegistro);
+                        .buscarPorId(idRegistro);
                 runOnUiThread(() -> {
                     if (r != null) {
                         tvFechaForm.setText(

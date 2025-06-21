@@ -8,27 +8,26 @@ import androidx.room.Update;
 
 import java.util.List;
 
+/**
+ * Interfaz Data Access Object (DAO) para operaciones CRUD de la entidad Especialidad.
+ * Proporciona métodos para gestionar consultas en la base de datos.
+ */
 @Dao
 public interface EspecialidadDao {
-
-    // Insertar una especialidad
+    // Inserta en db
     @Insert
     long insertarEspecialidad(Especialidad especialidad);
-
-    // Obtener todos
+    // Obtiene todos
     @Query("SELECT * FROM especialidades")
     List<Especialidad> obtenerEspecialidades();
-
-    // Actualizar los campos
+    // Actualiza en db
     @Update
-    int actualizarEspecialidad(Especialidad especialidad);
-
-    // Eliminar una especialidad
+    int actualizarDatosEspecialidad(Especialidad especialidad);
+    // Elimina en db
     @Delete
     int eliminarEspecialidad(Especialidad especialidad);
-
-    // Buscar una especialidad por id
+    // Busca por id
     @Query("SELECT * FROM especialidades WHERE idEspecialidad = :idEspecialidad")
-    Especialidad buscarEspecialidadPorId(int idEspecialidad);
+    Especialidad buscarPorId(int idEspecialidad);
 
 }

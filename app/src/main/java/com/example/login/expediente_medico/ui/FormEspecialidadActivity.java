@@ -35,7 +35,7 @@ public class FormEspecialidadActivity extends AppCompatActivity {
                 Especialidad e = AppDatabase
                         .getInstance(this)
                         .dao_especialidad()
-                        .buscarEspecialidadPorId(idEspecialidad);
+                        .buscarPorId(idEspecialidad);
                 runOnUiThread(() -> {
                     if (e != null) {
                         etNombre.setText(e.getNombre());
@@ -62,7 +62,7 @@ public class FormEspecialidadActivity extends AppCompatActivity {
                     // Actualizar una especialidad existente
                     Especialidad e = new Especialidad(nombre);
                     e.setIdEspecialidad(idEspecialidad);
-                    db.dao_especialidad().actualizarEspecialidad(e);
+                    db.dao_especialidad().actualizarDatosEspecialidad(e);
                 } else {
                     // Insertar nuevo
                     db.dao_especialidad().insertarEspecialidad(new Especialidad(nombre));

@@ -89,7 +89,7 @@ public class ConsultoriosFragment extends Fragment {
             List<Consultorio> lista = AppDatabase
                     .getInstance(requireContext())
                     .dao_consultorio()
-                    .obtenerConsultorios();
+                    .obtenerTodosLosConsultorios();
             requireActivity().runOnUiThread(() -> adapter.setLista(lista));
         }).start();
     }

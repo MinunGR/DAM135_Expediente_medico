@@ -88,8 +88,8 @@ public class CitasFragment extends Fragment {
             AppDatabase db = AppDatabase.getInstance(requireContext());
             long ahora = System.currentTimeMillis();
 
-            List<Cita> proximas = db.dao_cita().obtenerCitasProximas(ahora);
-            List<Cita> pasadas  = db.dao_cita().obtenerCitasPasadas(ahora);
+            List<Cita> proximas = db.dao_cita().listarFuturasOrdenadas(ahora);
+            List<Cita> pasadas  = db.dao_cita().listarHistoricasRecientes(ahora);
             List<Doctor> listaDoctores   = db.dao_doctor().obtenerDoctores();
             List<Paciente> listaPacientes = db.dao_paciente().obtenerPacientes();
 

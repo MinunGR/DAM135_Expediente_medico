@@ -7,30 +7,26 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import java.util.List;
-
-// Para operaciones CRUD sobre la entidad
+/**
+ * Interfaz Data Access Object (DAO) para operaciones CRUD de la entidad Consultorio.
+ * Proporciona métodos para gestionar consultas en la base de datos.
+ */
 @Dao
 public interface ConsultorioDao {
-
-    // Insertar un consultorio
+    // Inserta en db
     @Insert
     long insertarConsultorio(Consultorio consultorio);
-
-    // Obtener todos
+    // Obtiene todos
     @Query("SELECT * FROM consultorios")
-    List<Consultorio> obtenerConsultorios();
-
-    // Actualizar los campos
+    List<Consultorio> obtenerTodosLosConsultorios();
+    // Actualiza en db
     @Update
-    int actualizarConsultorio(Consultorio consultorio);
-
-    // Eliminar un consultorio
-
+    int actualizarDatosConsultorio(Consultorio consultorio);
+    // Elimina en db
     @Delete
     int eliminarConsultorio(Consultorio consultorio);
-
-    // Busca un consultorio por el id
+    // Obtiene por id
     @Query("SELECT * FROM consultorios WHERE idConsultorio = :idConsultorio")
-    Consultorio buscarConsultorioPorId(int idConsultorio);
+    Consultorio buscarPorId(int idConsultorio);
 
 }

@@ -146,7 +146,7 @@ public class FormCitaActivity extends AppCompatActivity {
                             motivo
                     );
                     c.setIdCita(idCita);
-                    db.dao_cita().actualizarCita(c);
+                    db.dao_cita().actualizarDatosCita(c);
                 } else {
                     db.dao_cita().insertarCita(new Cita(
                             doctorSeleccionado.getIdDoctor(),

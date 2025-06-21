@@ -4,12 +4,9 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-/**
- * Entidad Room que representa un Doctor.
- */
 @Entity(tableName = "doctores")
 public class Doctor {
-
+    // Autogenerable
     @PrimaryKey(autoGenerate = true)
     private int idDoctor;
 
@@ -18,7 +15,6 @@ public class Doctor {
     private String fotoUri;
     private String horariosDisponibles;
 
-    /** Constructor vacío que usa Room */
     public Doctor() { }
 
 

@@ -4,13 +4,9 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-// Entidad paciente
 @Entity(tableName = "pacientes")
 public class Paciente {
-
-    // Campos
-
-    // Id que se autogenera
+    // Autogenerable
     @PrimaryKey(autoGenerate = true)
     private int idPaciente;
 
@@ -20,7 +16,6 @@ public class Paciente {
 
     private String fotoUri;
 
-    // Constructor
     @Ignore
     public Paciente(String nombre, String datosContacto, String fotoUri) {
         this.nombre = nombre;
@@ -59,6 +54,6 @@ public class Paciente {
 
     @Override
     public String toString() {
-        return nombre;   // Mostrar el nombre del paciente
+        return nombre;
     }
 }

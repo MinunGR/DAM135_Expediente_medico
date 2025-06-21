@@ -36,7 +36,7 @@ public class FormConsultorioActivity extends AppCompatActivity {
                 Consultorio c = AppDatabase
                         .getInstance(this)
                         .dao_consultorio()
-                        .buscarConsultorioPorId(idConsultorio);
+                        .buscarPorId(idConsultorio);
                 runOnUiThread(() -> {
                     if (c != null) {
                         etNombre.setText(c.getNombre());
@@ -60,7 +60,7 @@ public class FormConsultorioActivity extends AppCompatActivity {
                 if (esEdicion) {
                     Consultorio c = new Consultorio(nombre, ubicacion);
                     c.setIdConsultorio(idConsultorio);
-                    db.dao_consultorio().actualizarConsultorio(c);
+                    db.dao_consultorio().actualizarDatosConsultorio(c);
                 } else {
                     db.dao_consultorio().insertarConsultorio(new Consultorio(nombre, ubicacion));
                 }

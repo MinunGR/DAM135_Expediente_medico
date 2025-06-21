@@ -4,15 +4,12 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-// entidad
 @Entity(tableName = "registros_medicos")
 public class RegistroMedico {
-
-    // Id que se autogenera
+    // Autogenerable
     @PrimaryKey(autoGenerate = true)
     private int idRegistro;
 
-    // Id del paciente
     private int pacienteId;
 
     private long fechaRegistro;
@@ -23,15 +20,13 @@ public class RegistroMedico {
 
     private String notas;
 
-    // imagen asociada (laboratorio, radiografía)
     private String fotoUri;
-
-    public RegistroMedico() { }
 
     @Ignore
     public RegistroMedico(int pacienteId, long fechaRegistro,
                           String diagnostico, String tratamiento,
-                          String notas, String fotoUri) {
+                          String notas, String fotoUri)
+    {
         this.pacienteId    = pacienteId;
         this.fechaRegistro = fechaRegistro;
         this.diagnostico   = diagnostico;
@@ -39,6 +34,8 @@ public class RegistroMedico {
         this.notas         = notas;
         this.fotoUri       = fotoUri;
     }
+
+    public RegistroMedico() { }
 
     // Getters y setters
     public int getIdRegistro() { return idRegistro; }

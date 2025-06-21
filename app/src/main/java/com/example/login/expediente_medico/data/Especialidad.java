@@ -4,18 +4,13 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-// Entidad especialidad
 @Entity(tableName = "especialidades")
 public class Especialidad {
-    // Campos
-
-    // Id que se autogenera
+    // Autogenerable
     @PrimaryKey(autoGenerate = true)
     private int idEspecialidad;
-
     private String nombre;
 
-    // Constructor
     @Ignore
     public Especialidad(String nombre) {
         this.nombre = nombre;

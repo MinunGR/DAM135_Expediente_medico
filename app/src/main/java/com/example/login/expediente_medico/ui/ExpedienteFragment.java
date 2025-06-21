@@ -104,7 +104,7 @@ public class ExpedienteFragment extends Fragment {
         });
 
         // Abre al pulsar el icono
-        view.findViewById(R.id.fabAgregarRegistro).setOnClickListener(v -> {
+        view.findViewById(R.id.btnAgregarHistorico).setOnClickListener(v -> {
             Intent intent = new Intent(requireContext(), FormRegistroActivity.class);
             intent.putExtra("EXTRA_ID_PACIENTE", pacienteSeleccionadoId);
             startActivity(intent);

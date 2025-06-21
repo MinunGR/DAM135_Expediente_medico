@@ -5,13 +5,12 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import android.content.Context;
 
-
-import com.example.login.expediente_medico.data.Usuario;
-import com.example.login.expediente_medico.data.UsuarioDao;
-
 @Database(
-        entities = { Usuario.class, Doctor.class,
-                Paciente.class , Especialidad.class, Cita.class,
+        entities = { Usuario.class,
+                Doctor.class,
+                Paciente.class ,
+                Especialidad.class,
+                Cita.class,
                 RegistroMedico.class},
         version = 6,
         exportSchema = false

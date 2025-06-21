@@ -93,7 +93,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="38dp"
         android:layout_marginTop="150dp"
-        android:text="<- Previa"
+        android:text="Previa"
         app:layout_constraintStart_toEndOf="@+id/imgPreviewPaciente"
         app:layout_constraintTop_toBottomOf="@+id/etContactoPaciente" />
 

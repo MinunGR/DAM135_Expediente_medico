@@ -16,40 +16,38 @@ import com.example.login.expediente_medico.data.Doctor;
 import java.util.ArrayList;
 import java.util.List;
 
-// Muestra la lista de doctores en un Recyclerview
 public class AdapterDoctor extends RecyclerView.Adapter<AdapterDoctor.DoctorViewHolder>{
-
-    // lista
-    private List<Doctor> listaDoctores = new ArrayList<>();
+    private List<Doctor> lstDoctores = new ArrayList<>();
     private OnItemClickListener listener;
-    private OnItemLongClickListener longClickListener; // eliminar
+    private OnItemLongClickListener longClickListener;
 
-    // actualizar
-    public interface OnItemClickListener {
-        void onItemClick(Doctor doctor);
-    }
-
-    //Metodo para registrar el listener
     public void setOnItemClickListener(OnItemClickListener l) {
         listener = l;
     }
 
-    // eliminar
     public interface OnItemLongClickListener {
         void onItemLongClick(Doctor doctor);
     }
 
-    // Método para registrarlo
+    public  AdapterDoctor(){}
+
+    public interface OnItemClickListener {
+        void onItemClick(Doctor doctor);
+    }
+
     public void setOnItemLongClickListener(OnItemLongClickListener l) {
         longClickListener = l;
     }
 
-    //Permite asignar o actualizar la lista de doctores
     public void setListaDoctores(List<Doctor> doctores) {
-        listaDoctores = doctores;
+        lstDoctores = doctores;
         notifyDataSetChanged();
     }
 
+    @Override
+    public int getItemCount() {
+        return lstDoctores.size();
+    }
 
     @NonNull
     @Override
@@ -61,9 +59,9 @@ public class AdapterDoctor extends RecyclerView.Adapter<AdapterDoctor.DoctorView
 
     @Override
     public void onBindViewHolder(@NonNull DoctorViewHolder holder, int position) {
-        Doctor doctor = listaDoctores.get(position);
-        holder.tvNombre.setText(doctor.getNombre());
-        holder.tvEspecialidad.setText(doctor.getEspecialidad());
+        Doctor doctor = lstDoctores.get(position);
+        holder.txtvNombre.setText(doctor.getNombre());
+        holder.txtvEspecialidad.setText(doctor.getEspecialidad());
 
         String uriFoto = doctor.getFotoUri();
         if (uriFoto != null && !uriFoto.isEmpty()) {
@@ -72,39 +70,33 @@ public class AdapterDoctor extends RecyclerView.Adapter<AdapterDoctor.DoctorView
             holder.imgAvatar.setImageResource(R.drawable.ic_baseline_person_24);
         }
 
-        // Click simple para editar
+        // Solo click editar
         holder.itemView.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onItemClick(doctor);
             }
         });
 
-        // Click largo para eliminar
+        // Mantener eliminar
         holder.itemView.setOnLongClickListener(v -> {
             if (longClickListener != null) {
                 longClickListener.onItemLongClick(doctor);
-                return true;    // indicamos que consumimos el evento
+                return true;
             }
             return false;
         });
     }
 
-
-    @Override
-    public int getItemCount() {
-        return listaDoctores.size();
-    }
-
-    /* ViewHolder interno para un ítem de doctor */
     static class DoctorViewHolder extends RecyclerView.ViewHolder {
         ImageView imgAvatar;
-        TextView tvNombre, tvEspecialidad;
+        TextView txtvNombre,
+                txtvEspecialidad;
 
         public DoctorViewHolder(@NonNull View itemView) {
             super(itemView);
             imgAvatar       = itemView.findViewById(R.id.imgDoctorAvatar);
-            tvNombre        = itemView.findViewById(R.id.txtNombreDoctor);
-            tvEspecialidad  = itemView.findViewById(R.id.txtEspecialidad);
+            txtvNombre        = itemView.findViewById(R.id.txtNombreDoctor);
+            txtvEspecialidad  = itemView.findViewById(R.id.txtEspecialidad);
         }
     }
 

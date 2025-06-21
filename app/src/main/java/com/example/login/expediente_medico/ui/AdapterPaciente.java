@@ -17,10 +17,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterPaciente extends RecyclerView.Adapter<AdapterPaciente.PacienteViewHolder>{
+    private List<Paciente> lstPacientes = new ArrayList<>();
+    private OnItemClickListener clickListener;
+    private OnItemLongClickListener longClickListener;
 
-    private List<Paciente> listaPacientes = new ArrayList<>(); // lista de pacientes
-    private OnItemClickListener clickListener; // para editar
-    private OnItemLongClickListener longClickListener; // para eliminar
+    public AdapterPaciente(){}
 
     public interface OnItemClickListener {
         void onItemClick(Paciente paciente);
@@ -29,17 +30,16 @@ public class AdapterPaciente extends RecyclerView.Adapter<AdapterPaciente.Pacien
         void onItemLongClick(Paciente paciente);
     }
 
+    public void setListaPacientes(List<Paciente> pacientes) {
+        lstPacientes = pacientes;
+        notifyDataSetChanged();
+    }
+
     public void setOnItemClickListener(OnItemClickListener l) {
         clickListener = l;
     }
     public void setOnItemLongClickListener(OnItemLongClickListener l) {
         longClickListener = l;
-    }
-
-    //Permite asignar o actualizar la lista de pacientes
-    public void setListaPacientes(List<Paciente> pacientes) {
-        listaPacientes = pacientes;
-        notifyDataSetChanged();
     }
 
     @NonNull
@@ -52,9 +52,9 @@ public class AdapterPaciente extends RecyclerView.Adapter<AdapterPaciente.Pacien
 
     @Override
     public void onBindViewHolder(@NonNull PacienteViewHolder holder, int position) {
-        Paciente p = listaPacientes.get(position);
-        holder.tvNombre.setText(p.getNombre());
-        holder.tvContacto.setText(p.getDatosContacto());
+        Paciente p = lstPacientes.get(position);
+        holder.txtvNombre.setText(p.getNombre());
+        holder.txtvContacto.setText(p.getDatosContacto());
 
         String uriFoto = p.getFotoUri();
         if (uriFoto != null && !uriFoto.isEmpty()) {
@@ -66,6 +66,7 @@ public class AdapterPaciente extends RecyclerView.Adapter<AdapterPaciente.Pacien
         holder.itemView.setOnClickListener(v -> {
             if (clickListener != null) clickListener.onItemClick(p);
         });
+
         holder.itemView.setOnLongClickListener(v -> {
             if (longClickListener != null) {
                 longClickListener.onItemLongClick(p);
@@ -75,21 +76,22 @@ public class AdapterPaciente extends RecyclerView.Adapter<AdapterPaciente.Pacien
         });
     }
 
-    @Override
-    public int getItemCount() {
-        return listaPacientes.size();
-    }
-
     static class PacienteViewHolder extends RecyclerView.ViewHolder {
         ImageView imgAvatar;
-        TextView tvNombre, tvContacto;
+        TextView txtvNombre,
+                txtvContacto;
 
         PacienteViewHolder(@NonNull View itemView) {
             super(itemView);
             imgAvatar  = itemView.findViewById(R.id.imgPacienteAvatar);
-            tvNombre   = itemView.findViewById(R.id.txtNombrePaciente);
-            tvContacto = itemView.findViewById(R.id.txtContacto);
+            txtvNombre   = itemView.findViewById(R.id.txtNombrePaciente);
+            txtvContacto = itemView.findViewById(R.id.txtContacto);
         }
+    }
+
+    @Override
+    public int getItemCount() {
+        return lstPacientes.size();
     }
 
 }

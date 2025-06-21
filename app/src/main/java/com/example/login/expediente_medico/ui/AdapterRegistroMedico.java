@@ -18,42 +18,35 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-// Muestra la lista de los registros
-public class AdapterRegistroMedico
-        extends RecyclerView.Adapter<AdapterRegistroMedico.RegistroViewHolder> {
+public class AdapterRegistroMedico extends RecyclerView.Adapter<AdapterRegistroMedico.RegistroViewHolder> {
+    public AdapterRegistroMedico(){}
 
-    private List<RegistroMedico> listaRegistros;
+    private List<RegistroMedico> lstRegistros;
     private OnItemClickListener clickListener;
     private OnItemLongClickListener longClickListener;
 
-    // Actualizar
     public interface OnItemClickListener {
         void onItemClick(RegistroMedico registro);
     }
 
-    // Eliminar
     public interface OnItemLongClickListener {
         void onItemLongClick(RegistroMedico registro);
     }
 
+    public void setListaRegistros(List<RegistroMedico> registros) {
+        this.lstRegistros = registros;
+        notifyDataSetChanged();
+    }
     public AdapterRegistroMedico(List<RegistroMedico> registros) {
-        this.listaRegistros = registros;
+        this.lstRegistros = registros;
     }
 
-    //Metodos para registrar el listener
     public void setOnItemClickListener(OnItemClickListener l) {
         clickListener = l;
     }
 
     public void setOnItemLongClickListener(OnItemLongClickListener l) {
         longClickListener = l;
-    }
-
-
-    //Permite asignar o actualizar la lista de consultorios
-    public void setListaRegistros(List<RegistroMedico> registros) {
-        this.listaRegistros = registros;
-        notifyDataSetChanged();
     }
 
     @NonNull @Override
@@ -65,17 +58,16 @@ public class AdapterRegistroMedico
 
     @Override
     public void onBindViewHolder(@NonNull RegistroViewHolder holder, int position) {
-        RegistroMedico r = listaRegistros.get(position);
+        RegistroMedico r = lstRegistros.get(position);
 
-        // Fecha formateada
         Date date = new Date(r.getFechaRegistro());
         String fecha = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
                 .format(date);
-        holder.tvFecha.setText(fecha);
+        holder.txtvFecha.setText(fecha);
 
-        holder.tvDiagnostico.setText("Diagnóstico: " + r.getDiagnostico());
-        holder.tvTratamiento.setText("Tratamiento: " + r.getTratamiento());
-        holder.tvNotas.setText("Notas: " + r.getNotas());
+        holder.txtvDiagnostico.setText("Diagnóstico: " + r.getDiagnostico());
+        holder.txtvTratamiento.setText("Tratamiento: " + r.getTratamiento());
+        holder.txtvNotas.setText("Notas: " + r.getNotas());
 
         String uri = r.getFotoUri();
         if (uri != null && !uri.isEmpty()) {
@@ -85,12 +77,12 @@ public class AdapterRegistroMedico
             holder.imgRegistro.setVisibility(View.GONE);
         }
 
-        // Click simple para editar
+        // Solo click editar
         holder.itemView.setOnClickListener(v -> {
             if (clickListener != null) clickListener.onItemClick(r);
         });
 
-        // Click largo para eliminar
+        // Mantener eliminar
         holder.itemView.setOnLongClickListener(v -> {
             if (longClickListener != null) {
                 longClickListener.onItemLongClick(r);
@@ -100,23 +92,22 @@ public class AdapterRegistroMedico
         });
     }
 
-    @Override
-    public int getItemCount() {
-        return listaRegistros != null ? listaRegistros.size() : 0;
-    }
-
-    /* ViewHolder interno para un ítem de doctor */
     static class RegistroViewHolder extends RecyclerView.ViewHolder {
-        TextView tvFecha, tvDiagnostico, tvTratamiento, tvNotas;
+        TextView txtvFecha, txtvDiagnostico, txtvTratamiento, txtvNotas;
         ImageView imgRegistro;
 
         RegistroViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvFecha        = itemView.findViewById(R.id.txtFechaRegistro);
-            tvDiagnostico  = itemView.findViewById(R.id.txtDiag);
-            tvTratamiento  = itemView.findViewById(R.id.txtIndicaciones);
-            tvNotas        = itemView.findViewById(R.id.txtNotasExtras);
+            txtvFecha        = itemView.findViewById(R.id.txtFechaRegistro);
+            txtvDiagnostico  = itemView.findViewById(R.id.txtDiag);
+            txtvTratamiento  = itemView.findViewById(R.id.txtIndicaciones);
+            txtvNotas        = itemView.findViewById(R.id.txtNotasExtras);
             imgRegistro    = itemView.findViewById(R.id.imgRegistro);
         }
+    }
+
+    @Override
+    public int getItemCount() {
+        return lstRegistros != null ? lstRegistros.size() : 0;
     }
 }

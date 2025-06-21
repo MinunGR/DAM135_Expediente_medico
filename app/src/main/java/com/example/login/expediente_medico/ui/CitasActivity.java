@@ -10,7 +10,6 @@ public class CitasActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cita);
 
-        // Inserta el fragmento de citas
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(

@@ -18,6 +18,14 @@
 
         <!-- Paciente -->
         <TextView
+            android:id="@+id/txtFechaHoraCita"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textColor="?android:textColorSecondary"
+            android:textSize="20sp" />
+
+        <TextView
             android:id="@+id/txtPacienteCita"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -39,14 +47,6 @@
         <!-- Fecha y Hora -->
         <TextView
             android:id="@+id/txtMotivoCita"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:textColor="?android:textColorSecondary"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/txtFechaHoraCita"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"

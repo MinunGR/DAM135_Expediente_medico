@@ -175,40 +175,6 @@
         </androidx.cardview.widget.CardView>
 
         <!-- Botón Consultorios -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="0dp"
-            android:layout_height="120dp"
-            android:layout_columnWeight="1"
-            android:layout_margin="8dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="6dp"
-            app:cardBackgroundColor="@color/card_background_light">
-
-            <LinearLayout
-                android:id="@+id/btnConsultorios"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:padding="16dp"
-                android:background="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true">
-
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:text="Consultorios"
-                    android:textColor="@color/purple"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    />
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
 
         <!-- Botón Citas -->
         <androidx.cardview.widget.CardView

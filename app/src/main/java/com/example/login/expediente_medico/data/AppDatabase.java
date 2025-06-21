@@ -6,10 +6,6 @@ import androidx.room.RoomDatabase;
 import android.content.Context;
 
 
-import com.example.login.expediente_medico.Usuario;
-import com.example.login.expediente_medico.UsuarioDao;
-
-
 // clase de base de datos principal de Room
 @Database(
         entities = { Usuario.class, Doctor.class,

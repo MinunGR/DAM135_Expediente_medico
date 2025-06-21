@@ -27,12 +27,9 @@
     <string name="titulo_pacientes">Listado de Pacientes</string>
     <string name="agregar_paciente">Agregar Paciente</string>
     <string name="editar_paciente">Editar Paciente</string>
-    <string name="nombre_paciente">Nombres</string>
-    <string name="apellido_paciente">Apellidos</string>
-    <string name="fecha_nacimiento">Fecha de Nacimiento</string>
-    <string name="genero">Género</string>
+    <string name="nombre_paciente">Nombres y Apellidos</string>
     <string name="telefono">Teléfono</string>
-    <string name="email">Correo Electrónico</string>
+    <string name="photo_paciente">Fotografia</string>
 
     <!-- Médicos -->
     <string name="titulo_medicos">Listado de Médicos</string>
@@ -69,6 +66,8 @@
 
     <!-- Especialidades-->
     <string name="titulo_especialidades">Listado de Especialidades</string>
+    <string name="agregar_especialidad">Ingreso de Especialidades</string>
+    <string name="especialidad_hint">Escriba la Especialidad</string>
 
     <!-- Validaciones / mensajes -->
     <string name="campos_vacios">Por favor, complete todos los campos.</string>

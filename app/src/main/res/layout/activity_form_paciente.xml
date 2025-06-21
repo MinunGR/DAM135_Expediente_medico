@@ -18,7 +18,7 @@
         app:srcCompat="@drawable/bg_circle_1" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/lblAgregarTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="75dp"
@@ -51,10 +51,10 @@
         android:text="@string/photo_paciente"
         app:icon="@android:drawable/ic_menu_camera"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etContactoPaciente" />
+        app:layout_constraintTop_toBottomOf="@+id/inpContactoPaciente" />
 
     <EditText
-        android:id="@+id/etNombrePaciente"
+        android:id="@+id/inpNombrePaciente"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -62,10 +62,10 @@
         android:hint="@string/nombre_paciente"
         android:padding="12dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@+id/lblAgregarTitulo" />
 
     <EditText
-        android:id="@+id/etContactoPaciente"
+        android:id="@+id/inpContactoPaciente"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -73,7 +73,7 @@
         android:hint="@string/telefono"
         android:padding="12dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etNombrePaciente" />
+        app:layout_constraintTop_toBottomOf="@+id/inpNombrePaciente" />
 
     <Button
         android:id="@+id/btnGuardarPaciente"
@@ -95,7 +95,7 @@
         android:layout_marginTop="150dp"
         android:text="Previa"
         app:layout_constraintStart_toEndOf="@+id/imgPreviewPaciente"
-        app:layout_constraintTop_toBottomOf="@+id/etContactoPaciente" />
+        app:layout_constraintTop_toBottomOf="@+id/inpContactoPaciente" />
 
     <ImageView
         android:id="@+id/imageView24"

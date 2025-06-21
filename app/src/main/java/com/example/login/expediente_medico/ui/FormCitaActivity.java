@@ -50,11 +50,11 @@ public class FormCitaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_form_cita);
 
         // Vincular vistas
-        autoDoctor = findViewById(R.id.autoDoctor);
-        autoPaciente = findViewById(R.id.autoPaciente);
+        autoDoctor = findViewById(R.id.inpDoctor);
+        autoPaciente = findViewById(R.id.inpPaciente);
         btnSeleccionarFechaHora = findViewById(R.id.btnSeleccionarFechaHora);
-        tvFechaHoraSeleccionada = findViewById(R.id.tvFechaHoraSeleccionada);
-        etMotivo = findViewById(R.id.etMotivoCita);
+        tvFechaHoraSeleccionada = findViewById(R.id.inpHoraSeleccionada);
+        etMotivo = findViewById(R.id.textAMotivoConsulta);
         btnGuardar = findViewById(R.id.btnGuardarCita);
 
         // Detectar modo edición

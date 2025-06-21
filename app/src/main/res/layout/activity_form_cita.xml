@@ -29,7 +29,7 @@
         app:srcCompat="@drawable/bg_circle_1" />
 
     <AutoCompleteTextView
-        android:id="@+id/autoDoctor"
+        android:id="@+id/inpDoctor"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -39,10 +39,10 @@
         android:inputType="text"
         android:padding="12dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/autoPaciente" />
+        app:layout_constraintTop_toBottomOf="@+id/inpPaciente" />
 
     <AutoCompleteTextView
-        android:id="@+id/autoPaciente"
+        android:id="@+id/inpPaciente"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -52,10 +52,10 @@
         android:inputType="text"
         android:padding="12dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/lblTituloCita" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/lblTituloCita"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="130dp"
@@ -69,7 +69,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/lblFechaHora"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -78,7 +78,7 @@
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/autoDoctor" />
+        app:layout_constraintTop_toBottomOf="@+id/inpDoctor" />
 
     <Button
         android:id="@+id/btnSeleccionarFechaHora"
@@ -88,10 +88,10 @@
         android:layout_marginTop="15dp"
         android:text="@string/fecha_cita"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/lblFechaHora" />
 
     <TextView
-        android:id="@+id/tvFechaHoraSeleccionada"
+        android:id="@+id/inpHoraSeleccionada"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -100,10 +100,10 @@
         android:textColor="@android:color/darker_gray"
         android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/btnSeleccionarFechaHora"
-        app:layout_constraintTop_toBottomOf="@+id/autoDoctor" />
+        app:layout_constraintTop_toBottomOf="@+id/inpDoctor" />
 
     <EditText
-        android:id="@+id/etMotivoCita"
+        android:id="@+id/textAMotivoConsulta"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -131,7 +131,7 @@
         app:icon="@android:drawable/btn_star_big_on"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etMotivoCita" />
+        app:layout_constraintTop_toBottomOf="@+id/textAMotivoConsulta" />
 
     <ImageView
         android:id="@+id/imageView19"

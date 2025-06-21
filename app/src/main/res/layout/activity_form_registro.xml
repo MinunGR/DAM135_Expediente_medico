@@ -6,78 +6,80 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/imageView32"
+        android:layout_width="255dp"
+        android:layout_height="368dp"
+        android:layout_marginStart="188dp"
+        android:layout_marginTop="16dp"
+        android:elevation="-15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bg_circle_1" />
+
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="HISTORIAL"
+        android:layout_marginTop="75dp"
+        android:text="Historial Clinico"
         android:textSize="22sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="140dp"
-        tools:layout_editor_absoluteY="83dp" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fecha y hora de registro"
-        tools:layout_editor_absoluteX="169dp"
-        tools:layout_editor_absoluteY="395dp" />
-
-    <TextView
-        android:id="@+id/tvFechaForm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Se asigna al guardar"
-        tools:layout_editor_absoluteX="223dp"
-        tools:layout_editor_absoluteY="433dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="117dp" />
 
     <EditText
-        android:id="@+id/etDiagnosticoForm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_input"
+        android:id="@+id/inpDiagnostico"
+        android:layout_width="300dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="24dp"
         android:gravity="top|start"
         android:hint="Diagnóstico"
         android:inputType="textMultiLine"
         android:minLines="2"
         android:padding="12dp"
-        tools:layout_editor_absoluteX="32dp"
-        tools:layout_editor_absoluteY="137dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <EditText
-        android:id="@+id/etTratamientoForm"
-        android:layout_width="wrap_content"
+        android:id="@+id/inpTratamiento"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_input"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="24dp"
         android:gravity="top|start"
         android:hint="Tratamiento"
         android:inputType="textMultiLine"
         android:minLines="2"
         android:padding="12dp"
-        tools:layout_editor_absoluteX="32dp"
-        tools:layout_editor_absoluteY="235dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inpDiagnostico" />
 
     <EditText
-        android:id="@+id/etNotasForm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_input"
+        android:id="@+id/inpNotas"
+        android:layout_width="300dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="30dp"
         android:gravity="top|start"
         android:hint="Notas adicionales"
         android:inputType="textMultiLine"
         android:minLines="2"
         android:padding="12dp"
-        tools:layout_editor_absoluteX="32dp"
+        app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="318dp" />
 
     <Button
         android:id="@+id/btnSelectFotoForm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Seleccionar imagen"
-        tools:layout_editor_absoluteX="109dp"
-        tools:layout_editor_absoluteY="506dp" />
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="43dp"
+        android:backgroundTint="@color/color_azul_grisaceo"
+        android:text="@string/photo_paciente"
+        app:icon="@android:drawable/ic_menu_camera"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inpNotas" />
 
     <ImageView
         android:id="@+id/imgPreviewForm"
@@ -90,9 +92,34 @@
 
     <Button
         android:id="@+id/btnGuardarForm"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="@color/colorAccent"
         android:text="Guardar"
-        tools:layout_editor_absoluteX="140dp"
-        tools:layout_editor_absoluteY="599dp" />
+        app:icon="@android:drawable/ic_menu_save"
+        app:layout_constraintTop_toBottomOf="@+id/btnSelectFotoForm"
+        tools:layout_editor_absoluteX="121dp" />
+
+    <ImageView
+        android:id="@+id/imageView30"
+        android:layout_width="255dp"
+        android:layout_height="368dp"
+        android:layout_marginStart="244dp"
+        android:layout_marginTop="356dp"
+        android:elevation="-15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bg_circle_1" />
+
+    <ImageView
+        android:id="@+id/imageView31"
+        android:layout_width="255dp"
+        android:layout_height="368dp"
+        android:layout_marginTop="160dp"
+        android:layout_marginEnd="264dp"
+        android:elevation="-15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bg_circle_1" />
 </androidx.constraintlayout.widget.ConstraintLayout>

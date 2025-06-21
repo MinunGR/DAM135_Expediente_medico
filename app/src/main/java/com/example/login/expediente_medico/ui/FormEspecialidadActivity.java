@@ -22,7 +22,7 @@ public class FormEspecialidadActivity extends AppCompatActivity {
         setContentView(R.layout.activity_form_especialidad);
 
         // enlazar views
-        etNombre     = findViewById(R.id.etNombreEspecialidad);
+        etNombre     = findViewById(R.id.inpNombreEspecialidad);
         btnGuardar   = findViewById(R.id.btnGuardarEspecialidad);
 
         // Detectamos si es creación o edición

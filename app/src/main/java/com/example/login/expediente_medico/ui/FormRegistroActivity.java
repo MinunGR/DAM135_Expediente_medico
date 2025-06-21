@@ -35,10 +35,9 @@ public class FormRegistroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_registro);
 
-        tvFechaForm    = findViewById(R.id.tvFechaForm);
-        etDiagnostico  = findViewById(R.id.etDiagnosticoForm);
-        etTratamiento  = findViewById(R.id.etTratamientoForm);
-        etNotas        = findViewById(R.id.etNotasForm);
+        etDiagnostico  = findViewById(R.id.inpDiagnostico);
+        etTratamiento  = findViewById(R.id.inpTratamiento);
+        etNotas        = findViewById(R.id.inpNotas);
         btnSelectFoto  = findViewById(R.id.btnSelectFotoForm);
         imgPreview     = findViewById(R.id.imgPreviewForm);
         btnGuardar     = findViewById(R.id.btnGuardarForm);

@@ -42,9 +42,9 @@ public class FormDoctorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_doctor);
 
-        etNombre   = findViewById(R.id.etNombreDoctor);
-        autoEsp    = findViewById(R.id.autoEspecialidad);
-        etHorarios = findViewById(R.id.etHorariosDoctor);
+        etNombre   = findViewById(R.id.inpNombre);
+        autoEsp    = findViewById(R.id.autEspecialidad);
+        etHorarios = findViewById(R.id.inpHorarios);
         btnPickPhoto = findViewById(R.id.btnSeleccionarFotoDoctor);
         imgPreview  = findViewById(R.id.imgPreviewDoctor);
         btnGuardar  = findViewById(R.id.btnGuardarDoctor);

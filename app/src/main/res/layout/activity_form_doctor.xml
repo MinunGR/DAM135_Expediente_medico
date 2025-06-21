@@ -17,7 +17,7 @@
         tools:layout_editor_absoluteX="124dp" />
 
     <EditText
-        android:id="@+id/etNombreDoctor"
+        android:id="@+id/inpNombre"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -28,7 +28,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <AutoCompleteTextView
-        android:id="@+id/autoEspecialidad"
+        android:id="@+id/autEspecialidad"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -37,10 +37,10 @@
         android:hint="@string/titulo_especialidades"
         android:padding="12dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etHorariosDoctor" />
+        app:layout_constraintTop_toBottomOf="@+id/inpHorarios" />
 
     <EditText
-        android:id="@+id/etHorariosDoctor"
+        android:id="@+id/inpHorarios"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -48,7 +48,7 @@
         android:hint="@string/horarios_medico"
         android:padding="12dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etNombreDoctor" />
+        app:layout_constraintTop_toBottomOf="@+id/inpNombre" />
 
     <Button
         android:id="@+id/btnSeleccionarFotoDoctor"
@@ -60,7 +60,7 @@
         android:text="Seleccionar foto"
         app:icon="@android:drawable/ic_menu_camera"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/autoEspecialidad" />
+        app:layout_constraintTop_toBottomOf="@+id/autEspecialidad" />
 
     <ImageView
         android:id="@+id/imgPreviewDoctor"
@@ -81,7 +81,7 @@
         android:text="Guardar"
         app:icon="@android:drawable/ic_menu_save"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/autoEspecialidad" />
+        app:layout_constraintTop_toBottomOf="@+id/autEspecialidad" />
 
     <ImageView
         android:id="@+id/imageView"

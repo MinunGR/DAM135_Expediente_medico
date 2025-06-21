@@ -35,8 +35,8 @@ public class FormPacienteActivity extends AppCompatActivity{
         // enlazar vistas
         imgPreview            = findViewById(R.id.imgPreviewPaciente);
         btnSeleccionarFoto    = findViewById(R.id.btnSeleccionarFotoPaciente);
-        etNombre              = findViewById(R.id.etNombrePaciente);
-        etContacto            = findViewById(R.id.etContactoPaciente);
+        etNombre              = findViewById(R.id.inpNombrePaciente);
+        etContacto            = findViewById(R.id.inpContactoPaciente);
         btnGuardar            = findViewById(R.id.btnGuardarPaciente);
 
         // Detectamos si es creación o edición

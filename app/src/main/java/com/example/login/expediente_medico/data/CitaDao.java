@@ -7,36 +7,31 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import java.util.List;
-
-// Para operaciones CRUD sobre la entidad
+/**
+ * Interfaz Data Access Object (DAO) para operaciones CRUD de la entidad Cita.
+ * Proporciona métodos para gestionar consultas en la base de datos.
+ */
 @Dao
 public interface CitaDao {
-
-    // Inserta una nueva cita
+    // Inserta en db
     @Insert
     long insertarCita(Cita cita);
-
-    // Actualizar los campos
+    // Actualiza en db
     @Update
-    int actualizarCita(Cita cita);
-
-    // Eliminar una cita
+    int actualizarDatosCita(Cita cita);
+    // Elimina en db
     @Delete
     int eliminarCita(Cita cita);
-
-    // Obtener todos
+    // Obtiene todos
     @Query("SELECT * FROM citas")
     List<Cita> obtenerCitas();
-
-    // Busca una cita por el id
+    // Busca por id
     @Query("SELECT * FROM citas WHERE idCita = :idCita")
     Cita buscarCitaPorId(int idCita);
-
-    // Citas futuras cuando fechaHora >= ahora)
-    @Query("SELECT * FROM citas WHERE fechaHora >= :ahora ORDER BY fechaHora ASC")
-    List<Cita> obtenerCitasProximas(long ahora);
-
-    // Citas pasadas (fechaHora < ahora)
-    @Query("SELECT * FROM citas WHERE fechaHora < :ahora ORDER BY fechaHora DESC")
-    List<Cita> obtenerCitasPasadas(long ahora);
+    // Obtiene registros futuros
+    @Query("SELECT * FROM citas WHERE fechaHora >= :hora ORDER BY fechaHora ASC")
+    List<Cita> listarFuturasOrdenadas(long hora);
+    // Obtieen registros historicos
+    @Query("SELECT * FROM citas WHERE fechaHora < :hora ORDER BY fechaHora DESC")
+    List<Cita> listarHistoricasRecientes(long hora);
 }

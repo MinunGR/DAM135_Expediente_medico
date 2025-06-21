@@ -50,7 +50,7 @@ public class FormPacienteActivity extends AppCompatActivity{
                 Paciente p = AppDatabase
                         .getInstance(this)
                         .dao_paciente()
-                        .buscarPacientePorId(idPaciente);
+                        .buscarPorId(idPaciente);
                 runOnUiThread(() -> {
                     if (p != null) {
                         etNombre.setText(p.getNombre());
@@ -97,7 +97,7 @@ public class FormPacienteActivity extends AppCompatActivity{
                 if (esEdicion) {
                     Paciente p = new Paciente(nombre, contacto, fotoStr);
                     p.setIdPaciente(idPaciente);
-                    db.dao_paciente().actualizarPaciente(p);
+                    db.dao_paciente().actualizarDatosPaciente(p);
                 } else {
                     db.dao_paciente().insertarPaciente(new Paciente(nombre, contacto, fotoStr));
                 }

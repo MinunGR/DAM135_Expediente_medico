@@ -8,28 +8,25 @@ import androidx.room.Update;
 
 import java.util.List;
 
-
-// Para operaciones CRUD sobre la entidad
+/**
+ * Interfaz Data Access Object (DAO) para operaciones CRUD de la entidad Paciente.
+ * Proporciona métodos para gestionar consultas en la base de datos.
+ */
 @Dao
 public interface PacienteDao {
-
-    // Insertar un paciente
+    // Inserta en db
     @Insert
     long insertarPaciente(Paciente paciente);
-
-    // Obtener todos
+    // Obtiene todos
     @Query("SELECT * FROM pacientes")
     List<Paciente> obtenerPacientes();
-
-    // Actualizar los campos
+    // Actualiza en db
     @Update
-    int actualizarPaciente(Paciente paciente);
-
-    // Eliminar un ductor
+    int actualizarDatosPaciente(Paciente paciente);
+    // Elimina en db
     @Delete
     int eliminarPaciente(Paciente paciente);
-
-    // Busca un doctor por el id
+    // Obtiene por id
     @Query("SELECT * FROM pacientes WHERE idPaciente = :idPaciente")
-    Paciente buscarPacientePorId(int idPaciente);
+    Paciente buscarPorId(int idPaciente);
 }

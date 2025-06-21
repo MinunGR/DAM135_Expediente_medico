@@ -8,27 +8,25 @@ import androidx.room.Update;
 
 import java.util.List;
 
-// Para operaciones CRUD sobre la entidad
+/**
+ * Interfaz Data Access Object (DAO) para operaciones CRUD de la entidad Registro.
+ * Proporciona métodos para gestionar consultas en la base de datos.
+ */
 @Dao
 public interface RegistroMedicoDao {
-
-    // Insertar
+    // Inserta en db
     @Insert
     long insertarRegistro(RegistroMedico registro);
-
-    // Actualizar
+    // Actualiza en db
     @Update
     int actualizarRegistro(RegistroMedico registro);
-
-    // Eliminar
+    // Elimina en db
     @Delete
     int eliminarRegistro(RegistroMedico registro);
-
-    // Obtener todos
+    // Obtiene registros por paciente
     @Query("SELECT * FROM registros_medicos WHERE pacienteId = :pacienteId ORDER BY fechaRegistro DESC")
     List<RegistroMedico> obtenerRegistrosPorPaciente(int pacienteId);
-
-    // Buscar por id
+    // Obtiene por id
     @Query("SELECT * FROM registros_medicos WHERE idRegistro = :idRegistro")
-    RegistroMedico buscarRegistroPorId(int idRegistro);
+    RegistroMedico buscarPorId(int idRegistro);
 }

@@ -38,11 +38,9 @@
     <string name="titulo_medicos">Listado de Médicos</string>
     <string name="agregar_medico">Agregar Médico</string>
     <string name="editar_medico">Editar Médico</string>
-    <string name="nombre_medico">Nombres</string>
-    <string name="apellido_medico">Apellidos</string>
+    <string name="nombre_medico">Nombres y apellidos</string>
     <string name="especialidad">Especialidad</string>
-    <string name="telefono_medico">Teléfono</string>
-    <string name="email_medico">Correo Electrónico</string>
+    <string name="horarios_medico">Disponibilidad horaria</string>
 
     <!-- Expedientes -->
     <string name="titulo_expedientes">Listado de Expedientes</string>
@@ -64,7 +62,7 @@
     <string name="subtitulo_pendientes">CITAS PENDIENTES</string>
     <string name="subtitulo_vencidas">CITAS FUERA DE PLAZO</string>
     <string name="cita_paciente">Escriba un nombre de paciente</string>
-    <string name="cita_doctor">Escriba un nombre de doctor</string>
+    <string name="cita_doctor">Escriba un nombre de médico</string>
 
     <!--Consultorios-->
     <string name="titulo_consultorios">Listado de Consultorios</string>

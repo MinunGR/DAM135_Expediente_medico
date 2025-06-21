@@ -1,101 +1,109 @@
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView4"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp">
-    <LinearLayout
-        android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-         android:gravity="center"
-        >
+        android:layout_marginTop="75dp"
+        android:text="@string/agregar_medico"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="124dp" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="DOCTOR"
-            android:layout_gravity="center"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@color/purple"
-            android:layout_margin="50dp"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Doctor"
-            android:textSize="16sp"
-            android:textColor="@color/purple"
-            android:textStyle="bold"
-            android:layout_marginTop="16dp"/>
-        <EditText
-            android:id="@+id/etNombreDoctor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nombre del doctor"
-            android:padding="12dp"
-            android:background="@drawable/bg_input"
-            />
+    <EditText
+        android:id="@+id/etNombreDoctor"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="24dp"
+        android:hint="@string/nombre_medico"
+        android:padding="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Especialidad"
-            android:textSize="16sp"
-            android:textColor="@color/purple"
-            android:textStyle="bold"
-            android:layout_marginTop="16dp"/>
-        <AutoCompleteTextView
-            android:id="@+id/autoEspecialidad"
-            android:layout_marginTop="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Escribe para buscar especialidades..."
-            android:padding="12dp"
-            android:background="@drawable/bg_input"
-            android:completionThreshold="1"/>
+    <AutoCompleteTextView
+        android:id="@+id/autoEspecialidad"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="24dp"
+        android:completionThreshold="1"
+        android:hint="@string/titulo_especialidades"
+        android:padding="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etHorariosDoctor" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Horario"
-            android:textSize="16sp"
-            android:textColor="@color/purple"
-            android:textStyle="bold"
-            android:layout_marginTop="16dp"/>
-        <EditText
-            android:id="@+id/etHorariosDoctor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Horarios disponibles"
-            android:padding="12dp"
-            android:background="@drawable/bg_input"
-            android:layout_marginTop="16dp"/>
+    <EditText
+        android:id="@+id/etHorariosDoctor"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="24dp"
+        android:hint="@string/horarios_medico"
+        android:padding="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etNombreDoctor" />
 
-        <Button
-            android:id="@+id/btnSeleccionarFotoDoctor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Seleccionar foto"
-            android:backgroundTint="@color/purple"
-            android:layout_marginTop="16dp"/>
-        <ImageView
-            android:id="@+id/imgPreviewDoctor"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:visibility="gone"
-            android:scaleType="centerCrop"
-            android:layout_marginTop="8dp"/>
+    <Button
+        android:id="@+id/btnSeleccionarFotoDoctor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/color_azul_grisaceo"
+        android:text="Seleccionar foto"
+        app:icon="@android:drawable/ic_menu_camera"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/autoEspecialidad" />
 
-        <Button
-            android:id="@+id/btnGuardarDoctor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Guardar"
-            android:backgroundTint="@color/purple"
-            android:layout_marginTop="24dp"/>
+    <ImageView
+        android:id="@+id/imgPreviewDoctor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:visibility="gone"
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="120dp" />
 
-    </LinearLayout>
-</ScrollView>
+    <Button
+        android:id="@+id/btnGuardarDoctor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="96dp"
+        android:layout_marginEnd="65dp"
+        android:backgroundTint="@color/colorAccent"
+        android:text="Guardar"
+        app:icon="@android:drawable/ic_menu_save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/autoEspecialidad" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="339dp"
+        android:layout_height="334dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="148dp"
+        android:elevation="-15dp"
+        android:rotation="181"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/bg_circle_1" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="339dp"
+        android:layout_height="334dp"
+        android:layout_marginEnd="108dp"
+        android:layout_marginBottom="616dp"
+        android:elevation="-15dp"
+        android:rotation="181"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/bg_circle_1" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -102,7 +102,6 @@ public class AdapterRegistroMedico extends RecyclerView.Adapter<AdapterRegistroM
             txtvDiagnostico  = itemView.findViewById(R.id.txtDiag);
             txtvTratamiento  = itemView.findViewById(R.id.txtIndicaciones);
             txtvNotas        = itemView.findViewById(R.id.txtNotasExtras);
-            imgRegistro    = itemView.findViewById(R.id.imgRegistro);
         }
     }
 

@@ -10,7 +10,7 @@ public class EspecialidadesActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_especialidad);
 
-        // Incrusta el fragmento de especialidades
+
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(

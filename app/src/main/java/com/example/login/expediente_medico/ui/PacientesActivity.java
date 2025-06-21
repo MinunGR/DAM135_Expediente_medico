@@ -10,7 +10,7 @@ public class PacientesActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pacientes);
 
-        // Inserta el fragment de pacientes en el contenedor
+
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(

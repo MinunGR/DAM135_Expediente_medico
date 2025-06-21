@@ -5,12 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.login.expediente_medico.R;
 
 public class ExpedienteActivity extends AppCompatActivity {
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expediente);
 
-        // Inserta el fragmento de historial
+
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(

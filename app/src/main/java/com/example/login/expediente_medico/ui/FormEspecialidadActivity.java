@@ -21,16 +21,16 @@ public class FormEspecialidadActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_especialidad);
 
-        // enlazar views
+
         etNombre     = findViewById(R.id.etNombreEspecialidad);
         btnGuardar   = findViewById(R.id.btnGuardarEspecialidad);
 
-        // Detectamos si es creación o edición
+
         idEspecialidad = getIntent().getIntExtra("EXTRA_ID_ESPECIALIDAD", -1);
         esEdicion = idEspecialidad != -1;
         if (esEdicion) {
             setTitle("Editar Especialidad");
-            // Carga datos en hilo de fondo
+
             new Thread(() -> {
                 Especialidad e = AppDatabase
                         .getInstance(this)
@@ -46,25 +46,25 @@ public class FormEspecialidadActivity extends AppCompatActivity {
             setTitle("Nueva Especialidad");
         }
 
-        // Guardar (insertar o actualizar)
+
         btnGuardar.setOnClickListener(v -> {
             String nombre = etNombre.getText().toString().trim();
 
-            // Validar campos completados
+
             if (nombre.isEmpty()) {
                 Toast.makeText(this, "El nombre no puede estar vacío", Toast.LENGTH_SHORT).show();
                 return;
             }
-            // Guardar en BD en hilo de fondo
+
             new Thread(() -> {
                 AppDatabase db = AppDatabase.getInstance(this);
                 if (esEdicion) {
-                    // Actualizar una especialidad existente
+
                     Especialidad e = new Especialidad(nombre);
                     e.setIdEspecialidad(idEspecialidad);
                     db.dao_especialidad().actualizarDatosEspecialidad(e);
                 } else {
-                    // Insertar nuevo
+
                     db.dao_especialidad().insertarEspecialidad(new Especialidad(nombre));
                 }
                 runOnUiThread(this::finish);

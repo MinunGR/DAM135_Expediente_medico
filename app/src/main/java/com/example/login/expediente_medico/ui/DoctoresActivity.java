@@ -10,7 +10,7 @@ public class DoctoresActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor);
 
-        // Inserta el fragment de doctores en el contenedor
+
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(

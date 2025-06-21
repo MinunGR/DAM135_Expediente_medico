@@ -43,14 +43,14 @@ public class FormRegistroActivity extends AppCompatActivity {
         imgPreview     = findViewById(R.id.imgPreviewForm);
         btnGuardar     = findViewById(R.id.btnGuardarForm);
 
-        // Recibir ID paciente y registro
+
         idPaciente  = getIntent().getIntExtra("EXTRA_ID_PACIENTE", -1);
         idRegistro  = getIntent().getIntExtra("EXTRA_ID_REGISTRO", -1);
         esEdicion   = idRegistro != -1;
 
         if (esEdicion) {
             setTitle("Editar Registro");
-            // Cargar registro existente
+
             new Thread(() -> {
                 RegistroMedico r = AppDatabase
                         .getInstance(this)
@@ -83,7 +83,7 @@ public class FormRegistroActivity extends AppCompatActivity {
             );
         }
 
-        // Seleccionar foto
+
         btnSelectFoto.setOnClickListener(v -> {
             Intent i = new Intent(Intent.ACTION_OPEN_DOCUMENT);
             i.addCategory(Intent.CATEGORY_OPENABLE);
@@ -93,7 +93,7 @@ public class FormRegistroActivity extends AppCompatActivity {
             startActivityForResult(i, REQ_FOTO);
         });
 
-        // Guardar registro
+
         btnGuardar.setOnClickListener(v -> {
             String diag = etDiagnostico.getText().toString().trim();
             String trat = etTratamiento.getText().toString().trim();

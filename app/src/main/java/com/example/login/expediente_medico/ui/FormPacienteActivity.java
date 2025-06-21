@@ -22,7 +22,7 @@ public class FormPacienteActivity extends AppCompatActivity{
     private Button btnSeleccionarFoto, btnGuardar;
     private EditText etNombre, etContacto;
 
-    // Guardamos la URI elegida
+
     private Uri fotoUriSeleccionada = null;
     private boolean esEdicion;
     private int idPaciente;
@@ -32,20 +32,20 @@ public class FormPacienteActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_paciente);
 
-        // enlazar vistas
+
         imgPreview            = findViewById(R.id.imgPreviewPaciente);
         btnSeleccionarFoto    = findViewById(R.id.btnSeleccionarFotoPaciente);
         etNombre              = findViewById(R.id.etNombrePaciente);
         etContacto            = findViewById(R.id.etContactoPaciente);
         btnGuardar            = findViewById(R.id.btnGuardarPaciente);
 
-        // Detectamos si es creación o edición
+
         idPaciente = getIntent().getIntExtra("EXTRA_ID_PACIENTE", -1);
 
         esEdicion = idPaciente != -1;
         if (esEdicion) {
             setTitle("Editar Paciente");
-            // Cargar datos
+
             new Thread(() -> {
                 Paciente p = AppDatabase
                         .getInstance(this)
@@ -66,7 +66,7 @@ public class FormPacienteActivity extends AppCompatActivity{
             setTitle("Nuevo Paciente");
         }
 
-        // Al hacer clic, abrimos la galería para elegir imagen
+
         btnSeleccionarFoto.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
             intent.addCategory(Intent.CATEGORY_OPENABLE);
@@ -78,7 +78,7 @@ public class FormPacienteActivity extends AppCompatActivity{
             startActivityForResult(intent, REQUEST_CODE_SELECCIONAR_FOTO);
         });
 
-        // Guardar (insertar o actualizar)
+
         btnGuardar.setOnClickListener(v -> {
             String nombre   = etNombre.getText().toString().trim();
             String contacto = etContacto.getText().toString().trim();
@@ -87,11 +87,11 @@ public class FormPacienteActivity extends AppCompatActivity{
                 return;
             }
 
-            // Convertimos la URI a string (o cadena vacía si no seleccionó foto)
+
             String fotoStr = fotoUriSeleccionada != null
                     ? fotoUriSeleccionada.toString() : "";
 
-            // Guardar en BD en hilo de fondo
+
             new Thread(() -> {
                 AppDatabase db = AppDatabase.getInstance(this);
                 if (esEdicion) {

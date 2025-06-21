@@ -31,7 +31,7 @@ public class EspecialidadesFragment extends Fragment{
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState
     ) {
-        // Inflar el layout del fragmento
+
         return inflater.inflate(R.layout.fragment_especialidades, container, false);
     }
 

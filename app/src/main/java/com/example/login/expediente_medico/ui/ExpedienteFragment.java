@@ -23,7 +23,7 @@ import com.example.login.expediente_medico.data.RegistroMedico;
 
 import java.util.List;
 
-// Fragmento que muestra el listado de expediente y un botón para agregar nuevos
+
 public class ExpedienteFragment extends Fragment {
 
     private Spinner spinnerPacientes;
@@ -36,7 +36,7 @@ public class ExpedienteFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        // Inflar el layout del fragmento
+
         return inflater.inflate(R.layout.fragment_expediente, container, false);
     }
 
@@ -49,7 +49,7 @@ public class ExpedienteFragment extends Fragment {
         rvHistorial.setLayoutManager(new LinearLayoutManager(requireContext()));
         rvHistorial.setAdapter(adapter);
 
-        // Inicializar RecyclerView y su adaptador
+
         new Thread(() -> {
             listaPacientes = AppDatabase
                     .getInstance(requireContext())
@@ -71,12 +71,12 @@ public class ExpedienteFragment extends Fragment {
         spinnerPacientes.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override public void onItemSelected(AdapterView<?> parent, View v, int pos, long id) {
                 pacienteSeleccionadoId = listaPacientes.get(pos).getIdPaciente();
-                cargarHistorial(pacienteSeleccionadoId);
+                loadHistori(pacienteSeleccionadoId);
             }
             @Override public void onNothingSelected(AdapterView<?> parent) { }
         });
 
-        // Al hacer click en un paciente, se abre el formulario para editar
+
         adapter.setOnItemClickListener(registro -> {
             Intent intent = new Intent(requireContext(), FormRegistroActivity.class);
             intent.putExtra("EXTRA_ID_REGISTRO", registro.getIdRegistro());
@@ -84,27 +84,27 @@ public class ExpedienteFragment extends Fragment {
             startActivity(intent);
         });
 
-        // Click largo para eliminar un paciente
+
         adapter.setOnItemLongClickListener(registro -> {
             new AlertDialog.Builder(requireContext())
-                    .setTitle("Confirmar eliminación")
-                    .setMessage("¿Eliminar este registro médico?")
-                    .setPositiveButton("Eliminar", (d, w) -> {
+                    .setTitle(R.string.titulo_eliminacion)
+                    .setMessage(R.string.confirmar_eliminacion)
+                    .setPositiveButton(R.string.button_eliminacion, (d, w) -> {
                         new Thread(() -> {
                             AppDatabase.getInstance(requireContext())
                                     .registroMedicoDao()
                                     .eliminarRegistro(registro);
                             requireActivity().runOnUiThread(() ->
-                                    cargarHistorial(pacienteSeleccionadoId)
+                                    loadHistori(pacienteSeleccionadoId)
                             );
                         }).start();
                     })
-                    .setNegativeButton("Cancelar", null)
+                    .setNegativeButton(R.string.button_cancelar, null)
                     .show();
         });
 
-        // Abre al pulsar el icono
-        view.findViewById(R.id.fabAgregarRegistro).setOnClickListener(v -> {
+
+        view.findViewById(R.id.btnAgregarHistorico).setOnClickListener(v -> {
             Intent intent = new Intent(requireContext(), FormRegistroActivity.class);
             intent.putExtra("EXTRA_ID_PACIENTE", pacienteSeleccionadoId);
             startActivity(intent);
@@ -116,17 +116,19 @@ public class ExpedienteFragment extends Fragment {
     public void onResume() {
         super.onResume();
         if (pacienteSeleccionadoId != -1) {
-            cargarHistorial(pacienteSeleccionadoId);
+            loadHistori(pacienteSeleccionadoId);
         }
     }
 
-    private void cargarHistorial(int pacienteId) {
+    private void loadHistori(int idPaciente) {
         new Thread(() -> {
-            List<RegistroMedico> lista = AppDatabase
-                    .getInstance(requireContext())
-                    .registroMedicoDao()
-                    .obtenerRegistrosPorPaciente(pacienteId);
-            requireActivity().runOnUiThread(() -> adapter.setListaRegistros(lista));
+            AppDatabase baseDatos = AppDatabase.getInstance(requireContext());
+            List<RegistroMedico> historialClinico = baseDatos.registroMedicoDao()
+                    .obtenerRegistrosPorPaciente(idPaciente);
+
+            requireActivity().runOnUiThread(() -> {
+                adapter.setListaRegistros(historialClinico);
+            });
         }).start();
     }
 }

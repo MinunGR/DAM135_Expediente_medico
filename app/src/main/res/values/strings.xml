@@ -79,6 +79,9 @@
     <string name="registro_eliminado">Registro eliminado.</string>
     <string name="error_guardar">Error al guardar los datos.</string>
     <string name="confirmar_eliminacion">¿Desea eliminar este registro?</string>
+    <string name="titulo_eliminacion">Confirmar borrado</string>
+    <string name="button_eliminacion">Borrar</string>
+    <string name="button_cancelar">Borrar</string>
 
 
     <!-- Login/Registro -->

@@ -19,7 +19,7 @@ import androidx.appcompat.app.AlertDialog;
 
 import java.util.List;
 
-// Fragmento que muestra el listado de doctores y un botón para agregar nuevos
+
 public class DoctoresFragment extends Fragment{
     private RecyclerView rvDoctores;
     private AdapterDoctor adapter;
@@ -31,18 +31,19 @@ public class DoctoresFragment extends Fragment{
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState
     ) {
-        // Inflar el layout del fragmento
+
         return inflater.inflate(R.layout.fragment_doctores, container, false);
     }
 
-    // refresca la lista
-    private void cargarDoctores() {
+
+    private void loadDoctros() {
         new Thread(() -> {
-            List<Doctor> lista = AppDatabase
-                    .getInstance(requireContext())
-                    .dao_doctor()
-                    .obtenerDoctores();
-            requireActivity().runOnUiThread(() -> adapter.setListaDoctores(lista));
+            AppDatabase medicalDB = AppDatabase.getInstance(requireContext());
+            List<Doctor> medicos = medicalDB.dao_doctor().obtenerDoctores();
+
+            requireActivity().runOnUiThread(() -> {
+                adapter.setListaDoctores(medicos);
+            });
         }).start();
     }
 
@@ -51,51 +52,51 @@ public class DoctoresFragment extends Fragment{
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Inicializar RecyclerView y su adaptador
+
         rvDoctores = view.findViewById(R.id.listDoctores);
         adapter = new AdapterDoctor();
         rvDoctores.setLayoutManager(new LinearLayoutManager(requireContext()));
         rvDoctores.setAdapter(adapter);
 
-        // Al hacer click en un doctor, se abre el formulario para editar
+
         adapter.setOnItemClickListener(doctor -> {
             Intent intent = new Intent(requireContext(), FormDoctorActivity.class);
             intent.putExtra("EXTRA_ID_DOCTOR", doctor.getIdDoctor());
             startActivity(intent);
         });
 
-        // Click largo para eliminar un doctor
+
         adapter.setOnItemLongClickListener(doctor -> {
             new AlertDialog.Builder(requireContext())
-                    .setTitle("Confirmar eliminación")
-                    .setMessage("¿Eliminar al doctor “" + doctor.getNombre() + "”?")
-                    .setPositiveButton("Eliminar", (dialog, which) -> {
-                        // Eliminar en BD en hilo de fondo
+                    .setTitle("Confirmar Borrado")
+                    .setMessage("¿Borrar al doctor “" + doctor.getNombre() + "”?")
+                    .setPositiveButton("Borrar", (dialog, which) -> {
+
                         new Thread(() -> {
                             AppDatabase.getInstance(requireContext())
                                     .dao_doctor()
                                     .eliminarDoctor(doctor);
-                            // Refrescar la lista en UI thread
-                            requireActivity().runOnUiThread(this::cargarDoctores);
+
+                            requireActivity().runOnUiThread(this::loadDoctros);
                         }).start();
                     })
                     .setNegativeButton("Cancelar", null)
                     .show();
         });
 
-        // Abre FormDoctorActivity al pulsar el icono
+
         view.findViewById(R.id.btnAgregarDoctor).setOnClickListener(v -> {
             Intent intent = new Intent(requireContext(), FormDoctorActivity.class);
             startActivity(intent);
         });
 
-        cargarDoctores();
+        loadDoctros();
 
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        cargarDoctores(); // Refreca la lista al volver al formulario
+        loadDoctros();
     }
 }

@@ -53,7 +53,7 @@ public class FormDoctorActivity extends AppCompatActivity {
         esEdicion  = idDoctor != -1;
         setTitle(esEdicion ? "Editar Doctor" : "Nuevo Doctor");
 
-        // 1) Cargo todas las especialidades y lleno el AutoComplete
+
         new Thread(() -> {
             listaEsp = AppDatabase
                     .getInstance(this)
@@ -74,7 +74,7 @@ public class FormDoctorActivity extends AppCompatActivity {
                 autoEsp.setAdapter(adapter);
 
                 if (esEdicion) {
-                    // 1.a) Cargo el doctor existente
+
                     new Thread(() -> {
                         Doctor d = getInstance(this)
                                 .dao_doctor()
@@ -96,7 +96,7 @@ public class FormDoctorActivity extends AppCompatActivity {
             });
         }).start();
 
-        // 2) Selección de foto
+
         btnPickPhoto.setOnClickListener(v -> {
             Intent i = new Intent(Intent.ACTION_OPEN_DOCUMENT);
             i.addCategory(Intent.CATEGORY_OPENABLE);
@@ -106,7 +106,7 @@ public class FormDoctorActivity extends AppCompatActivity {
             startActivityForResult(i, REQ_PHOTO);
         });
 
-        // 3) Guardar en BD
+
         btnGuardar.setOnClickListener(v -> {
             String nombre = etNombre.getText().toString().trim();
             String esp     = autoEsp.getText().toString().trim();

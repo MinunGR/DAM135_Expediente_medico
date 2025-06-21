@@ -49,7 +49,7 @@ public class FormCitaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_cita);
 
-        // Vincular vistas
+
         autoDoctor = findViewById(R.id.autoDoctor);
         autoPaciente = findViewById(R.id.autoPaciente);
         btnSeleccionarFechaHora = findViewById(R.id.btnSeleccionarFechaHora);
@@ -57,11 +57,11 @@ public class FormCitaActivity extends AppCompatActivity {
         etMotivo = findViewById(R.id.etMotivoCita);
         btnGuardar = findViewById(R.id.btnGuardarCita);
 
-        // Detectar modo edición
+
         idCita = getIntent().getIntExtra("EXTRA_ID_CITA", -1);
         esEdicion = idCita != -1;
 
-        // Cargar doctores y pacientes
+
         new Thread(() -> {
             listaDoctores = AppDatabase.getInstance(this).dao_doctor().obtenerDoctores();
             listaPacientes = AppDatabase.getInstance(this).dao_paciente().obtenerPacientes();
@@ -87,13 +87,13 @@ public class FormCitaActivity extends AppCompatActivity {
                 });
 
                 if (esEdicion) {
-                    // Cargar datos existentes
+
                     new Thread(() -> {
                         Cita cita = AppDatabase.getInstance(this)
                                 .dao_cita().buscarCitaPorId(idCita);
                         runOnUiThread(() -> {
                             if (cita != null) {
-                                // Seleccionar doctor
+
                                 for (int i = 0; i < listaDoctores.size(); i++) {
                                     if (listaDoctores.get(i).getIdDoctor() == cita.getDoctorId()) {
                                         autoDoctor.setText(listaDoctores.get(i).getNombre(), false);
@@ -101,7 +101,7 @@ public class FormCitaActivity extends AppCompatActivity {
                                         break;
                                     }
                                 }
-                                // Seleccionar paciente
+
                                 for (int i = 0; i < listaPacientes.size(); i++) {
                                     if (listaPacientes.get(i).getIdPaciente() == cita.getPacienteId()) {
                                         autoPaciente.setText(listaPacientes.get(i).getNombre(), false);
@@ -121,10 +121,10 @@ public class FormCitaActivity extends AppCompatActivity {
             });
         }).start();
 
-        // Seleccionar fecha y hora
+
         btnSeleccionarFechaHora.setOnClickListener(v -> showDateTimePicker());
 
-        // Guardar cita
+
         btnGuardar.setOnClickListener(v -> {
             if (doctorSeleccionado == null || pacienteSeleccionado == null || fechaHoraSeleccionada < 0) {
                 Toast.makeText(this, "Completa doctor, paciente y fecha/hora", Toast.LENGTH_SHORT).show();
@@ -161,44 +161,40 @@ public class FormCitaActivity extends AppCompatActivity {
     }
 
     private void showDateTimePicker() {
-        //Obtenemos la fecha actual
-        final Calendar c = Calendar.getInstance();
+        final Calendar calendario = Calendar.getInstance();
 
-        //Creamos el DatePickerDialog
-        DatePickerDialog datePicker = new DatePickerDialog(
+        DatePickerDialog selectorFecha = new DatePickerDialog(
                 this,
-                (view, year, month, dayOfMonth) -> {
-                    // Cuando confirma la fecha, abrimos el TimePicker
-                    c.set(Calendar.YEAR, year);
-                    c.set(Calendar.MONTH, month);
-                    c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                    new TimePickerDialog(
+                (vistaFecha, anio, mes, dia) -> {
+                    calendario.set(Calendar.YEAR, anio);
+                    calendario.set(Calendar.MONTH, mes);
+                    calendario.set(Calendar.DATE, dia);
+
+                    TimePickerDialog selectorHora = new TimePickerDialog(
                             this,
-                            (tView, hour, minute) -> {
-                                // Despues guardamos el timestamp
-                                c.set(Calendar.HOUR_OF_DAY, hour);
-                                c.set(Calendar.MINUTE, minute);
-                                fechaHoraSeleccionada = c.getTimeInMillis();
-                                String fh = new SimpleDateFormat(
+                            (vistaHora, hora, minuto) -> {
+                                calendario.set(Calendar.HOUR_OF_DAY, hora);
+                                calendario.set(Calendar.MINUTE, minuto);
+
+                                fechaHoraSeleccionada = calendario.getTimeInMillis();
+                                String formatoFecha = new SimpleDateFormat(
                                         "yyyy-MM-dd HH:mm", Locale.getDefault()
-                                ).format(c.getTime());
-                                tvFechaHoraSeleccionada.setText(fh);
+                                ).format(calendario.getTime());
+                                tvFechaHoraSeleccionada.setText(formatoFecha);
                             },
-                            c.get(Calendar.HOUR_OF_DAY),
-                            c.get(Calendar.MINUTE),
+                            calendario.get(Calendar.HOUR_OF_DAY),
+                            calendario.get(Calendar.MINUTE),
                             true
-                    ).show();
+                    );
+                    selectorHora.show();
                 },
-                c.get(Calendar.YEAR),
-                c.get(Calendar.MONTH),
-                c.get(Calendar.DAY_OF_MONTH)
+                calendario.get(Calendar.YEAR),
+                calendario.get(Calendar.MONTH),
+                calendario.get(Calendar.DAY_OF_MONTH)
         );
 
-        // No permitir días anteriores al día actual
-        datePicker.getDatePicker().setMinDate(System.currentTimeMillis());
-
-        //Mostramos el diálogo
-        datePicker.show();
+        selectorFecha.getDatePicker().setMinDate(Calendar.getInstance().getTimeInMillis());
+        selectorFecha.show();
     }
 
 }

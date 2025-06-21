@@ -45,7 +45,7 @@ public class CitasFragment extends Fragment {
         rvProximas.setLayoutManager(new LinearLayoutManager(requireContext()));
         rvPasadas .setLayoutManager(new LinearLayoutManager(requireContext()));
 
-        // Inicializar listeners
+
         clickListener = cita -> {
             Intent intent = new Intent(requireContext(), FormCitaActivity.class);
             intent.putExtra("EXTRA_ID_CITA", cita.getIdCita());
@@ -53,58 +53,58 @@ public class CitasFragment extends Fragment {
         };
         longListener = cita -> {
             new AlertDialog.Builder(requireContext())
-                    .setTitle("Confirmar eliminación")
-                    .setMessage("¿Eliminar cita de “" + cita.getMotivo() + "”?" )
-                    .setPositiveButton("Eliminar", (d, w) -> {
+                    .setTitle("Confirmar borrado")
+                    .setMessage("¿Borrar cita de “" + cita.getMotivo() + "”?" )
+                    .setPositiveButton("borrar", (d, w) -> {
                         new Thread(() -> {
                             AppDatabase.getInstance(requireContext())
                                     .dao_cita().eliminarCita(cita);
-                            requireActivity().runOnUiThread(() -> cargarListas(clickListener, longListener));
+                            requireActivity().runOnUiThread(() -> LoadList(clickListener, longListener));
                         }).start();
                     })
                     .setNegativeButton("Cancelar", null)
                     .show();
         };
 
-        // Botón para agregar nueva cita
+
         view.findViewById(R.id.btnAgregarCita)
                 .setOnClickListener(v -> startActivity(new Intent(requireContext(), FormCitaActivity.class)));
 
-        // Cargar listas inicialmente
-        cargarListas(clickListener, longListener);
+
+        LoadList(clickListener, longListener);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        // Refrescar al volver al fragment
-        cargarListas(clickListener, longListener);
+
+        LoadList(clickListener, longListener);
     }
 
-    // Método corregido con parámetros para los listeners
-    private void cargarListas(AdapterCita.OnItemClickListener clickListener,
-                              AdapterCita.OnItemLongClickListener longListener) {
+    private void LoadList(AdapterCita.OnItemClickListener clickListener,
+                          AdapterCita.OnItemLongClickListener longListener) {
         new Thread(() -> {
-            AppDatabase db = AppDatabase.getInstance(requireContext());
-            long ahora = System.currentTimeMillis();
+            AppDatabase database = AppDatabase.getInstance(requireContext());
+            long tiempoActual = System.currentTimeMillis();
 
-            List<Cita> proximas = db.dao_cita().listarFuturasOrdenadas(ahora);
-            List<Cita> pasadas  = db.dao_cita().listarHistoricasRecientes(ahora);
-            List<Doctor> listaDoctores   = db.dao_doctor().obtenerDoctores();
-            List<Paciente> listaPacientes = db.dao_paciente().obtenerPacientes();
+            List<Doctor> medicos = database.dao_doctor().obtenerDoctores();
+            List<Paciente> pacientes = database.dao_paciente().obtenerPacientes();
+            List<Cita> citasFuturas = database.dao_cita().listarFuturasOrdenadas(tiempoActual);
+            List<Cita> citasAnteriores = database.dao_cita().listarHistoricasRecientes(tiempoActual);
 
             requireActivity().runOnUiThread(() -> {
-                proximasAdapter = new AdapterCita(proximas, listaDoctores, listaPacientes);
-                pasadasAdapter  = new AdapterCita(pasadas,  listaDoctores, listaPacientes);
+                pasadasAdapter = new AdapterCita(citasAnteriores, medicos, pacientes);
+                proximasAdapter = new AdapterCita(citasFuturas, medicos, pacientes);
 
+                pasadasAdapter.setOnItemClickListener(clickListener);
+                pasadasAdapter.setOnItemLongClickListener(longListener);
                 proximasAdapter.setOnItemClickListener(clickListener);
                 proximasAdapter.setOnItemLongClickListener(longListener);
-                pasadasAdapter .setOnItemClickListener(clickListener);
-                pasadasAdapter .setOnItemLongClickListener(longListener);
 
+                rvPasadas.setAdapter(pasadasAdapter);
                 rvProximas.setAdapter(proximasAdapter);
-                rvPasadas .setAdapter(pasadasAdapter);
             });
         }).start();
     }
+
 }

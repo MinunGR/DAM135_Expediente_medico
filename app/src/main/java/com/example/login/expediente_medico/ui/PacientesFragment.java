@@ -19,7 +19,7 @@ import androidx.appcompat.app.AlertDialog;
 
 import java.util.List;
 
-// Fragmento que muestra el listado de pacientes y un botón para agregar nuevos
+
 public class PacientesFragment extends Fragment{
     private RecyclerView rvPacientes;
     private AdapterPaciente adapter;
@@ -31,7 +31,7 @@ public class PacientesFragment extends Fragment{
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState
     ) {
-        // Inflar el layout del fragmento
+
         return inflater.inflate(R.layout.fragment_pacientes, container, false);
     }
 
@@ -39,20 +39,20 @@ public class PacientesFragment extends Fragment{
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Inicializar RecyclerView y su adaptador
+
         rvPacientes = view.findViewById(R.id.listPacientes);
         adapter = new AdapterPaciente();
         rvPacientes.setLayoutManager(new LinearLayoutManager(requireContext()));
         rvPacientes.setAdapter(adapter);
 
-        // Al hacer click en un paciente, se abre el formulario para editar
+
         adapter.setOnItemClickListener(paciente -> {
             Intent intent = new Intent(requireContext(), FormPacienteActivity.class);
             intent.putExtra("EXTRA_ID_PACIENTE", paciente.getIdPaciente());
             startActivity(intent);
         });
 
-        // Click largo para eliminar un paciente
+
         adapter.setOnItemLongClickListener(paciente -> {
             new AlertDialog.Builder(requireContext())
                     .setTitle("Confirmar eliminación")
@@ -69,22 +69,22 @@ public class PacientesFragment extends Fragment{
                     .show();
         });
 
-        // Abre FormPacienteActivity al pulsar el icono
+
         view.findViewById(R.id.btnAgregarPacientes).setOnClickListener(v -> {
             startActivity(new Intent(requireContext(), FormPacienteActivity.class));
         });
 
-        // 5) Carga inicial de datos
+
         cargarPacientes();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        cargarPacientes(); // Refreca la lista al volver al formulario
+        cargarPacientes();
     }
 
-    /* Carga la lista de pacientes desde la BD */
+
     private void cargarPacientes() {
         new Thread(() -> {
             List<Paciente> lista = AppDatabase
